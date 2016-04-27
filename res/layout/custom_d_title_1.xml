@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_LayoutId"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true">
+
+    <ImageView
+        android:id="@+id/leftImgId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:src="@android:drawable/ic_menu_edit"
+        android:onClick="onTitleClick" />
+
+    <TextView
+        android:id="@+id/detial_tv_tial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:text="备忘录详细" 
+        android:textColor="#FFFFFFFF"/>
+
+    <ImageView
+        android:id="@+id/rightImgId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@android:drawable/ic_menu_save" 
+        android:onClick="onTitleClick"/>
+
+</RelativeLayout>

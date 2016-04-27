@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/hp_title" >
+        <LinearLayout
+            android:id="@+id/weather_title_llayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/todayweather_rlayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/imageView1_trip"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="9dp"
+                    android:layout_marginTop="21dp"
+                   	android:layout_centerHorizontal="true"
+                    android:src="@drawable/default_weather_icon" />
+
+                <TextView
+                    android:id="@+id/Day1_Tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="实时天气"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/weatherDay1_Tv_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/Day1_Tv"
+                    android:text="温度--℃\n湿度--%"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/tomorrowweather_rlayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ImageView02_trip"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/default_weather_icon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginBottom="9dp" />
+
+                <TextView
+                    android:id="@+id/Day2_Tv_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="明日天气"
+                    android:textSize="12sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/weatherDay2_Tv_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="10sp" 
+                    android:layout_below="@+id/Day2_Tv_trip"
+                    android:text="温度--℃\n湿度--%" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/aftertomorrowweather_rlayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <ImageView
+                    android:id="@+id/ImageView03_trip"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/default_weather_icon"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginBottom="9dp" />
+
+                <TextView
+                    android:id="@+id/Day3_Tv_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="后日天气"
+                    android:textSize="12sp" 
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp" />
+
+                <TextView
+                    android:id="@+id/weatherDay3_Tv_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="10sp"
+                    android:layout_below="@+id/Day3_Tv_trip"
+                    android:text="温度--℃\n湿度--%" />
+                <TextView
+                    android:id="@+id/updateTime_TV_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00更新"
+                    android:textSize="9sp" 
+                    android:layout_alignParentRight="true"
+                    android:layout_above="@+id/searchCity_Bt_trip"/>
+                
+                <Button
+                    android:id="@+id/searchCity_Bt_trip"
+                    android:layout_width="40dp"
+                    android:layout_height="22dp"
+                    android:text="定位城市"
+                    android:textSize="9sp"
+                    android:background="@null"
+                    android:padding="0dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true" />
+                
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/relativeLayout1" >
+
+        <ImageView
+            android:id="@+id/tripMannersBtn"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:background="#68b4ff"
+            android:onClick="onClick"
+            android:text="出行方式" />
+
+        <TextView
+            android:id="@+id/timeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/tripMannersBtn"
+            android:background="#ffffa4"
+            android:gravity="center"
+            android:text="请选择时间(默认今天)" >
+
+        </TextView>
+
+        <LinearLayout
+            android:id="@+id/selectCityLinearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tripMannersBtn"
+            android:layout_centerVertical="true" >
+
+            <AutoCompleteTextView
+                android:id="@+id/fromCityTv"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="2"
+                android:hint="出发地"
+                 />
+
+            <ImageView
+                android:id="@+id/toimageView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_toRightOf="@+id/button2"
+                android:layout_weight="1"
+                android:src="@drawable/orig_dest" />
+
+            <AutoCompleteTextView
+                android:id="@+id/toCityTv"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="2"
+                android:paddingLeft="30dp"
+                android:hint="目的地" 
+                 />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/relativeLayout2"
+        android:text="一键查询"
+        android:onClick="onClick"
+        android:background="#68b4ff" />
+
+    <ListView
+        android:id="@+id/mannerlistView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/searchBtn" >
+    </ListView>
+
+</RelativeLayout>

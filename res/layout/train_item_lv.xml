@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center" >
+        <TextView 
+            android:id="@+id/trainNumTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="K818"/>
+        <TextView 
+            android:id="@+id/depTimeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="00:00"
+            android:textColor="#00a2e8"/>
+        <TextView 
+            android:id="@+id/arrTimeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="00:00"/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:gravity="center" >
+        <TextView 
+            android:id="@+id/runTimeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="30小时40分钟"/>
+        <TextView 
+            android:id="@+id/depStationTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="成都" />
+        <TextView 
+            android:id="@+id/arrStation"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="北京西"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/priveTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="RMB:320"
+            android:gravity="center"
+            android:textColor="#ffc90e" />
+
+        <TextView
+            android:id="@+id/priceTypeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="硬座" />
+    </LinearLayout>
+
+</LinearLayout>

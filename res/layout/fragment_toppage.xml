@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/ad_banner_Iv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/banner_1" />
+
+    <ImageView
+        android:id="@+id/line_2_Iv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/line" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+         android:layout_weight="5">
+
+        <LinearLayout
+            android:id="@+id/function_llayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/travel_rlayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" >
+
+                <Button
+                    android:id="@+id/travel_Ib"
+                    android:layout_width="160dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/travel_background_color_selector"
+                    android:drawableTop="@drawable/travel"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:text="旅游"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/ticket_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/travel_background_color_selector"
+                    android:drawableRight="@drawable/ticket"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="门票查询"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/cruise_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/ticket_Tv"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/travel_background_color_selector"
+                    android:drawableRight="@drawable/cruise"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="18dp"
+                    android:text="邮轮查询"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/trip_rlayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="22dp" >
+
+                <Button
+                    android:id="@+id/trip_Iv"
+                    android:layout_width="160dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/trip_background_color_selector"
+                    android:drawableTop="@drawable/trip"
+                    android:gravity="center"
+                    android:paddingTop="7dp"
+                    android:text="出行"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/train_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/trip_background_color_selector"
+                    android:drawableRight="@drawable/trainticket"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="18dp"
+                    android:text="火车票查询"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/plane_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/train_Tv"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/trip_background_color_selector"
+                    android:drawableRight="@drawable/planeticket"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="18dp"
+                    android:text="机票查询"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/bus_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/plane_Tv"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/trip_background_color_selector"
+                    android:drawableRight="@drawable/busticket"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="21dp"
+                    android:text="客车查询"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/nearBy_rlayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="22dp" >
+
+                <Button
+                    android:id="@+id/nearBy_Iv"
+                    android:layout_width="160dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="7dp"
+                    android:background="@drawable/nearby_background_color_selector"
+                    android:drawableTop="@drawable/nearby"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:text="附近"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/food_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="7dp"
+                    android:background="@drawable/nearby_background_color_selector"
+                    android:drawableRight="@drawable/food"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="18dp"
+                    android:text="美食"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/wifi_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/food_Tv"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/nearby_background_color_selector"
+                    android:drawableRight="@drawable/wifi"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="18dp"
+                    android:text="wifi"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/park_Tv"
+                    android:layout_width="180dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/wifi_Tv"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/nearby_background_color_selector"
+                    android:drawableRight="@drawable/park"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingRight="18dp"
+                    android:text="停车"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

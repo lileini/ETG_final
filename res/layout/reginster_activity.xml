@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="#02ABFD" >
+		
+        <ImageView
+            android:id="@+id/iv_reginster_back" 
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/back"
+            />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="注册"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="28dp" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="8dp"
+                    android:src="@drawable/icon_account" />
+
+                <EditText
+                    android:id="@+id/et_register_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignBaseline="@+id/imageView1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/imageView1"
+                    android:ems="10"
+                    android:hint="手机号"
+                    android:inputType="text|number">
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="8dp"
+                    android:src="@drawable/icon_pwd" />
+
+                <EditText
+                    android:id="@+id/et_register_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignBaseline="@+id/imageView1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/imageView1"
+                    android:ems="10"
+                    android:hint="密码"
+                    android:inputType="textPassword"
+                    >
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="8dp"
+                    android:src="@drawable/icon_pwd" />
+
+                <EditText
+                    android:id="@+id/et_register_confirm_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignBaseline="@+id/imageView1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/imageView1"
+                    android:ems="10"
+                    android:hint="密码"
+                    android:inputType="textPassword"
+                   >
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/iv_reginster_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="8dp"
+                    android:src="@drawable/icon_account" />
+
+                <EditText
+                    android:id="@+id/et_register_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="38dp"
+                    android:layout_alignBaseline="@+id/iv_reginster_nickname"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@+id/iv_reginster_nickname"
+                    android:ems="10"
+                    android:hint="昵称">
+                </EditText>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/iv_reginster_gander"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingTop="8dp"
+                    android:src="@drawable/icon_account" />
+
+                <RadioGroup
+                      android:id="@+id/rb_reginster_gander"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_reginster_gander"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_reginster_man"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:text="男" />
+
+                    <RadioButton
+                          android:id="@+id/rb_reginster_woman"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="48dp"
+                        android:layout_weight="1"
+                        android:text="女" />
+                </RadioGroup>
+            </RelativeLayout>
+			<com.tarena.utils.ImageCircleView
+			    android:id="@+id/iv_register_header"
+			    android:layout_width="80dp"
+			    android:layout_height="80dp"
+			    android:layout_marginTop="8dp"
+			    android:layout_gravity="center_horizontal"
+			    android:src="@drawable/add_image"/>
+            <Button
+                android:id="@+id/btn_register_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/button_register_bg"
+                android:text="注册" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

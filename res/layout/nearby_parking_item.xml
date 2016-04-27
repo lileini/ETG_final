@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+      <ImageView
+        android:id="@+id/iv_item_parking_CCTP"
+        android:layout_width="50dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/ic_launcher" />
+
+       <TextView
+        android:id="@+id/tv_item_parking_CCMC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_item_parking_CCTP" 
+        android:text="莱蒙都会停车场"/>
+    <TextView
+        android:id="@+id/tv_item_parking_BTTCJG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_parking_CCMC"
+        android:layout_toRightOf="@id/iv_item_parking_CCTP" 
+        android:text="白天3元1小时"/>
+
+   
+     <TextView
+        android:id="@+id/tv_item_parking_SFKF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_parking_BTTCJG"
+        android:layout_toRightOf="@id/iv_item_parking_CCTP"
+        android:text="开放"/>
+     <TextView
+        android:id="@+id/tv_item_parking_KCW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_parking_BTTCJG"
+        android:layout_toRightOf="@id/tv_item_parking_SFKF" 
+        android:layout_marginLeft="16dp"
+        android:text="空余位：10"/>
+     <TextView
+        android:id="@+id/tv_item_parking_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_parking_SFKF"
+        android:layout_toRightOf="@id/iv_item_parking_CCTP" 
+        android:text="地址：红牌楼东站"/>
+
+</RelativeLayout>

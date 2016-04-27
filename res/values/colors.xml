@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="btn_register_normal">#02ABFD</color>
+    <color name="btn_register_pressed">#4ebcd3</color>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:background="@null"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radio0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="计划行程"
+            android:textColor="@drawable/text_color_selector_hp_tag" />
+
+        <ImageView
+            android:id="@+id/centerline_1_Iv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.25"
+            android:background="@null"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/line_1_28" />
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:button="@null"
+            android:gravity="center"
+            android:text="历史行程"
+            android:textColor="@drawable/text_color_selector_hp_tag" />
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/line_2_Iv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/radioGroup1"
+        android:background="@drawable/line" />
+
+    <com.lxl.travel.biz.NoScrollViewPager
+        android:id="@+id/fragmrnt_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_2_Iv"
+        android:paddingBottom="30dp" />
+
+    <RelativeLayout
+        android:id="@+id/add_rlayout"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" >
+
+        <ImageButton
+            android:id="@+id/head"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-40dp"
+            android:background="@drawable/add_plan" />
+
+        <ImageButton
+            android:id="@+id/add_plan"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/add_plan"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+</RelativeLayout>

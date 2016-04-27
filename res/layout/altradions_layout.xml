@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/hp_title">
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView 
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="今天"
+                android:textSize="15sp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imageViewTravelWeatherToday"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/w00" />
+            </LinearLayout>
+            <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView 
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="明天"
+                android:textSize="15sp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imageViewTravelWeatherToday2"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/w00" />
+            </LinearLayout>
+            <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView 
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:text="后天"
+                android:textSize="15sp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/imageViewTravelWeatherToday3"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/w00" />
+            </LinearLayout>
+            
+            
+            
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/TravelAltradionsActivityeditText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@+id/TravelAltradionsActivityImageView01"
+        android:gravity="center"
+        android:hint="成都"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/TravelAltradionsActivityimageView1"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="-10dp"
+        android:layout_below="@+id/TravelAltradionsActivityeditText"
+        android:src="@drawable/b01"/>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/TravelAltradionsActivitylistView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TravelAltradionsActivityimageView1" />
+
+
+
+    <LinearLayout
+        android:id="@+id/TravelAltradionsActivityLinearLayoutForButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/TravelAltradionsActivityimageView1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/TravelAltradionsActivityeditText"
+        android:layout_alignTop="@+id/TravelAltradionsActivityimageView1"
+        android:orientation="horizontal" >
+
+        <Button
+        android:id="@+id/TravelAltradionsActivitybutton1"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginLeft="1dp"
+        android:text="价格排序" 
+        android:background="#5ABFF4"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/TravelAltradionsActivitybutton2"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:textSize="15sp"
+        android:text="评分排序" 
+        android:background="#A88FF1"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/TravelAltradionsActivitybutton3"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:textSize="15sp"
+        android:text="星级排序"
+        android:background="#30C4B4"
+        android:onClick="onClick" />
+        
+        
+    </LinearLayout>
+
+    
+
+    <ImageView
+        android:id="@+id/TravelAltradionsActivityImageView01"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/TravelAltradionsActivityeditText"
+        android:layout_marginRight="-10dp"
+        android:onClick="doClick"
+        android:src="@drawable/s1" />
+
+</RelativeLayout>
+

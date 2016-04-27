@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_gravity="center"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:background="@drawable/trip_background_color_selector"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/info_llayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/name_Et"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="姓名"
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/address_ET"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="地址"
+            android:textColor="#ffffff"
+            android:paddingLeft="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_llayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/check_Btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="#ffffff"
+            android:text="确定" />
+
+        <Button
+            android:id="@+id/cancel_Btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textColor="#ffffff"
+            android:text="取消" />
+    </LinearLayout>
+
+</LinearLayout>

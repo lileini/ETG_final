@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlanDetailActivity" >
+
+    <LinearLayout
+        android:id="@+id/planDetail_title_rlayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/planDetail_fromDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="出发日期" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="至" />
+
+        <TextView
+            android:id="@+id/planDetail_toDate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="返程日期" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/line_2_Iv"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/planDetail_title_rlayout"
+        android:background="@drawable/line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line_2_Iv" >
+
+        <TextView
+            android:id="@+id/planDetail_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="景点位置:" />
+
+        <TextView
+            android:id="@+id/planDetail_addressDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/planDetail_address"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="位置信息描述" />
+
+        <TextView
+            android:id="@+id/planDetail_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/planDetail_addressDetail"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="预算:" />
+
+        <TextView
+            android:id="@+id/planDetail_priceDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/planDetail_price"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="预算信息描述" />
+
+        <TextView
+            android:id="@+id/planDetail_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/planDetail_priceDetail"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="备忘:" />
+
+        <TextView
+            android:id="@+id/planDetail_remarkDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/planDetail_remark"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:hint="备忘信息" />
+    </RelativeLayout>
+
+</RelativeLayout>

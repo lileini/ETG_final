@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lxl.trivel"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name="com.lxl.travel.ETGApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.thinkland.juheapi.openid"
+            android:value="JH9443ba15ef02fc22121c59033f0e36f5" />
+
+        <activity
+            android:name="com.lxl.travel.activity.RegisterAcitvity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.lxl.travel.activity.HomePageActivity"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.lxl.travel.activity.LoginActivity"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="com.lxl.travel.activity.AddPlanActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.lxl.travel.activity.TravelAltradionsActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name="com.lxl.travel.activity.NearbyPageActivity" >
+        </activity>
+        <activity android:name="com.lxl.travel.activity.AltradionsDetialActivity" >
+        </activity>
+        <activity android:name="com.lxl.travel.activity.TripPageActivity" >
+        </activity>
+        <activity android:name="com.lxl.travel.activity.PlanDetailActivity" >
+        </activity>
+
+        <service android:name="com.lxl.travel.biz.RegisterIntentService" >
+        </service>
+
+        <activity
+            android:name="com.lxl.travel.activity.AboutUSActivity"
+            android:label="@string/title_activity_about_us" >
+        </activity>
+            <activity
+            android:name="com.lxl.travel.activity.NotePadListActivity"
+            >
+        </activity>
+        <activity
+            android:name="com.lxl.travel.activity.NotePadAddActivity"
+             android:theme="@android:style/Theme.Holo.Light.NoActionBar" 
+        >
+        </activity>
+        <activity
+            android:name="com.lxl.travel.activity.NotePadDetailActivity"
+            android:label="@string/title_activity_note_pad_detail"
+            android:theme="@style/MyNoteTheme"
+            >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,311 @@
+<com.lxl.travel.activity.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:focusable="false"
+    android:focusableInTouchMode="false" 
+    android:descendantFocusability="afterDescendants"
+    >
+
+    <!-- 侧滑 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:paddingBottom="30dp"
+        android:paddingLeft="30dp"
+        android:paddingTop="50dp" >
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.tarena.utils.ImageCircleView
+                android:id="@+id/iv_homepage_header"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_homepage_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:text="昵称"
+                android:textColor="#ffffff"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="com.lxl.travel"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/tv_mail"
+            android:layout_below="@id/ll1"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="20dp"
+            android:cacheColorHint="#00000000"
+            android:divider="#19000000"
+            android:dividerHeight="4dp"
+            android:fadingEdge="vertical"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:smoothScrollbar="true"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <com.lxl.travel.activity.MyRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eeeeee" >
+
+        <ImageView
+            android:id="@+id/lineIv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/radioGroup1"
+            android:background="@drawable/line" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/homeP_rB"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="@drawable/text_color_selector_hp_tag" />
+
+            <ImageView
+                android:id="@+id/centerline_1_Iv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.25"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/line_1_28" />
+
+            <RadioButton
+                android:id="@+id/plan_rB"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.9"
+                android:button="@null"
+                android:gravity="center"
+                android:text="计划"
+                android:textColor="@drawable/text_color_selector_hp_tag" />
+
+            <ImageView
+                android:id="@+id/centerline_2_Iv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.25"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/line_1_28" />
+
+            <RadioButton
+                android:id="@+id/myP_rB"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="@drawable/text_color_selector_hp_tag" />
+        </RadioGroup>
+
+        <RelativeLayout
+            android:id="@+id/weather_rlayout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/hp_title" >
+
+            <LinearLayout
+                android:id="@+id/weather_title_llayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
+
+                <RelativeLayout
+                    android:id="@+id/todayweather_rlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/home_weather_imageView1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/default_weather_icon" />
+
+                    <TextView
+                        android:id="@+id/Day1_Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="实时天气"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/weatherDay1_Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/Day1_Tv"
+                        android:layout_marginLeft="10dp"
+                        android:text="温度：--℃\n湿度：--%"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tomorrowweather_rlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/home_weather_imageView2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/default_weather_icon" />
+
+                    <TextView
+                        android:id="@+id/Day2_Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="明日天气"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/weatherDay2_Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/Day2_Tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="温度：--℃\n湿度：--%"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/aftertomorrowweather_rlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/home_weather_imageView3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/default_weather_icon" />
+
+                    <TextView
+                        android:id="@+id/Day3_Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:text="后日天气"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/weatherDay3_Tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/Day3_Tv"
+                        android:layout_centerHorizontal="true"
+                        android:text="温度：--℃\n湿度：--%"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/updateweather_rlayout"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <Button
+                        android:id="@+id/searchCity_Bt"
+                        android:layout_width="60dp"
+                        android:layout_height="22dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@null"
+                        android:text="定位城市"
+                        android:textSize="9sp" />
+
+                    <TextView
+                        android:id="@+id/updateTime_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/searchCity_Bt"
+                        android:layout_centerHorizontal="true"
+                        android:text="00:00更新"
+                        android:textSize="10sp" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/line_2_Iv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/weather_rlayout"
+            android:background="@drawable/line" />
+
+        <LinearLayout
+            android:id="@+id/linlaot_homepage_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/lineIv"
+            android:layout_below="@id/line_2_Iv"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </com.lxl.travel.activity.MyRelativeLayout>
+
+</com.lxl.travel.activity.DragLayout>
