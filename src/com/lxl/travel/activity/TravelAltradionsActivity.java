@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.lxl.travel.base.BaseActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +57,7 @@ import com.thinkland.sdk.android.Parameters;
  * 	其中包含1.根据输入的城市名字查询当地2.根据不同的条件排序显示3.点击item后跳转入详细页面
  * 4.点击的查询的同时查询天气的值，并更新入最上方的天气栏 */
 
-public class TravelAltradionsActivity extends Activity{
+public class TravelAltradionsActivity extends BaseActivity {
 	public EditText search;  //点击的查询按钮
 	public Button button1;   //三个button对应三种不同的查询排序方式
 	public Button button2;

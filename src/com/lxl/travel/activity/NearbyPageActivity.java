@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.lxl.travel.base.BaseActivity;
 import org.json.JSONException;
 
 import android.content.BroadcastReceiver;
@@ -39,7 +40,7 @@ import com.lxl.travel.utils.Const;
 import com.lxl.trivel.R;
 
 /** 附近页面 */
-public class NearbyPageActivity extends FragmentActivity {
+public class NearbyPageActivity extends BaseActivity {
 	/** 附近美食Fragment */
 	NearbyCulinaryEntityFragment culinaryfragment;
 	/** 附近停车场Fragment */

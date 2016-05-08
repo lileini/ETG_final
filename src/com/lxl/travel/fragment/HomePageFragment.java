@@ -15,10 +15,11 @@ import com.lxl.travel.activity.NearbyPageActivity;
 import com.lxl.travel.activity.TravelAltradionsActivity;
 import com.lxl.travel.activity.TripPageActivity;
 import com.lxl.travel.activityanim.ActivityChangeAnim;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.utils.Const;
 import com.lxl.trivel.R;
 
-public class HomePageFragment extends Fragment {
+public class HomePageFragment extends BaseFragment {
 
 	private Button travel_btn;
 	private Button ticket_Tv;

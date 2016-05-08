@@ -38,6 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lxl.travel.ETGApplication;
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.travel.biz.LoginBiz;
 import com.lxl.travel.entity.UserEntity;
 import com.lxl.travel.utils.CameraForImageUtil;
@@ -49,19 +50,19 @@ import com.lxl.travel.utils.Tools;
 import com.lxl.travel.utils.ImageCompress.CompressOptions;
 import com.lxl.trivel.R;
 
-/**µÇÂ½Ò³Ãæ*/
-public class LoginActivity extends Activity {
-	/**ÓÃ»§Ãû¡¢ÃÜÂë*/
+/**ï¿½ï¿½Â½Ò³ï¿½ï¿½*/
+public class LoginActivity extends BaseActivity {
+	/**ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	EditText et_login_username, et_login_password;
-	/**½ÓÊÕLoginBiz·¢ËÍµÄ¹ã²¥½ÓÊÕÆ÷*/
+	/**ï¿½ï¿½ï¿½ï¿½LoginBizï¿½ï¿½ï¿½ÍµÄ¹ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	LoginBroadcastReceiver loginReceiver;
-	/**ÐÂÓÃ»§×¢²á£¿*/
+	/**ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½á£¿*/
 	private TextView tv_login_newUser;
-	/**Íü¼ÇÃÜÂë?*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?*/
 	private TextView tv_login_forgetPassword;
 	private ImageView iv_login_logo;
 	private Button btn_login_submit;
-	/**Ê¹ÓÃSharedPreferencesUtilÊ±ÐèÒª´¢´æÊý¾ÝµÄkeyÖµ*/
+	/**Ê¹ï¿½ï¿½SharedPreferencesUtilÊ±ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½keyÖµ*/
 	private static String[] keys = new String[] { "username", "md5password",
 			"nickname", "gender", "lastLoginTime", "regTime" };
 
@@ -71,13 +72,13 @@ public class LoginActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		//È¥µôactionBar
+		//È¥ï¿½ï¿½actionBar
 		getActionBar().hide();
 		setView();
-		//»ñÈ¡SharedPreferencesÆ«ºÃÉèÖÃ
+		//ï¿½ï¿½È¡SharedPreferencesÆ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		setData();
 		setListener();
-		//×¢²á¹ã²¥½ÓÊÕÆ÷
+		//×¢ï¿½ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		loginReceiver = new LoginBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Const.ACTION_LOGIN);
@@ -86,7 +87,7 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		//×¢Ïú¹ã²¥½ÓÊÕÆ÷
+		//×¢ï¿½ï¿½ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		unregisterReceiver(loginReceiver);
 		super.onDestroy();
 	}
@@ -100,16 +101,16 @@ public class LoginActivity extends Activity {
 		tv_login_newUser = (TextView) findViewById(R.id.tv_login_newUser);
 		tv_login_forgetPassword = (TextView) findViewById(R.id.tv_login_forget_password);
 	}
-	/**»ñÈ¡Æ«ºÃÉèÖÃÖÐµÄÊý¾Ý*/
+	/**ï¿½ï¿½È¡Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private void setData() {
 		/*
 		 * private String username,md5password,nickname,gender; private Date
 		 * lastLoginTime, regTime;
 		 */
-		//userInfoÎª´¢´æÓÃ»§µÇÂ¼ÐÅÏ¢  µÄÎÄ¼þÃû
+		//userInfoÎªï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ï¢  ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 		Map<String, String> data = SharedPreferencesUtil.getPerferences(this,
 				"userInfo", keys);
-		//Í¨¹ý¶ÔÓ¦µÄkey»ñÈ¡¶ÔÓ¦µÄÖµ£¬keys[0]ÎªÓÃ»§ÃûÐÅÏ¢keyÖµ£¬data.get(keys[1])ÎªÃÜÂëÐÅÏ¢keyÖµ
+		//Í¨ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½keyï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½Öµï¿½ï¿½keys[0]Îªï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢keyÖµï¿½ï¿½data.get(keys[1])Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢keyÖµ
 		et_login_username.setText(data.get(keys[0]));
 		et_login_password.setText(data.get(keys[1]));
 		File file = CameraForImageUtil.getOutputMediaFile(data.get(keys[0]));
@@ -128,12 +129,12 @@ public class LoginActivity extends Activity {
 	}
 
 	private void setListener() {
-		//TextView Ö»ÄÜÉèÖÃTouchÊÂ¼þ
+		//TextView Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Touchï¿½Â¼ï¿½
 		tv_login_newUser.setOnTouchListener(new OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				//µ±ÊÂ¼þÎªÌ§ÆðÊ±£¬Ìø×ªµ½×¢²áÒ³Ãæ
+				//ï¿½ï¿½ï¿½Â¼ï¿½ÎªÌ§ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½×¢ï¿½ï¿½Ò³ï¿½ï¿½
 				if (event.getAction() == MotionEvent.ACTION_UP) {
 					Intent intent = new Intent(LoginActivity.this,
 							RegisterAcitvity.class);
@@ -147,7 +148,7 @@ public class LoginActivity extends Activity {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_UP) {
-					Toast.makeText(LoginActivity.this, "Íü¼ÇÃÜÂë£¬ÇëÖØÐÂ×¢²á",
+					Toast.makeText(LoginActivity.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½",
 							Toast.LENGTH_SHORT).show();
 				}
 				return true;
@@ -157,71 +158,71 @@ public class LoginActivity extends Activity {
 
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_login_submit://µÇÂ¼°´Å¥
-			// µã»÷µÇÂ½
-			if (checkLoginInfo()) {//¼ì²éµÇÂ¼ÐèÒªµÄÐÅÏ¢ÊÇ·ñÌîÐ´ÕýÈ·
-				//µ¯³öProgressDialog
-				Tools.showProgressDialog(this, "ÕýÔÚÅ¬Á¦µÇÂ½ÖÐ...");
+		case R.id.btn_login_submit://ï¿½ï¿½Â¼ï¿½ï¿½Å¥
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Â½
+			if (checkLoginInfo()) {//ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ç·ï¿½ï¿½ï¿½Ð´ï¿½ï¿½È·
+				//ï¿½ï¿½ï¿½ï¿½ProgressDialog
+				Tools.showProgressDialog(this, "ï¿½ï¿½ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½...");
 				btn_login_submit.setEnabled(false);
-				//Æô¶¯¹¤×÷Ïß³Ì£¬Ö´ÐÐµÇÂ¼ÒµÎñ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì£ï¿½Ö´ï¿½Ðµï¿½Â¼Òµï¿½ï¿½
 				new Thread() {
 					public void run() {
-						//ÐÂ½¨µÇÂ¼ÒµÎñ
+						//ï¿½Â½ï¿½ï¿½ï¿½Â¼Òµï¿½ï¿½
 						new LoginBiz(LoginActivity.this).login(
-								et_login_username.getText().toString().trim(),//ÓÃ»§Ãû
-								et_login_password.getText().toString().trim());//ÃÜÂë
+								et_login_username.getText().toString().trim(),//ï¿½Ã»ï¿½ï¿½ï¿½
+								et_login_password.getText().toString().trim());//ï¿½ï¿½ï¿½ï¿½
 					};
 				}.start();
 			}
 			break;
 		}
 	}
-	/**¼ì²éµÇÂ¼ÐÅÏ¢£¬ÈôµÇÂ¼ÐÅÏ¢È«¶¼ÕýÈ·Ôò·µ»Øtrue£¬·ñÔò·µ»Øfalse*/
+	/**ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ï¢È«ï¿½ï¿½ï¿½ï¿½È·ï¿½ò·µ»ï¿½trueï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½false*/
 	private boolean checkLoginInfo() {
-		//ÅÐ¶ÏÓÃ»§ÃûÊÇ·ñÎª¿Õ
+		//ï¿½Ð¶ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½
 		if ("".equals(et_login_username.getText().toString().trim())) {
-			Toast.makeText(this, "ÕËºÅ²»ÄÜÎª¿Õ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ËºÅ²ï¿½ï¿½ï¿½Îªï¿½ï¿½", Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		//ÅÐ¶ÏÃÜÂëÊÇ·ñÎª¿Õ
+		//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Îªï¿½ï¿½
 		if ("".equals(et_login_password.getText().toString().trim())) {
-			Toast.makeText(this, "ÃÜÂë²»ÄÜÎª¿Õ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½ï¿½", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		return true;
 	}
-	/**½ÓÊÕLoginBiz·¢ËÍµÄ¹ã²¥½ÓÊÕÆ÷Àà£¬µ±½ÓÊÕµ½µÇÂ¼ÒµÎñ·µ»ØµÄ¹ã²¥Ê±£¬ÅÐ¶ÏµÇÂ¼ÊÇ·ñ³É¹¦*/
+	/**ï¿½ï¿½ï¿½ï¿½LoginBizï¿½ï¿½ï¿½ÍµÄ¹ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½Â¼Òµï¿½ñ·µ»ØµÄ¹ã²¥Ê±ï¿½ï¿½ï¿½Ð¶Ïµï¿½Â¼ï¿½Ç·ï¿½É¹ï¿½*/
 	class LoginBroadcastReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			//µÇÂ¼½á¹û×´Ì¬Âë
+			//ï¿½ï¿½Â¼ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½
 			int status = intent.getIntExtra(Const.KEY_DATA, -1);
-			//¹Ø±ÕProgressDialog
+			//ï¿½Ø±ï¿½ProgressDialog
 			Tools.closeProgressDialog();
 			btn_login_submit.setEnabled(true);
 			switch (status) {
-			case Const.CONNECTION_OUT_TIME://Á¬½Ó³¬Ê±
-				Toast.makeText(LoginActivity.this, "ÇëÇó³¬Ê±", Toast.LENGTH_SHORT)
+			case Const.CONNECTION_OUT_TIME://ï¿½ï¿½ï¿½Ó³ï¿½Ê±
+				Toast.makeText(LoginActivity.this, "ï¿½ï¿½ï¿½ï¿½Ê±", Toast.LENGTH_SHORT)
 				.show();
 				break;
-			case Const.STATUS_LOGIN_SUCCESS://×´Ì¬ÂëÎªµÇÂ¼³É¹¦
-				Toast.makeText(LoginActivity.this, "µÇÂ½³É¹¦", Toast.LENGTH_SHORT)
+			case Const.STATUS_LOGIN_SUCCESS://×´Ì¬ï¿½ï¿½Îªï¿½ï¿½Â¼ï¿½É¹ï¿½
+				Toast.makeText(LoginActivity.this, "ï¿½ï¿½Â½ï¿½É¹ï¿½", Toast.LENGTH_SHORT)
 						.show();
-				//È¡µÃµÇÂ¼biz´«»ØµÄuserÐÅÏ¢
+				//È¡ï¿½Ãµï¿½Â¼bizï¿½ï¿½ï¿½Øµï¿½userï¿½ï¿½Ï¢
 				UserEntity entity = (UserEntity) intent
 						.getSerializableExtra("entity");
-				// ÈôÐÅÏ¢Îª¿Õ£¬Ôò²»Ö´ÐÐ£¬Ö±½Ó·µ»Ø
+				// ï¿½ï¿½ï¿½ï¿½Ï¢Îªï¿½Õ£ï¿½ï¿½ï¿½Ö´ï¿½Ð£ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
 				if (entity == null) {
 					return;
 				}
-				//°ÑÓÃ»§ÐÅÏ¢±£´æµ½Application
+				//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½æµ½Application
 				ETGApplication.userEntity = entity;
 				LogUtil.i("userEntity", ":" + entity);
-				//°ÑÓÃ»§ÐÅÏ¢±£´æµ½Æ«ºÃÉèÖÃ
+				//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½æµ½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				List<String> data = new ArrayList<String>();
-				// ±£´æµ½ÎÄ¼þ
-				// listÖÐÒ»¶¨Òª°´´ËË³Ðò´¢´æ£¬Óëkeys±£³ÖÒ»ÖÂ
+				// ï¿½ï¿½ï¿½æµ½ï¿½Ä¼ï¿½
+				// listï¿½ï¿½Ò»ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ë³ï¿½ò´¢´æ£¬ï¿½ï¿½keysï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 				// "username","md5password","nickname","gender","lastLoginTime",
 				// "regTime"
 				data.add(entity.getUsername());
@@ -232,19 +233,19 @@ public class LoginActivity extends Activity {
 				data.add("" + entity.getRegTime());
 				SharedPreferencesUtil.saveShared(LoginActivity.this,
 						"userInfo", keys, data);
-				//Æô¶¯Ö÷Ò³
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³
 				Intent i = new Intent(LoginActivity.this,
 						HomePageActivity.class);
 				startActivity(i);
 				finish();
 				break;
-			case Const.STATUS_LOGIN_FAIL://×´Ì¬ÂëÎªµÇÂ¼Ê§°Ü
-				String msg = intent.getStringExtra("msg");//ÄÃµ½µÇÂ¼Ê§°ÜÔ­Òò£¬²¢Toast
+			case Const.STATUS_LOGIN_FAIL://×´Ì¬ï¿½ï¿½Îªï¿½ï¿½Â¼Ê§ï¿½ï¿½
+				String msg = intent.getStringExtra("msg");//ï¿½Ãµï¿½ï¿½ï¿½Â¼Ê§ï¿½ï¿½Ô­ï¿½ò£¬²ï¿½Toast
 				Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG)
 						.show();
 				break;
-			case -1://Ä¬ÈÏÎª-1£»
-				Toast.makeText(LoginActivity.this, "ÏµÍ³´íÎó,ÇëÖØÊÔ",
+			case -1://Ä¬ï¿½ï¿½Îª-1ï¿½ï¿½
+				Toast.makeText(LoginActivity.this, "ÏµÍ³ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 						Toast.LENGTH_LONG).show();
 				break;
 			}

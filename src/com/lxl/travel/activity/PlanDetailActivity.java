@@ -3,6 +3,7 @@ package com.lxl.travel.activity;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.travel.entity.PlanEntity;
 import com.lxl.trivel.R;
 import com.lxl.trivel.R.layout;
@@ -14,7 +15,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.widget.TextView;
 
-public class PlanDetailActivity extends Activity {
+public class PlanDetailActivity extends BaseActivity {
 	
 	private TextView dateFrom_Tv;
 	private TextView dateTo_Tv;

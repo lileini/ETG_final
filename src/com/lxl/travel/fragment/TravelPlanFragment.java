@@ -42,9 +42,10 @@ import com.lxl.travel.ETGApplication;
 import com.lxl.travel.activity.AddPlanActivity;
 import com.lxl.travel.activity.LoginActivity;
 import com.lxl.travel.adapter.TravelPlanViewPagerAdapter;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.trivel.R;
 
-public class TravelPlanFragment extends Fragment{
+public class TravelPlanFragment extends BaseFragment {
 
 	private ImageButton addplan_Ib;
 	private View v;

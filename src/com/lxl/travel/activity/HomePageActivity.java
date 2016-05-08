@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.lxl.travel.base.BaseActivity;
 import org.json.JSONException;
 
 import android.app.AlertDialog;
@@ -78,7 +79,7 @@ import com.lxl.travel.utils.LogUtil;
 import com.lxl.travel.utils.Tools;
 import com.lxl.trivel.R;
 
-public class HomePageActivity extends FragmentActivity {
+public class HomePageActivity extends BaseActivity {
 
 	private static final long serialVersionUID = 1L;
 	public Button btn_city;

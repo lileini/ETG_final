@@ -23,6 +23,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lxl.travel.ETGApplication;
 import com.lxl.travel.adapter.CulinaryAdapter;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.biz.NearbyBiz;
 import com.lxl.travel.entity.CulinaryEntity;
 import com.lxl.travel.utils.Const;
@@ -33,7 +34,7 @@ import com.lxl.trivel.R;
  * A simple {@link Fragment} subclass.
  * 
  */
-public class NearbyCulinaryEntityFragment extends Fragment {
+public class NearbyCulinaryEntityFragment extends BaseFragment {
 
 	private PullToRefreshListView listView;
 	private List<CulinaryEntity> data = new ArrayList<CulinaryEntity>();

@@ -15,9 +15,10 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.trivel.R;
 
-public class NotePadDetailActivity extends Activity {
+public class NotePadDetailActivity extends BaseActivity {
 
 	private NotePadDBHelper dbHelper;
 	private EditText contentEt;

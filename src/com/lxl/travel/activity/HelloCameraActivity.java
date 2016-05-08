@@ -1,4 +1,4 @@
-package com.lxl.travel.fragment;
+package com.lxl.travel.activity;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -19,9 +19,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.trivel.R;
 
-public class HelloCameraActivity extends Activity
+public class HelloCameraActivity extends BaseActivity
 {
     private static final String LOG_TAG = "HelloCamera";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -58,13 +59,13 @@ public class HelloCameraActivity extends Activity
         public void onClick(View v)
         {
             Log.d(LOG_TAG, "Take Picture Button Click");
-            // ÀûÓÃÏµÍ³×Ô´øµÄÏà»úÓ¦ÓÃ:ÅÄÕÕ
+            // ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
             // create a file to save the image
             fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
 
-            // ´Ë´¦Õâ¾äintentµÄÖµÉèÖÃ¹ØÏµµ½ºóÃæµÄonActivityResultÖÐ»á½øÈëÄÇ¸ö·ÖÖ§£¬¼´¹ØÏµµ½dataÊÇ·ñÎªnull£¬Èç¹û´Ë´¦Ö¸¶¨£¬ÔòºóÀ´µÄdataÎªnull
+            // ï¿½Ë´ï¿½ï¿½ï¿½ï¿½intentï¿½ï¿½Öµï¿½ï¿½ï¿½Ã¹ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½onActivityResultï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½dataï¿½Ç·ï¿½Îªnullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dataÎªnull
             // set the image file name
             intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 
@@ -80,7 +81,7 @@ public class HelloCameraActivity extends Activity
         public void onClick(View v)
         {
             Log.d(LOG_TAG, "Take Video Button Click");
-            // ÉãÏñ
+            // ï¿½ï¿½ï¿½ï¿½
             Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
             // create a file to save the video
@@ -138,7 +139,7 @@ public class HelloCameraActivity extends Activity
         {
             if (!mediaStorageDir.mkdirs())
             {
-                // ÔÚSD¿¨ÉÏ´´½¨ÎÄ¼þ¼ÐÐèÒªÈ¨ÏÞ£º
+                // ï¿½ï¿½SDï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÈ¨ï¿½Þ£ï¿½
                 // <uses-permission
                 // android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
                 Log.d(LOG_TAG,
@@ -175,7 +176,7 @@ public class HelloCameraActivity extends Activity
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(LOG_TAG, "onActivityResult: requestCode: " + requestCode
                 + ", resultCode: " + requestCode + ", data: " + data);
-        // Èç¹ûÊÇÅÄÕÕ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE == requestCode)
         {
             Log.d(LOG_TAG, "CAPTURE_IMAGE");
@@ -187,11 +188,11 @@ public class HelloCameraActivity extends Activity
                 // Check if the result includes a thumbnail Bitmap
                 if (data != null)
                 {
-                    // Ã»ÓÐÖ¸¶¨ÌØ¶¨´æ´¢Â·¾¶µÄÊ±ºò
+                    // Ã»ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½æ´¢Â·ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
                     Log.d(LOG_TAG,
                             "data is NOT null, file on default position.");
 
-                    // Ö¸¶¨ÁË´æ´¢Â·¾¶µÄÊ±ºò£¨intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);£©
+                    // Ö¸ï¿½ï¿½ï¿½Ë´æ´¢Â·ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½intent.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);ï¿½ï¿½
                     // Image captured and saved to fileUri specified in the
                     // Intent
                     Toast.makeText(this, "Image saved to:\n" + data.getData(),
@@ -249,7 +250,7 @@ public class HelloCameraActivity extends Activity
             }
         }
 
-        // Èç¹ûÊÇÂ¼Ïñ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½
         if (requestCode == CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE)
         {
             Log.d(LOG_TAG, "CAPTURE_VIDEO");

@@ -9,7 +9,7 @@
 //
 //
 /**
- * @author ÕÅÉÙÍþ
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * */
 
 package com.lxl.travel.activity;
@@ -21,6 +21,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.lxl.travel.base.BaseActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,8 +65,8 @@ import com.lxl.trivel.R;
 import com.thinkland.sdk.android.DataCallBack;
 import com.thinkland.sdk.android.JuheData;
 
-public class TripPageActivity extends Activity {
-	public int mode = 0;//±êÊ¶³öÐÐ·½Ê½£º1 ·É»ú£¬2 »ð³µ£¬3 ¿Í³µ
+public class TripPageActivity extends BaseActivity {
+	public int mode = 0;//ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Ð·ï¿½Ê½ï¿½ï¿½1 ï¿½É»ï¿½ï¿½ï¿½2 ï¿½ð³µ£ï¿½3 ï¿½Í³ï¿½
 	public TextView textView;
 	public ImageView tripManner;
 	public Button search;
@@ -90,26 +91,26 @@ public class TripPageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trip);
 		setView();
-		// »ñµÃ»ú³¡³ÇÊÐÁÐ±í
+		// ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 		loadCitys();
 
 		loadTrainCitys();
 		addListener();
 		getActionBar().hide();
-		// µÃµ½Ö÷Ò³Ãæ´«À´µÄIntent£¬²¢×ö´¦Àí
+		// ï¿½Ãµï¿½ï¿½ï¿½Ò³ï¿½æ´«ï¿½ï¿½ï¿½ï¿½Intentï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		setManner();
-		// ÏÈÅÐ¶ÏETGApplicationÖÐÊÇ·ñÒÑ¾­´æÔÚÌìÆøÊµÌå£¬
+		// ï¿½ï¿½ï¿½Ð¶ï¿½ETGApplicationï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½å£¬
 		if (ETGApplication.weatherEntity != null) {
-			// ÓÐ¾ÍÖ±½ÓÉèÖÃÊý¾Ý
+			// ï¿½Ð¾ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			setWeatherInfo(ETGApplication.weatherEntity);
 		} else {
-			// Ã»ÓÐ¾ÍÑÓ³Ù²é¿´£¬Èô»¹ÊÇÎª¿ÕÔòÇëÇóGPS»ñÈ¡Î»ÖÃ£¬»ñÈ¡Êý¾Ý
+			// Ã»ï¿½Ð¾ï¿½ï¿½Ó³Ù²é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½GPSï¿½ï¿½È¡Î»ï¿½Ã£ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 			Timer timer = new Timer();
 			timer.schedule(new TimerTask() {
 				@Override
 				public void run() {
 					if (ETGApplication.weatherEntity != null) {
-						// ÓÐ¾ÍÖ±½ÓÉèÖÃÊý¾Ý
+						// ï¿½Ð¾ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						setWeatherInfo(ETGApplication.weatherEntity);
 					} else {
 						new RequestGPSBiz(TripPageActivity.this).requestGPS();
@@ -195,22 +196,22 @@ public class TripPageActivity extends Activity {
 			break;
 		case R.id.searchBtn:
 			if ((fromCity.getText().toString()).equals("")) {
-				Toast.makeText(this, "Ç×£¬ÇëÌîÐ´³ö·¢µØ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "ï¿½×£ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (toCity.getText().toString().equals("")){
-				Toast.makeText(this, "Ç×£¬ÇëÌîÐ´Ä¿µÄµØ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "ï¿½×£ï¿½ï¿½ï¿½ï¿½ï¿½Ð´Ä¿ï¿½Äµï¿½", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (mode == 0){
-				Toast.makeText(this, "Ç×£¬ÇëÑ¡Ôñ³öÐÐ·½Ê½", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "ï¿½×£ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Ð·ï¿½Ê½", Toast.LENGTH_SHORT).show();
 			}
 			search();
 			break;
 		}
 	}
 
-	// ²éÑ¯ÐÅÏ¢
+	// ï¿½ï¿½Ñ¯ï¿½ï¿½Ï¢
 	private void search() {
 		RequestDataBiz biz = new RequestDataBiz(this, listView, fromCity,
 				toCity, textView);
@@ -223,11 +224,11 @@ public class TripPageActivity extends Activity {
 		}
 	}
 
-	// Ñ¡Ôñ³öÐÐ·½Ê½
+	// Ñ¡ï¿½ï¿½ï¿½ï¿½Ð·ï¿½Ê½
 	private void selectTripManner(final ImageView tripManner2) {
 		final String manner[] = {Const.AIRPLANE,Const.TRAIN,Const.BUS};
 		final int manners[] = {R.drawable.planeticket,R.drawable.trainticket,R.drawable.busticket};
-		new AlertDialog.Builder(this).setIcon(android.R.drawable.btn_star).setTitle("ÇëÑ¡Ôñ")
+		new AlertDialog.Builder(this).setIcon(android.R.drawable.btn_star).setTitle("ï¿½ï¿½Ñ¡ï¿½ï¿½")
 		.setSingleChoiceItems(manner, -1, new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -317,7 +318,7 @@ public class TripPageActivity extends Activity {
 				});
 	}
 
-	// ÉèÖÃÏÂÀ­ÁÐ±í
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	private void displayAirport() {
 		fromCity.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, citys));
@@ -327,7 +328,7 @@ public class TripPageActivity extends Activity {
 		toCity.setThreshold(1);
 	}
 
-	// ÉèÖÃÏÂÀ­ÁÐ±í
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	private void displayStation() {
 		fromCity.setAdapter(new ArrayAdapter<String>(TripPageActivity.this,
 				android.R.layout.simple_list_item_1, trainCitys));
@@ -337,46 +338,46 @@ public class TripPageActivity extends Activity {
 		toCity.setThreshold(1);
 	}
 
-	/** ÉèÖÃ±êÌâÀ¸ÌìÆø×´¿öµÄÏÔÊ¾ */
+	/** ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ */
 	public void setWeatherInfo(WeatherEntity weatherEntity) {
 		BitmapUtils bitmapUtils = new BitmapUtils(TripPageActivity.this);
-		// ¸ü¸Äµ±Ç°³ÇÊÐ
+		// ï¿½ï¿½ï¿½Äµï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 		// searchCity_Bt.setText(weatherEntity.getCity());
-		// ÉèÖÃ½ñÌìÌìÆøÐÅÏ¢
+		// ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		CurrentWeather currentWeather = weatherEntity.getCurrentWeather();
-		String infoToday = "ÎÂ¶È : " + currentWeather.getTemp() + "¡æ\n" + "Êª¶È : "
+		String infoToday = "ï¿½Â¶ï¿½ : " + currentWeather.getTemp() + "ï¿½ï¿½\n" + "Êªï¿½ï¿½ : "
 				+ currentWeather.getHumidity();
 		weatherToday.setText(infoToday);
 		bitmapUtils.display(weatherImage1, currentWeather.getWindStrength());
-		// ÉèÖÃ¸üÐÂÊ±¼ä
-		updateTimeTv.setText(currentWeather.getUpdateTime() + "¸üÐÂ");
-		// ÉèÖÃÃ÷ÌìÌìÆøÐÅÏ¢
+		// ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+		updateTimeTv.setText(currentWeather.getUpdateTime() + "ï¿½ï¿½ï¿½ï¿½");
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		FurtherWeather tomorrowWeather = weatherEntity.getTomorrowWeather();
-		String infoTomorrowWeather = "ÎÂ¶È : " + tomorrowWeather.getTemp()
-				+ "¡æ\n" + tomorrowWeather.getWeather();
+		String infoTomorrowWeather = "ï¿½Â¶ï¿½ : " + tomorrowWeather.getTemp()
+				+ "ï¿½ï¿½\n" + tomorrowWeather.getWeather();
 		weatherTomorrow.setText(infoTomorrowWeather);
 		bitmapUtils.display(weatherImage2, tomorrowWeather.getWind());
-		// ÉèÖÃºóÌìÌìÆøÐÅÏ¢
+		// ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		FurtherWeather dayAfterTomorrow = weatherEntity
 				.getDayAftertomorrowWeather();
-		String infoDayAfterTomorrow = "ÎÂ¶È : " + dayAfterTomorrow.getTemp()
-				+ "¡æ\n" + dayAfterTomorrow.getWeather();
+		String infoDayAfterTomorrow = "ï¿½Â¶ï¿½ : " + dayAfterTomorrow.getTemp()
+				+ "ï¿½ï¿½\n" + dayAfterTomorrow.getWeather();
 		weatherDayAfterTomorrow.setText(infoDayAfterTomorrow);
 		bitmapUtils.display(weatherImage3, dayAfterTomorrow.getWind());
 
 		try {
 			SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyyMMdd");
-			// ÉèÖÃÃ÷ÌìÈÕÆÚ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			String Tdate = dateFormat1.format(dateFormat2.parse(tomorrowWeather
 					.getDate()));
 			tomorrow_Tv.setText(Tdate);
-			// ÉèÖÃºóÌìÈÕÆÚ
+			// ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			String AfterTdate = dateFormat1.format(dateFormat2
 					.parse(dayAfterTomorrow.getDate()));
 			dayAfterTomorrow_Tv.setText(AfterTdate);
 		} catch (ParseException e) {
-			Toast.makeText(this, "¸üÐÂÈÕÆÚÊ§°Ü", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		}
 
@@ -388,15 +389,15 @@ public class TripPageActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// Òþ²Ø³ÇÊÐÏÔÊ¾view
+				// ï¿½ï¿½ï¿½Ø³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾view
 				searchCity_Bt.setVisibility(View.INVISIBLE);
-				// ÏÔÊ¾½ø¶ÈÌõ
+				// ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				// progressBar.setVisibility(View.VISIBLE);
 				if (ETGApplication.location != null) {
 					requestWeatherData(ETGApplication.location.getLongitude(),
 							ETGApplication.location.getLatitude());
 				} else {
-					Toast.makeText(TripPageActivity.this, "¶¨Î»ÖÐ£¬ÇëÉÔºó",
+					Toast.makeText(TripPageActivity.this, "ï¿½ï¿½Î»ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Ôºï¿½",
 							Toast.LENGTH_SHORT).show();
 					ETGApplication.location = new RequestGPSBiz(
 							TripPageActivity.this).requestGPS();
@@ -406,24 +407,24 @@ public class TripPageActivity extends Activity {
 	}
 
 	/**
-	 * ÇëÇóÌìÆøÊý¾Ý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param lon
-	 *            lat ¾­Î³¶È
+	 *            lat ï¿½ï¿½Î³ï¿½ï¿½
 	 * */
 	public void requestWeatherData(double lon, double lat) {
 
 		searchCity_Bt.setVisibility(View.INVISIBLE);
-		// ÉèÖÃÇëÇó²ÎÊý
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		RequestParams params = setParams(lon, lat);
-		// Í¨¹ý¹ã²¥½ÓÊÕ·µ»ØµÄÊý¾Ý
+		// Í¨ï¿½ï¿½ï¿½ã²¥ï¿½ï¿½ï¿½Õ·ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
 		RequestWeatherFromBdiBiz.getWeatherData(TripPageActivity.this, 39,
 				"http://apis.baidu.com/showapi_open_bus/weather_showapi/point",
 				params);
 
 	}
 
-	/** ÉèÖÃÏò·þÎñÆ÷¶Ë»ñÈ¡ÌìÆøÐÅÏ¢µÄÇëÇó²ÎÊý */
+	/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	private RequestParams setParams(double lon, double lat) {
 		RequestParams params = new RequestParams();
 		params.addHeader("apikey", "" + "6a64de48c734680156fbd141f95425ac");
@@ -447,36 +448,36 @@ public class TripPageActivity extends Activity {
 			if (Const.RECEIVE_WEATHER_DATA.equals(intent.getAction())) {
 				if (Const.WEATHER_DATA_REQUEST_SUCCESSED == intent.getIntExtra(
 						Const.WEATHER_DATA_STATUSCODE, -1)) {
-					// ½âÎö»ñÈ¡µ½µÄÊý¾Ý
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					String respString = intent
 							.getStringExtra(Const.WEATHER_DATA_RESPONSESTRING);
 					try {
 						WeatherEntity weatherEntity = RequestWeatherFromBdiBiz
 								.parseWeatherData(respString);
-						// ½«µ±Ç°²éÑ¯µ½µÄÌìÆøÐÅÏ¢¶ÔÏó,ÉèÎªappÈ«¾Ö
+						// ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ÎªappÈ«ï¿½ï¿½
 						ETGApplication.weatherEntity = weatherEntity;
 						try {
 							setWeatherInfo(weatherEntity);
 						} catch (Exception e) {
-							// Toast.makeText(HomePageActivity.this, "¸üÐÂÌìÆøÐÅÏ¢Ê§°Ü",
+							// Toast.makeText(HomePageActivity.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Ê§ï¿½ï¿½",
 							// Toast.LENGTH_SHORT);
 						}
 					} catch (JSONException e) {
-						// Toast.makeText(HomePageActivity.this, "¼ÓÔØÊý¾ÝÊ§°Ü",
+						// Toast.makeText(HomePageActivity.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½",
 						// Toast.LENGTH_LONG).show();
 						e.printStackTrace();
 					}
-					// Toast.makeText(HomePageActivity.this, "¼ÓÔØÊý¾Ý³É¹¦",
+					// Toast.makeText(HomePageActivity.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³É¹ï¿½",
 					// Toast.LENGTH_LONG).show();
-					// ÉèÖÃÏÔÊ¾½ø¶ÈÌõ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					// progressBar.setVisibility(View.GONE);
 					searchCity_Bt.setVisibility(View.VISIBLE);
-				} else {// »ñÈ¡Êý¾ÝÊ§°Ü
+				} else {// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
 					String throwable = intent
 							.getStringExtra(Const.WEATHER_DATA_THROWABLE);
 					Log.i("info", "throwable1 :" + throwable);
 					// Toast.makeText(HomePageActivity.this,
-					// "Á¬½Ó·þÎñÆ÷Ê§°Ü: "+throwable, Toast.LENGTH_LONG).show();
+					// "ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½: "+throwable, Toast.LENGTH_LONG).show();
 				}
 			}
 		}

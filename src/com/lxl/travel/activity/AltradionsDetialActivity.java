@@ -33,24 +33,25 @@ import android.widget.Toast;
 
 import com.lidroid.xutils.BitmapUtils;
 import com.lxl.travel.ETGApplication;
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.travel.biz.CmTravelDetailBiz;
 import com.lxl.travel.entity.AltradionsEntity;
 import com.lxl.travel.entity.PlanEntity;
 import com.lxl.travel.entity.TravelDetailEntity;
 import com.lxl.travel.utils.JsonParser;
 import com.lxl.trivel.R;
-/** 	Õâ¸öActivityÎªÂÃÓÎ½çÃæµã»÷itemºóÌø×ªµÄ½çÃæ£¬ÏÔÊ¾ÂÃÓÎ¾°µãµÄÏêÏ¸ĞÅÏ¢¡£1.µã»÷×îÉÏ·½µÄÍ¼Æ¬¿ÉÒÔÏÔÊ¾Í¼ÏñTOASTÌáÊ¾
- * 2.µã»÷¼ÓÈë¼Æ»®¿ÉÒÔÊµÏÖ¼Æ»®µÄ¼ÓÈë¡£ */ 
-public class AltradionsDetialActivity extends Activity{
+/** 	ï¿½ï¿½ï¿½ActivityÎªï¿½ï¿½ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½itemï¿½ï¿½ï¿½ï¿½×ªï¿½Ä½ï¿½ï¿½æ£¬ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Î¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ï¢ï¿½ï¿½1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Í¼ï¿½ï¿½TOASTï¿½ï¿½Ê¾
+ * 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö¼Æ»ï¿½ï¿½Ä¼ï¿½ï¿½ë¡£ */ 
+public class AltradionsDetialActivity extends BaseActivity {
 	
-	public TextView tv01;		//textviewÎª·µ»ØÊı¾İ£¬imageviewÎª·µ»ØµÄÍ¼Æ¬
+	public TextView tv01;		//textviewÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ£ï¿½imageviewÎªï¿½ï¿½ï¿½Øµï¿½Í¼Æ¬
 	public TextView tv02;
 	public TextView tv03;
 	public ImageView iv01;
-	private AltradionsEntity altradionsEntity;  //Õâ¸ö¡°ÊµÌåÀà¡±¸ºÔğ ×° ·µ»ØµÄ¾°µãÊı¾İ¡£
-	public ArrayList<String> list = new ArrayList<String>();  //Õâ¸ölistÎªÌáÈ¡jsonÖĞStringÖĞ£¬ÒÔhttp¿ªÍ·ÒÔjpg./½áÎ²ÖĞ¼äµÄÍøÕ¾URL
-	BitmapUtils btutils ;   //XutilsÖĞµÄ¹¤¾ßÀà ÓÃÓÚ»º´æ¼ÓÔØÍ¼Æ¬
-	private LinearLayout ll;   //Õâ¸öLLÖ÷ÒªÊÇÎªÁË¼ÓÈëimageview£¨ÉÏËß×Ö·û´®ÄÜÌáÈ¡¶àÉÙÍøÕ¾µÄURL¾ÍÄÜ¼ÓÈë¶àÉÙÍ¼Æ¬£©
+	private AltradionsEntity altradionsEntity;  //ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½à¡±ï¿½ï¿½ï¿½ï¿½ ×° ï¿½ï¿½ï¿½ØµÄ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¡ï¿½
+	public ArrayList<String> list = new ArrayList<String>();  //ï¿½ï¿½ï¿½listÎªï¿½ï¿½È¡jsonï¿½ï¿½Stringï¿½Ğ£ï¿½ï¿½ï¿½httpï¿½ï¿½Í·ï¿½ï¿½jpg./ï¿½ï¿½Î²ï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½Õ¾URL
+	BitmapUtils btutils ;   //Xutilsï¿½ĞµÄ¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+	private LinearLayout ll;   //ï¿½ï¿½ï¿½LLï¿½ï¿½Òªï¿½ï¿½Îªï¿½Ë¼ï¿½ï¿½ï¿½imageviewï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½URLï¿½ï¿½ï¿½Ü¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½
 	private View view;
 	private ImageView iv;
 	private Intent fileintent;
@@ -71,14 +72,14 @@ public class AltradionsDetialActivity extends Activity{
 	}
 	public void test(String s){
 		btutils = new BitmapUtils(this);
-		//1.½âÎöÄÃµ½µÄjson Êı¾İ ½«Æä×ª»»ÎªÊµÌåÀà
+		//1.ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½json ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªÊµï¿½ï¿½ï¿½ï¿½
 		TravelDetailEntity entity = JsonParser.parserForDetail(s);
-		//2.1ÉèÖÃtextviewÉÏµÄÊı¾İ
+		//2.1ï¿½ï¿½ï¿½ï¿½textviewï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½
 		tv02.setText(entity.getOpenTimeDesc());
 		tv01.setText(altradionsEntity.getTravelAddress());
 		tv03.setText(altradionsEntity.getProductManagerRecommand());
 		btutils.display(iv01, altradionsEntity.getImage());
-		//2.2ÉèÖÃÖ®Ç°»¹Òª ½«ÊµÌåÀàµÄµÚ¶ş¸ö±äÁ¿×ª»¯Îª £ºÊıÁ¿²»ÖªµÄÍ¼ÏñÊı¾İ£¨String£©·ÅÈë¼¯ºÏ£¨Àı×Ó£ºsrc=\"http*****.jpg.\"  ½ØÈ¡ÍøÖ·URL£©	
+		//2.2ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½Òª ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ÄµÚ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îª ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½İ£ï¿½Stringï¿½ï¿½ï¿½ï¿½ï¿½ë¼¯ï¿½Ï£ï¿½ï¿½ï¿½ï¿½Ó£ï¿½src=\"http*****.jpg.\"  ï¿½ï¿½È¡ï¿½ï¿½Ö·URLï¿½ï¿½	
 		String pull = entity.getIntroduction();
 		//Log.i("PULL = ", pull);
 		String titel = "src=\"";
@@ -105,7 +106,7 @@ public class AltradionsDetialActivity extends Activity{
 		
 			entity.setImageList(list);
 			//Log.i("imageURL[2] = ", list.get(2));
-		//3.ÅĞ¶Ï¼¯ºÏµÄ³¤¶È£¬Ìí¼ÓµÈÁ¿µÄimageview·ÅÈëScrollViewÖĞ
+		//3.ï¿½Ğ¶Ï¼ï¿½ï¿½ÏµÄ³ï¿½ï¿½È£ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½imageviewï¿½ï¿½ï¿½ï¿½ScrollViewï¿½ï¿½
 			  ll = (LinearLayout) findViewById(R.id.LinearLayout_imageDetail);
 			for (int i = 0; i < list.size(); i++) {
 				  view = View.inflate(this, R.layout.linearlayout_image_detail, null);
@@ -122,19 +123,19 @@ public class AltradionsDetialActivity extends Activity{
 	
 
 	private void setlisteners() {
-		//ÔİÊ±Î´ÓÃÉÏ£»
+		//ï¿½ï¿½Ê±Î´ï¿½ï¿½ï¿½Ï£ï¿½
 	}
-	//¼ÓÈë¼Æ»®°´¼üµÄ¼àÌı
+	//ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 	public void jiaruPLAN(View v){
 		if(ETGApplication.userEntity == null){
-			Toast.makeText(this, "²¢Ã»ÓĞµÇÂ¼~Ç×", 0).show();
+			Toast.makeText(this, "ï¿½ï¿½Ã»ï¿½Ğµï¿½Â¼~ï¿½ï¿½", 0).show();
 			Intent intent = new Intent(AltradionsDetialActivity.this, LoginActivity.class);
 			startActivity(intent);
 		}else{
 		Intent intent = new Intent(this,AddPlanActivity.class);
 		intent.putExtra("AltradionsEntity", altradionsEntity);
-		intent.putExtra("fromDate", fileintent.getStringExtra("timeFrom"));//ÕâÁ½¸öÊı¾İÊÇ   ¼ÓÈë¼Æ»®½çÃæÌø×ªµ½±¾½çÃæÊÇ´«µÄ³ö·¢Ê±¼ä
-		intent.putExtra("toDate", fileintent.getStringExtra("timeto"));//   ºÍ·µ»ØÊ±¼ä  £¨µ½Ê±ºòµã»÷¡°¼ÓÈë¼Æ»®¡±°´¼üÊ±·µ»Ø»ØÈ¥£©
+		intent.putExtra("fromDate", fileintent.getStringExtra("timeFrom"));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+		intent.putExtra("toDate", fileintent.getStringExtra("timeto"));//   ï¿½Í·ï¿½ï¿½ï¿½Ê±ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ø»ï¿½È¥ï¿½ï¿½
 		startActivity(intent);
 		finish();
 		}
@@ -148,21 +149,21 @@ public class AltradionsDetialActivity extends Activity{
 		new CmTravelDetailBiz(this, Integer.parseInt(altradionsEntity.getTravelID())).GetTravelDetail();
 		
 	}
-//µÚÒ»¸öimageviewµÄ¼àÌı£¨µ¯³öÍÂË¾£©
+//ï¿½ï¿½Ò»ï¿½ï¿½imageviewï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¾ï¿½ï¿½
 	public void image_onClick(View view){
 		MyToast my = new MyToast();
-		my.myTosat(AltradionsDetialActivity.this, R.drawable.b01, "µã»÷¡°¼ÓÈë¼Æ»®¡±ÊÔÊÔ~", Toast.LENGTH_LONG);
+		my.myTosat(AltradionsDetialActivity.this, R.drawable.b01, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~", Toast.LENGTH_LONG);
 	}
-	//×Ô¶¨ÒåÍÂË¾£¨Í¼Æ¬¾ÓÖĞ£¬ÎÄ×ÖÔÚÅÔ±ß£©
+	//ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ë¾ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ğ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ß£ï¿½
 	class MyToast {
 	    public   void myTosat(Context context , int imageId ,String content , int duration){
-	        //newÒ»¸ötoast´«ÈëÒªÏÔÊ¾µÄactivityµÄÉÏÏÂÎÄ
+	        //newÒ»ï¿½ï¿½toastï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½ï¿½activityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        Toast toast = new Toast(context);
-	        //ÏÔÊ¾µÄÊ±¼ä
+	        //ï¿½ï¿½Ê¾ï¿½ï¿½Ê±ï¿½ï¿½
 	        toast.setDuration(duration);
-	        //ÏÔÊ¾µÄÎ»ÖÃ
+	        //ï¿½ï¿½Ê¾ï¿½ï¿½Î»ï¿½ï¿½
 	        toast.setGravity(Gravity.BOTTOM, 0, 300);
-	        //ÖØĞÂ¸øtoast½øĞĞ²¼¾Ö
+	        //ï¿½ï¿½ï¿½Â¸ï¿½toastï¿½ï¿½ï¿½Ğ²ï¿½ï¿½ï¿½
 	        LinearLayout toastLayout = new LinearLayout(context);
 	        toastLayout.setOrientation(LinearLayout.HORIZONTAL);
 	        toastLayout.setGravity(Gravity.CENTER_VERTICAL);
@@ -170,7 +171,7 @@ public class AltradionsDetialActivity extends Activity{
 	        ImageView imageView = new ImageView(context);
 	        imageView.setImageResource(imageId);
 	        imageView.setLayoutParams(new LayoutParams(200, 200));
-	        //°ÑimageViewÌí¼Óµ½toastLayoutµÄ²¼¾Öµ±ÖĞ
+	        //ï¿½ï¿½imageViewï¿½ï¿½Óµï¿½toastLayoutï¿½Ä²ï¿½ï¿½Öµï¿½ï¿½ï¿½
 	        toastLayout.addView(imageView);
 	       
 	        TextView textView = new TextView(context);
@@ -178,9 +179,9 @@ public class AltradionsDetialActivity extends Activity{
 	        textView.setTextSize(30);
 	        textView.setTextColor(Color.RED);
 //	        textView.setBackgroundColor(Color.GRAY);
-	        //°ÑtextViewÌí¼Óµ½toastLayoutµÄ²¼¾Öµ±ÖĞ
+	        //ï¿½ï¿½textViewï¿½ï¿½Óµï¿½toastLayoutï¿½Ä²ï¿½ï¿½Öµï¿½ï¿½ï¿½
 	        toastLayout.addView(textView);
-	        //°ÑtoastLayoutÌí¼Óµ½toastµÄ²¼¾Öµ±ÖĞ
+	        //ï¿½ï¿½toastLayoutï¿½ï¿½Óµï¿½toastï¿½Ä²ï¿½ï¿½Öµï¿½ï¿½ï¿½
 	        toast.setView(toastLayout);
 	        toast.show();
 	    }

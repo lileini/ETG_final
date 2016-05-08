@@ -3,6 +3,7 @@ package com.lxl.travel;
 import android.app.Application;
 import android.location.Location;
 
+import com.baidu.apistore.sdk.ApiStoreSDK;
 import com.lxl.travel.entity.UserEntity;
 import com.lxl.travel.entity.WeatherEntity;
 import com.thinkland.sdk.android.JuheSDKInitializer;
@@ -21,12 +22,8 @@ public class ETGApplication extends Application{
 		super.onCreate();
 		instance = this;
 		JuheSDKInitializer.initialize(getApplicationContext());
-//		super.onCreate();
-//		try {
-//			readConfig();
-//			connectChatServer();
-//		} catch (Exception e) {
-//		}
+		ApiStoreSDK.init(this,"bcbc8f3a40f6ebe5986bc6f1fd2670e1");
+
 	}
 
 }

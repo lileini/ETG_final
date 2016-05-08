@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lxl.travel.ETGApplication;
 import com.lxl.travel.adapter.ParkingAdapter;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.biz.NearbyBiz;
 import com.lxl.travel.entity.ParkingEntity;
 import com.lxl.travel.utils.Const;
@@ -24,7 +25,7 @@ import android.widget.ListView;
  * A simple {@link android.support.v4.app.Fragment} subclass.
  * 
  */
-public class NearbyParkingFragment extends Fragment {
+public class NearbyParkingFragment extends BaseFragment {
 	ListView listView;
 	private ArrayList<ParkingEntity> data = new ArrayList<ParkingEntity>();
 	private ParkingBroadcastReceiver receiver;

@@ -54,6 +54,7 @@ import com.lxl.travel.ETGApplication;
 import com.lxl.travel.activity.LoginActivity;
 import com.lxl.travel.activity.NotePadDBHelper;
 import com.lxl.travel.adapter.GeneralInfoAdapter;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.utils.CameraForImageUtil;
 import com.lxl.travel.utils.ImageCompress;
 import com.lxl.travel.utils.ImageCompress.CompressOptions;
@@ -61,10 +62,10 @@ import com.lxl.trivel.R;
 import com.tarena.utils.ImageCircleView;
 
 /**
- * ±¾ÀàÖÐµÄÊý¾Ý¿âÏà¹Ø²Ù×÷Ó¦¸ÃÒì²½½øÐÐ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ì²½ï¿½ï¿½ï¿½ï¿½
  * */
 @SuppressLint("SimpleDateFormat")
-public class PersonalFragment extends Fragment{
+public class PersonalFragment extends BaseFragment {
 
 	private TextView login_Tv;
 	private View view;
@@ -99,9 +100,9 @@ public class PersonalFragment extends Fragment{
 	}
 
 	private void initDisplayMetrics(){		
-		//»ñÈ¡ÆÁÄ»¹ÜÀíÆ÷
+		//ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		WindowManager manager = getActivity().getWindowManager();
-		//ÉèÖÃµ¯´°µÄ¿í¶È
+		//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½
 		displayMetrics = new DisplayMetrics();
 		manager.getDefaultDisplay().getMetrics(displayMetrics);
 	}
@@ -117,7 +118,7 @@ public class PersonalFragment extends Fragment{
 		return view;
 	}
 
-	/**³õÊ¼»¯¿Ø¼þ*/
+	/**ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø¼ï¿½*/
 	private void setViews() {
 		userImg_Iv = (ImageCircleView)view.findViewById(R.id.userImg_Iv_c);
 		login_Tv = (TextView) view.findViewById(R.id.login_Tv);
@@ -127,7 +128,7 @@ public class PersonalFragment extends Fragment{
 		personal_generalinfo_Tv = (TextView) view.findViewById(R.id.personal_generalinfo_Tv);
 	}
 
-	/**ÉèÖÃ²à»¬listviewµÄÏÔÊ¾*/
+	/**ï¿½ï¿½ï¿½Ã²à»¬listviewï¿½ï¿½ï¿½ï¿½Ê¾*/
 	/*private void setListView() {
 		// step 1. create a MenuCreator
 		SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -142,7 +143,7 @@ public class PersonalFragment extends Fragment{
 				// set item width
 				openItem.setWidth(dp2px(90));
 				// set item title
-				openItem.setTitle("±à¼­");
+				openItem.setTitle("ï¿½à¼­");
 				// set item title fontsize
 				openItem.setTitleSize(18);
 				// set item title font color
@@ -160,7 +161,7 @@ public class PersonalFragment extends Fragment{
 				// set a icon
 				//deleteItem.setIcon(R.drawable.ic_delete);
 				// set item title
-				deleteItem.setTitle("É¾³ý");
+				deleteItem.setTitle("É¾ï¿½ï¿½");
 				// set item title fontsize
 				deleteItem.setTitleSize(18);
 				// set item title font color
@@ -175,20 +176,20 @@ public class PersonalFragment extends Fragment{
 	}*/
 
 
-	/**ÉèÖÃitem²à»¬µã»÷¼àÌý*/
+	/**ï¿½ï¿½ï¿½ï¿½itemï¿½à»¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	/*private void serSlideItemListener() {
 		general_lv.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 			@Override
 			public void onMenuItemClick(int position, SwipeMenu menu, int index) {
 				switch(index){
-				case 0://±à¼­¼àÌý
+				case 0://ï¿½à¼­ï¿½ï¿½ï¿½ï¿½
 					int selectedId = Integer.valueOf(generalInfos.get(position).get(idKey));
 					setPopupWindow(UPDATE_TO_DB,selectedId);
 					name_Et.setText(generalInfos.get(position).get(nameKey));
 					address_Et.setText(generalInfos.get(position).get(addressKey));
 					break;
-				case 1://É¾³ý¼àÌý
+				case 1://É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					String whereClause = "_id="+generalInfos.get(position).get(idKey);
 					deleteinfo(whereClause);
 					generalInfos.remove(position);
@@ -203,9 +204,9 @@ public class PersonalFragment extends Fragment{
 	public void onResume() {
 		if(ETGApplication.userEntity != null){
 			login_Tv.setText(ETGApplication.userEntity.getNickname());
-			//»ñÈ¡±¾µØ´æ´¢µÄ³£ÓÃÐÅÏ¢
+			//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ø´æ´¢ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 			selectDataFromDB();
-			//ÉèÍ·Ïñ
+			//ï¿½ï¿½Í·ï¿½ï¿½
 			File file = CameraForImageUtil
 					.getOutputMediaFile(ETGApplication.userEntity.getUsername());
 			if (file.exists()) {
@@ -230,18 +231,18 @@ public class PersonalFragment extends Fragment{
 		super.onResume();
 	}
 
-	/**´ÓÊý¾Ý¿â²éÑ¯Êý¾Ý*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½*/
 	private void selectDataFromDB() {
 		if(generalInfos == null){
 			generalInfos = new ArrayList<Map<String,String>>();
 		}else {
-			//Çå¿ÕÉÏ´ÎµÄÊý¾Ý
+			//ï¿½ï¿½ï¿½ï¿½Ï´Îµï¿½ï¿½ï¿½ï¿½ï¿½
 			generalInfos.removeAll(generalInfos);
 		}
-		//²éÑ¯Óï¾ä
+		//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½
 		String sql = "select * from ETGgeneralInfo where _username="+ETGApplication.userEntity.getUsername();		
 		Cursor c = dbHelper.query(sql, null);
-		//½«²éÑ¯µ½µÄÊý¾Ý·â×°ÆðÀ´,ÔÚlistviewÖÐÏÔÊ¾
+		//ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý·ï¿½×°ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½listviewï¿½ï¿½ï¿½ï¿½Ê¾
 		while(c.moveToNext()){
 			Map<String, String> map = new HashMap<String, String>();
 			map.put(nameKey, c.getString(c.getColumnIndex("_name")));
@@ -253,16 +254,16 @@ public class PersonalFragment extends Fragment{
 		showListView();
 	}
 
-	/**ÉèÖÃ¼àÌýÆ÷*/
+	/**ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private void setListener() {
 
-		//ÉèÖÃµã»÷µÇÂ¼¼àÌý
+		//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 		login_Tv.setOnClickListener(new android.view.View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity != null){
-					Toast.makeText(getActivity(), "ÄúÒÑ¾­µÇÂ¼ÁË", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Â¼ï¿½ï¿½", Toast.LENGTH_SHORT).show();
 					return;
 				}else{					
 					Intent intent = new Intent(getActivity(),LoginActivity.class);
@@ -271,25 +272,25 @@ public class PersonalFragment extends Fragment{
 			}
 		});
 
-		//µã»÷»ù±¾ÐÅÏ¢¼àÌý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 		baseInfo_Tv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity == null){
-					Toast.makeText(PersonalFragment.this.getActivity(), "µÇÂ¼Ö®ºó²é¿´¸ü¶àÐÅÏ¢", Toast.LENGTH_SHORT).show();
+					Toast.makeText(PersonalFragment.this.getActivity(), "ï¿½ï¿½Â¼Ö®ï¿½ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢", Toast.LENGTH_SHORT).show();
 				}else {
 					displayBaseInfo();	
 				}	
 			}
 		});
-		//Í·Ïñ
+		//Í·ï¿½ï¿½
 		userImg_Iv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity != null){
-					Toast.makeText(getActivity(), "ÇëÓÒ»¬½øÈëÉèÖÃÀ¸¸ü»»ÕËºÅ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½", Toast.LENGTH_SHORT).show();
 					return;
 				}else{					
 					Intent intent = new Intent(getActivity(),LoginActivity.class);
@@ -298,25 +299,25 @@ public class PersonalFragment extends Fragment{
 			}
 		} );
 
-		//µã»÷Ìí¼Ó³£ÓÃÐÅÏ¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		addGeneralInfo_Tv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity == null){
-					Toast.makeText(PersonalFragment.this.getActivity(), "µÇÂ¼Ö®ºóÌí¼Ó¸ü¶àÐÅÏ¢", Toast.LENGTH_SHORT).show();
+					Toast.makeText(PersonalFragment.this.getActivity(), "ï¿½ï¿½Â¼Ö®ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢", Toast.LENGTH_SHORT).show();
 				}else {
 					setPopupWindow(INSERT_TO_DB, -1);	
 				}
 			}
 		});
 
-		//listviewµÄitemµã»÷¼àÌý
+		//listviewï¿½ï¿½itemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		setItemOnClickListener();
 	}
 
-	String[] items = new String[] { "±à¼­", "É¾³ý" };
-	/**ÉèÖÃlistviewµÄitemµã»÷¼àÌý*/
+	String[] items = new String[] { "ï¿½à¼­", "É¾ï¿½ï¿½" };
+	/**ï¿½ï¿½ï¿½ï¿½listviewï¿½ï¿½itemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private void setItemOnClickListener() {
 		general_lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -333,8 +334,8 @@ public class PersonalFragment extends Fragment{
 						selectedPos = position;
 					}
 				});
-				builder.setPositiveButton("È·¶¨", positiveButtonListener);
-				builder.setNegativeButton("È¡Ïû", negativeButtonListener);
+				builder.setPositiveButton("È·ï¿½ï¿½", positiveButtonListener);
+				builder.setNegativeButton("È¡ï¿½ï¿½", negativeButtonListener);
 				builder.setCancelable(true);
 				builder.show();
 			}
@@ -342,23 +343,23 @@ public class PersonalFragment extends Fragment{
 
 	}
 
-	/**Ñ¡ÔñµÄÊÇ±à¼­»¹ÊÇÉ¾³ý*/
+	/**Ñ¡ï¿½ï¿½ï¿½ï¿½Ç±à¼­ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½*/
 	private int selectedItem;
-	/**µã»÷µÄitem*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½item*/
 	private int selectedPos;
-	/**È·¶¨ ¼àÌý*/
+	/**È·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 	private android.content.DialogInterface.OnClickListener positiveButtonListener = new android.content.DialogInterface.OnClickListener() {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
 			switch (selectedItem) {
-			case 0://µã»÷±à¼­
+			case 0://ï¿½ï¿½ï¿½ï¿½à¼­
 				int selectedId = Integer.valueOf(generalInfos.get(selectedPos).get(idKey));
 				setPopupWindow(UPDATE_TO_DB,selectedId);
 				name_Et.setText(generalInfos.get(selectedPos).get(nameKey));
 				address_Et.setText(generalInfos.get(selectedPos).get(addressKey));
 				break;
-			case 1://µã»÷É¾³ý
+			case 1://ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 				String whereClause = "_id="+generalInfos.get(selectedPos).get(idKey);
 				deleteinfo(whereClause);
 				generalInfos.remove(selectedPos);
@@ -369,33 +370,33 @@ public class PersonalFragment extends Fragment{
 		}
 	};
 
-	/**È¡Ïû¼àÌý*/
+	/**È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private android.content.DialogInterface.OnClickListener negativeButtonListener = new android.content.DialogInterface.OnClickListener() {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
-			Toast.makeText(PersonalFragment.this.getActivity(), "È¡Ïû"+which, 1).show();
+			Toast.makeText(PersonalFragment.this.getActivity(), "È¡ï¿½ï¿½"+which, 1).show();
 		}
 	};
 
 
-	/**µ¯´°ÏÔÊ¾»ù±¾ÐÅÏ¢*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢*/
 	@SuppressWarnings("deprecation")
 	private void displayBaseInfo() {
-		//µ¯´°,Ìí¼ÓÐÅÏ¢
+		//ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		View baseInfoContentView = View.inflate(PersonalFragment.this.getActivity(), R.layout.item_personal_baseinfo_popupwindow, null);
-		//ÉèÖÃµ¯´°´°¿ÚµÄ´óÐ¡ºÍÎ»ÖÃ
+		//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÚµÄ´ï¿½Ð¡ï¿½ï¿½Î»ï¿½ï¿½
 		PopupWindow baseInfoWindow = new PopupWindow(baseInfoContentView, displayMetrics.widthPixels/4*3, displayMetrics.heightPixels/5);
-		// ÉèÖÃ±³¾°£¬Õâ¸öÊÇÎªÁËµã»÷¡°·µ»ØBack¡±Ò²ÄÜÊ¹ÆäÏûÊ§£¬²¢ÇÒ²¢²»»áÓ°ÏìÄãµÄ±³¾°
+		// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Backï¿½ï¿½Ò²ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 		baseInfoWindow.setBackgroundDrawable(new BitmapDrawable());
-		// Ê¹Æä¾Û¼¯ £¬ÒªÏë¼àÌý²Ëµ¥Àï¿Ø¼þµÄÊÂ¼þ¾Í±ØÐëÒªµ÷ÓÃ´Ë·½·¨
+		// Ê¹ï¿½ï¿½Û¼ï¿½ ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Í±ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ã´Ë·ï¿½ï¿½ï¿½
 		baseInfoWindow.setFocusable(true);
 		baseInfoWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 		initBaseInfoViews(baseInfoContentView);
 		setBaseInfo(baseInfoContentView);
 	}
 
-	/**³õÊ¼»¯»ù±¾ÐÅÏ¢µÄÏÔÊ¾¿Ø¼þ
+	/**ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ø¼ï¿½
 	 * @param baseInfoContentView */
 	private void initBaseInfoViews(View baseInfoContentView) {
 		username_Tv = (TextView) baseInfoContentView.findViewById(R.id.baseinfo_username_Tv);
@@ -405,18 +406,18 @@ public class PersonalFragment extends Fragment{
 		registTime_Tv = (TextView) baseInfoContentView.findViewById(R.id.baseinfo_registTime_Tv);
 	}
 
-	/**ÉèÖÃ»ù±¾ÐÅÏ¢µÄÏÔÊ¾
+	/**ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Ê¾
 	 * @param baseInfoContentView */
 	private void setBaseInfo(View baseInfoContentView) {
 		if(ETGApplication.userEntity!=null){
 			username_Tv.setText(ETGApplication.userEntity.getUsername());
 			nickName_Tv.setText(ETGApplication.userEntity.getNickname());
 			if("m".equals(ETGApplication.userEntity.getGender())){				
-				gender_Tv.setText("ÄÐ");
+				gender_Tv.setText("ï¿½ï¿½");
 			}else if("f".equals(ETGApplication.userEntity.getGender())){				
 				gender_Tv.setText("Å®");
 			}
-			//×ª»»Ê±¼ä
+			//×ªï¿½ï¿½Ê±ï¿½ï¿½
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			String lastLoginTime = format.format(ETGApplication.userEntity.getLastLoginTime());
 			lastLoginTime_Tv.setText(lastLoginTime);
@@ -429,23 +430,23 @@ public class PersonalFragment extends Fragment{
 	private View contentView;
 	private static final int INSERT_TO_DB = -1;
 	private static final int UPDATE_TO_DB = -2;
-	/**ÉèÖÃ³£ÓÃÐÅÏ¢µ¯´°*/
+	/**ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½*/
 	@SuppressWarnings("deprecation")
 	private void setPopupWindow(int submitType, int selectedId) {
-		//µ¯´°,Ìí¼ÓÐÅÏ¢
+		//ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		contentView = View.inflate(PersonalFragment.this.getActivity(), R.layout.item_personal_addinfo_popupwindow, null);
-		//»ñÈ¡ÆÁÄ»¹ÜÀíÆ÷
+		//ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		WindowManager manager = getActivity().getWindowManager();
-		//ÉèÖÃµ¯´°µÄ¿í¶È
+		//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		manager.getDefaultDisplay().getMetrics(displayMetrics);
-		//ÉèÖÃµ¯´°´°¿ÚµÄ´óÐ¡ºÍÎ»ÖÃ
+		//ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÚµÄ´ï¿½Ð¡ï¿½ï¿½Î»ï¿½ï¿½
 		window = new PopupWindow(contentView, displayMetrics.widthPixels/4*3, displayMetrics.heightPixels/4);
-		// Ê¹Æä¾Û¼¯ £¬ÒªÏë¼àÌý²Ëµ¥Àï¿Ø¼þµÄÊÂ¼þ¾Í±ØÐëÒªµ÷ÓÃ´Ë·½·¨
+		// Ê¹ï¿½ï¿½Û¼ï¿½ ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Í±ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ã´Ë·ï¿½ï¿½ï¿½
 		window.setFocusable(true);
-		// ÉèÖÃ±³¾°£¬Õâ¸öÊÇÎªÁËµã»÷¡°·µ»ØBack¡±Ò²ÄÜÊ¹ÆäÏûÊ§£¬²¢ÇÒ²¢²»»áÓ°ÏìÄãµÄ±³¾°
+		// ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Backï¿½ï¿½Ò²ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½
 		window.setBackgroundDrawable(new BitmapDrawable());
-		//Èí¼üÅÌ²»»áµ²×Åpopupwindow
+		//ï¿½ï¿½ï¿½ï¿½Ì²ï¿½ï¿½áµ²ï¿½ï¿½popupwindow
 		window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 		window.showAtLocation(personal_generalinfo_Tv, Gravity.CENTER, 0, displayMetrics.heightPixels/7);
 		//window.showAsDropDown(personal_generalinfo_Tv);
@@ -453,7 +454,7 @@ public class PersonalFragment extends Fragment{
 		setWindowListener(submitType,selectedId);
 	}
 
-	/**³õÊ¼»¯³£ÓÃÐÅÏ¢µ¯´°ÖÐµÄ¿Ø¼þ*/
+	/**ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¿Ø¼ï¿½*/
 	private void initView() {
 		name_Et = (EditText)contentView.findViewById(R.id.name_Et);
 		address_Et = (EditText)contentView.findViewById(R.id.address_ET);
@@ -461,19 +462,19 @@ public class PersonalFragment extends Fragment{
 		cancel_btn = (Button) contentView.findViewById(R.id.cancel_Btn);
 	}
 
-	/**ÉèÖÃ³£ÓÃÐÅÏ¢µ¯´°µÄµã»÷¼àÌý
+	/**ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param selectedPos */
 	private void setWindowListener(final int submitType, final int selectedId) {
-		//Ìí¼ÓÌá½»¼àÌý
+		//ï¿½ï¿½ï¿½ï¿½á½»ï¿½ï¿½ï¿½ï¿½
 		submit_btn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(TextUtils.isEmpty(name_Et.getText().toString()) 
 						|| TextUtils.isEmpty(address_Et.getText().toString())){
-					Toast.makeText(PersonalFragment.this.getActivity(), "ÐÅÏ¢Ã»ÓÐÌîÍêÅ¶", Toast.LENGTH_SHORT).show();
+					Toast.makeText(PersonalFragment.this.getActivity(), "ï¿½ï¿½Ï¢Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¶", Toast.LENGTH_SHORT).show();
 				}else{
-					//Ìí¼ÓÊý¾Ýµ½±¾µØÊý¾Ý¿âSQLite
+					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½SQLite
 					saveInfo(submitType, selectedId);
 					window.dismiss();
 				}
@@ -481,7 +482,7 @@ public class PersonalFragment extends Fragment{
 			}
 		});
 
-		//µã»÷È¡Ïû¼àÌý
+		//ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		cancel_btn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -496,14 +497,14 @@ public class PersonalFragment extends Fragment{
 	private String nameKey = "_name";
 	private String addressKey = "_address";
 	private String idKey = "_id";
-	/**±£´æÐÅÏ¢µ½±¾µØ
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param submitType 
 	 * @param selectedPos */
 	private void saveInfo(int submitType, int selectedId) {
 		String nameInfo = name_Et.getText().toString();
 		String addressInfo = address_Et.getText().toString();
 		Map<String, String> map = new HashMap<String, String>();
-		//Ìí¼ÓÐÅÏ¢µ½¼¯ºÏ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		map.put(nameKey, nameInfo);
 		map.put(addressKey, addressInfo);
 		generalInfos.add(map);
@@ -519,13 +520,13 @@ public class PersonalFragment extends Fragment{
 		selectDataFromDB();
 	}
 
-	/**¸üÐÂÊý¾Ý¿âµÄÐÅÏ¢*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ï¢*/
 	private void updateInfo( ContentValues values, String whereClause, String[] whereArgs) {
 		dbHelper.update("ETGgeneralInfo", values, whereClause, whereArgs);
 	}
 
 
-	/**ÏòÊý¾Ý¿â²åÈëÊý¾Ý*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private void insertDataToDB() {
 		ContentValues values = new ContentValues();
 		values.put("_username", ETGApplication.userEntity.getUsername());
@@ -535,7 +536,7 @@ public class PersonalFragment extends Fragment{
 	}
 
 	private GeneralInfoAdapter adapter;
-	/**ÉèÖÃ³£ÓÃÐÅÏ¢ÔÚlistviewÉÏµÄÏÔÊ¾*/
+	/**ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½listviewï¿½Ïµï¿½ï¿½ï¿½Ê¾*/
 	private void showListView() {
 		if(adapter == null){
 			adapter = new GeneralInfoAdapter(this.getActivity());
@@ -547,14 +548,14 @@ public class PersonalFragment extends Fragment{
 	}
 
 
-	/**±£´æ¿Ø¼þµÄ×´Ì¬*/
+	/**ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½×´Ì¬*/
 	@Override
 	public void onDestroyView() {
 		adapter = null;
 		super.onDestroyView();
 	}
 
-	/**´ÓÊý¾Ý¿âÉ¾³ýÐÅÏ¢*/
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½É¾ï¿½ï¿½ï¿½ï¿½Ï¢*/
 	private void deleteinfo(String whereClause) {
 		dbHelper.delete("ETGgeneralInfo", whereClause, null);
 	}

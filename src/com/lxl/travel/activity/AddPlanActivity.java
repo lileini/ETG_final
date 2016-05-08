@@ -41,6 +41,7 @@ import android.widget.Toast;
 
 import com.lidroid.xutils.http.RequestParams;
 import com.lxl.travel.ETGApplication;
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.travel.biz.RequestPlanListBiz;
 import com.lxl.travel.entity.AltradionsEntity;
 import com.lxl.travel.entity.PlanEntity;
@@ -49,7 +50,7 @@ import com.lxl.trivel.R;
 
 
 @SuppressLint("NewApi")
-public class AddPlanActivity extends Activity{
+public class AddPlanActivity extends BaseActivity {
 
 	private TextView fromDate_Tv;
 	private TextView toDate_Tv;

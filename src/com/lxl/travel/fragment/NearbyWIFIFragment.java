@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.lxl.travel.ETGApplication;
 import com.lxl.travel.adapter.WifiAdapter;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.biz.NearbyBiz;
 import com.lxl.travel.entity.WIFIEntity;
 import com.lxl.travel.utils.Const;
@@ -27,7 +28,7 @@ import com.lxl.trivel.R;
  * A simple {@link android.support.v4.app.Fragment} subclass.
  * 
  */
-public class NearbyWIFIFragment extends Fragment {
+public class NearbyWIFIFragment extends BaseFragment {
 	private ArrayList<WIFIEntity> data = new ArrayList<WIFIEntity>();
 	private ListView listView;
 	private WifiAdapter adapter;
@@ -56,7 +57,7 @@ public class NearbyWIFIFragment extends Fragment {
 			new NearbyBiz(getActivity()).nearbyWIFI(ETGApplication.location.getLongitude()
 					,ETGApplication.location.getLatitude());
 		}else{
-			Toast.makeText(getActivity(), "¶¨Î»ÖÐ£¬ÇëÉÔºó", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "ï¿½ï¿½Î»ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Ôºï¿½", Toast.LENGTH_SHORT).show();
 		}
 		receiver = new WifiBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();

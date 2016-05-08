@@ -1,5 +1,6 @@
 package com.lxl.travel.activity;
 
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.trivel.R;
 import com.lxl.trivel.R.layout;
 import com.lxl.trivel.R.menu;
@@ -8,7 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class AboutUSActivity extends Activity {
+public class AboutUSActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

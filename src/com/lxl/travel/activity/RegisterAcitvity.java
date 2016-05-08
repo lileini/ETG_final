@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.lxl.travel.base.BaseActivity;
 import com.lxl.travel.biz.RegisterIntentService;
 import com.lxl.travel.entity.UserEntity;
 import com.lxl.travel.utils.CameraForImageUtil;
@@ -45,12 +46,12 @@ import com.lxl.travel.utils.Tools;
 import com.lxl.trivel.R;
 import com.thinkland.sdk.android.loopj.f;
 
-/** ×¢²áÒ³Ãæactivity */
-public class RegisterAcitvity extends Activity {
+/** ×¢ï¿½ï¿½Ò³ï¿½ï¿½activity */
+public class RegisterAcitvity extends BaseActivity {
 
 	EditText etUsername, etPassword, etConfirmPassword, etName;
 	Button btnSubmit;
-	/** ½ÓÊÕ×¢²áÒµÎñ·µ»ØµÄ¹ã²¥½ÓÊÕÆ÷ */
+	/** ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Òµï¿½ñ·µ»ØµÄ¹ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	RegisterBroadcastReceiver myRegister;
 	private ImageView iv_register_selectIcon;
 	private RadioButton rb_reginster_man;
@@ -63,7 +64,7 @@ public class RegisterAcitvity extends Activity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.reginster_activity);
-			// È¥µôactionBar
+			// È¥ï¿½ï¿½actionBar
 			getActionBar().hide();
 			setupView();
 			addListener();
@@ -99,77 +100,77 @@ public class RegisterAcitvity extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		// ×¢Ïú¹ã²¥½ÓÊÕÆ÷
+		// ×¢ï¿½ï¿½ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		unregisterReceiver(myRegister);
 	}
 
-	/** µã»÷ÊÂ¼þ¼àÌýÆ÷ */
+	/** ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	class MyOnClickListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
-			if (v.getId() == R.id.btn_register_submit) {// µã»÷°´Å¥ÎªÌá½»°´Å¥Ê±
+			if (v.getId() == R.id.btn_register_submit) {// ï¿½ï¿½ï¿½ï¿½ï¿½Å¥Îªï¿½á½»ï¿½ï¿½Å¥Ê±
 				String username = etUsername.getText().toString();
 				String password = etPassword.getText().toString();
 				String confirmPassword = etConfirmPassword.getText().toString();
 				String name = etName.getText().toString();
 
-				// ÑéÖ¤ÓÃ»§Ãû¡¢ÃÜÂëÊäÈë
+				// ï¿½ï¿½Ö¤ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				StringBuilder builder = new StringBuilder();
 				if (TextUtils.isEmpty(username)) {
-					builder.append("ÓÃ»§ÃûÎª¿Õ\n");
+					builder.append("ï¿½Ã»ï¿½ï¿½ï¿½Îªï¿½ï¿½\n");
 				}
 				if (TextUtils.isEmpty(password)) {
-					builder.append("ÃÜÂëÎª¿Õ\n");
+					builder.append("ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½\n");
 				}
-				// ÈôbuilderÎª¿Õ£¬ÔòËµÃ÷ÓÃ»§Ãû¡¢ÃÜÂëÐÅÏ¢ÕýÈ·
+				// ï¿½ï¿½builderÎªï¿½Õ£ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½È·
 				if (TextUtils.isEmpty(builder.toString())) {
-					// ÅÐ¶ÏÁ½´ÎÊäÈëÃÜÂëÊÇ·ñÒ»ÖÂ
+					// ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ò»ï¿½ï¿½
 					if (!etPassword
 							.getText()
 							.toString()
 							.trim()
 							.equals(etConfirmPassword.getText().toString()
 									.trim())) {
-						Toast.makeText(RegisterAcitvity.this, "Á½´ÎÃÜÂë²»Ò»ÖÂ£¬ÇëÖØÐÂÊäÈë",
+						Toast.makeText(RegisterAcitvity.this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 								Toast.LENGTH_SHORT).show();
 						return;
 					}
-					// ÑéÖ¤³É¹¦,Ìá½»°´Å¥ÖÃÎª²»¿ÉÓÃ£¬·ÀÖ¹ÖØ¸´Ìá½»
+					// ï¿½ï¿½Ö¤ï¿½É¹ï¿½,ï¿½á½»ï¿½ï¿½Å¥ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½ï¿½ï¿½Ö¹ï¿½Ø¸ï¿½ï¿½á½»
 					btnSubmit.setEnabled(false);
-					// ÏÔÊ¾ProgressDialog
+					// ï¿½ï¿½Ê¾ProgressDialog
 					Tools.showProgressDialog(RegisterAcitvity.this,
-							"Ç×£¬×¢²áÖÐ£¬ÇëÉÔºó...");
-					// Æô¶¯×¢²áÒµÎñµÄservice
+							"ï¿½×£ï¿½×¢ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Ôºï¿½...");
+					// ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Òµï¿½ï¿½ï¿½service
 					Intent intent = new Intent(RegisterAcitvity.this,
 							RegisterIntentService.class);
-					// ÉèÖÃÊµÌå
+					// ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 					UserEntity userEntity = new UserEntity();
 					userEntity.setUsername(username);
 					userEntity.setMd5password(password);
 					userEntity.setNickname(name);
 					if (rb_reginster_man.isChecked()) {
-						userEntity.setGender("m");// ÄÐ
+						userEntity.setGender("m");// ï¿½ï¿½
 					} else {
 						userEntity.setGender("w");// Å®
 					}
-					userEntity.setRegTime(DateUtil.getCurrentDate());// »ñµÃ×¢²áÊ±¼ä£¬Îªµ±Ç°ÏµÍ³Ê±¼ä
-					userEntity.setLastLoginTime(DateUtil.getCurrentDate());// ÉèÖÃ×îºóÒ»´ÎµÇÂ¼Ê±¼ä
+					userEntity.setRegTime(DateUtil.getCurrentDate());// ï¿½ï¿½ï¿½×¢ï¿½ï¿½Ê±ï¿½ä£¬Îªï¿½ï¿½Ç°ÏµÍ³Ê±ï¿½ï¿½
+					userEntity.setLastLoginTime(DateUtil.getCurrentDate());// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Îµï¿½Â¼Ê±ï¿½ï¿½
 					intent.putExtra(Const.KEY_DATA, userEntity);
 					RegisterAcitvity.this.startService(intent);
-				} else {// builder²»Îª¿Õ£¬ËµÃ÷ÓÃ»§Ãû¡¢ÃÜÂëÐÅÏ¢²»ÕýÈ·
+				} else {// builderï¿½ï¿½Îªï¿½Õ£ï¿½Ëµï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½È·
 					Toast.makeText(RegisterAcitvity.this, builder.toString(),
 							Toast.LENGTH_LONG).show();
 				}
 			}
-			if (v.getId() == R.id.iv_reginster_back) {// ·µ»Ø°´Å¥
+			if (v.getId() == R.id.iv_reginster_back) {// ï¿½ï¿½ï¿½Ø°ï¿½Å¥
 				Intent i = new Intent(RegisterAcitvity.this,
 						LoginActivity.class);
 				startActivity(i);
 				finish();
 			}
-			if (v.getId() == R.id.iv_register_header) {// ÓÃ»§Í·Ïñ°´Å¥
-				String[] items = new String[] { "Ïà»ú", "Ïà²á" };
+			if (v.getId() == R.id.iv_register_header) {// ï¿½Ã»ï¿½Í·ï¿½ï¿½Å¥
+				String[] items = new String[] { "ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½" };
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						RegisterAcitvity.this);
 				builder.setSingleChoiceItems(items, -1,
@@ -179,13 +180,13 @@ public class RegisterAcitvity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								switch (which) {
-								case 0:// Æô¶¯Ïà»ú
+								case 0:// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 									Intent intent = new Intent(
 											MediaStore.ACTION_IMAGE_CAPTURE);
 									// create a file to save the image
 									Uri fileUri = CameraForImageUtil
 											.getOutputMediaFileUri("username_header");
-									// ´Ë´¦Õâ¾äintentµÄÖµÉèÖÃ¹ØÏµµ½ºóÃæµÄonActivityResultÖÐ»á½øÈëÄÇ¸ö·ÖÖ§£¬¼´¹ØÏµµ½dataÊÇ·ñÎªnull£¬Èç¹û´Ë´¦Ö¸¶¨£¬ÔòºóÀ´µÄdataÎªnull
+									// ï¿½Ë´ï¿½ï¿½ï¿½ï¿½intentï¿½ï¿½Öµï¿½ï¿½ï¿½Ã¹ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½onActivityResultï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½dataï¿½Ç·ï¿½Îªnullï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dataÎªnull
 									// set the image file name
 									intent.putExtra(MediaStore.EXTRA_OUTPUT,
 											fileUri);
@@ -196,9 +197,9 @@ public class RegisterAcitvity extends Activity {
 									break;
 								case 1:
 
-									// µ÷ÓÃÍ¼¿â
+									// ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
 
-									// È¥Í¼¿âÖÐÑ¡ÔñÍ¼Æ¬
+									// È¥Í¼ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Í¼Æ¬
 									Intent intent1 = new Intent(
 											Intent.ACTION_GET_CONTENT);
 									intent1.setType("image/*"); // Or 'image/
@@ -221,7 +222,7 @@ public class RegisterAcitvity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		//Ïà»ú·µ»Ø
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (requestCode == Const.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE
 				&& resultCode == this.RESULT_OK) {
 			File file = CameraForImageUtil.getOutputMediaFile("username_header");
@@ -236,7 +237,7 @@ public class RegisterAcitvity extends Activity {
 			/* bitmap = BitmapUtil.loadBitmap(file.getAbsolutePath(), 48, 48); */
 			iv_register_header.setImageBitmap(bitmap);
 		}
-		//Í¼¿â·µ»Ø
+		//Í¼ï¿½â·µï¿½ï¿½
 		if (requestCode == Const.RESULT_PICK_PHOTO_NORMAL
 				&& resultCode == this.RESULT_OK) {
 			Uri selectIcon = data.getData();
@@ -245,13 +246,13 @@ public class RegisterAcitvity extends Activity {
 					null, null);
 			cursor.moveToFirst();
 			String path = cursor.getString(0);
-			// ²Ã¼ôÍ¼Æ¬£¬´æ·ÅÔÚ"file:///sdcard/temp.jpg";
+			// ï¿½Ã¼ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"file:///sdcard/temp.jpg";
 			cropImageUri(path);
 			// iv_register_selectIcon.setImageBitmap(bitmap);
 		}
-		// Í¼Æ¬ÒÑ²Ã¼ôºÃºó£¬Ñ¹Ëõ
+		// Í¼Æ¬ï¿½Ñ²Ã¼ï¿½ï¿½Ãºï¿½Ñ¹ï¿½ï¿½
 		if (requestCode == Const.CROP_A_PICTURE && resultCode == this.RESULT_OK) {
-			// Ñ¹ËõÍ¼Æ¬
+			// Ñ¹ï¿½ï¿½Í¼Æ¬
 			// BitmapFactory.decodeFile(Const.IMAGE_FILE_LOCATION);
 			File file = CameraForImageUtil.getOutputMediaFile("username_header");
 			ImageCompress.CompressOptions options = new CompressOptions();
@@ -267,7 +268,7 @@ public class RegisterAcitvity extends Activity {
 		}
 	}
 
-	// ²Ã¼ôÍ¼Æ¬
+	// ï¿½Ã¼ï¿½Í¼Æ¬
 	private void cropImageUri(String path) {
 		File file = new File(path);
 		Intent intent = new Intent("com.android.camera.action.CROP");
@@ -278,43 +279,43 @@ public class RegisterAcitvity extends Activity {
 		intent.putExtra("aspectY", 2);
 		intent.putExtra("outputX", 400);
 		intent.putExtra("outputY", 400);
-		// ÉèÖÃÎªtrueÖ±½Ó·µ»Øbitmap
+		// ï¿½ï¿½ï¿½ï¿½ÎªtrueÖ±ï¿½Ó·ï¿½ï¿½ï¿½bitmap
 		intent.putExtra("return-data", false);
 		intent.putExtra("output", CameraForImageUtil.getOutputMediaFileUri("username_header"));
 		intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
 		startActivityForResult(intent, Const.CROP_A_PICTURE);
 	}
 
-	/** ×¢²áÒµÎñ·µ»ØµÄ¹ã²¥½ÓÊÕÆ÷,¸ù¾Ý·µ»Ø×´Ì¬ÂëÅÐ¶Ï×¢²áÊÇ·ñ³É¹¦ */
+	/** ×¢ï¿½ï¿½Òµï¿½ñ·µ»ØµÄ¹ã²¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½Ð¶ï¿½×¢ï¿½ï¿½ï¿½Ç·ï¿½É¹ï¿½ */
 	class RegisterBroadcastReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			int status = intent.getIntExtra(Const.KEY_DATA, -1);
-			// ProgressDialog½áÊø
+			// ProgressDialogï¿½ï¿½ï¿½ï¿½
 			Tools.closeProgressDialog();
-			// Ìá½»°´Å¥¿ÉÓÃ
+			// ï¿½á½»ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½
 			btnSubmit.setEnabled(true);
 			switch (status) {
-			case -1:// Ä¬ÈÏÖµ
-				Toast.makeText(RegisterAcitvity.this, "ÏµÍ³´íÎó,ÇëÖØÊÔ",
+			case -1:// Ä¬ï¿½ï¿½Öµ
+				Toast.makeText(RegisterAcitvity.this, "ÏµÍ³ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 						Toast.LENGTH_LONG).show();
 				break;
-			case Const.STATUS_REGISTER_SUCCESS:// ×´Ì¬ÂëÎª³É¹¦
+			case Const.STATUS_REGISTER_SUCCESS:// ×´Ì¬ï¿½ï¿½Îªï¿½É¹ï¿½
 				File file = CameraForImageUtil.getOutputMediaFile("username_header");
 				file.renameTo(CameraForImageUtil.getOutputMediaFile(etUsername.getText().toString()));
-				Toast.makeText(RegisterAcitvity.this, "×¢²á³É¹¦", Toast.LENGTH_LONG)
+				Toast.makeText(RegisterAcitvity.this, "×¢ï¿½ï¿½É¹ï¿½", Toast.LENGTH_LONG)
 						.show();
 				Intent i = new Intent(RegisterAcitvity.this,
 						LoginActivity.class);
 				startActivity(i);
 				finish();
 				break;
-			case Const.CONNECTION_OUT_TIME:// Á¬½Ó³¬Ê±
-				Toast.makeText(RegisterAcitvity.this, "Á¬½Ó³¬Ê±,ÇëÖØÊÔ",
+			case Const.CONNECTION_OUT_TIME:// ï¿½ï¿½ï¿½Ó³ï¿½Ê±
+				Toast.makeText(RegisterAcitvity.this, "ï¿½ï¿½ï¿½Ó³ï¿½Ê±,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
 						Toast.LENGTH_LONG).show();
 				break;
-			case Const.STATUS_REGISTER_FAIL:// ×´Ì¬ÎªÊ§°Ü
+			case Const.STATUS_REGISTER_FAIL:// ×´Ì¬ÎªÊ§ï¿½ï¿½
 				String msg = intent.getStringExtra("msg");
 				Toast.makeText(RegisterAcitvity.this, msg, Toast.LENGTH_LONG)
 						.show();

@@ -23,12 +23,13 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lxl.travel.ETGApplication;
 import com.lxl.travel.activity.PlanDetailActivity;
 import com.lxl.travel.adapter.TravelPlanListAdapter;
+import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.biz.RequestPlanListBiz;
 import com.lxl.travel.entity.PlanEntity;
 import com.lxl.travel.utils.Const;
 import com.lxl.trivel.R;
 
-public class PastTravelPlanFragment extends Fragment {
+public class PastTravelPlanFragment extends BaseFragment {
 
 	private DataPreparedReceiver receiver;
 	private TravelPlanListAdapter adapter;
