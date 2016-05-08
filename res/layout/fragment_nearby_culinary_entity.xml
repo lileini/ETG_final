@@ -6,7 +6,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <medusa.theone.waterdroplistview.view.WaterDropListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/lv_fragment_culinary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

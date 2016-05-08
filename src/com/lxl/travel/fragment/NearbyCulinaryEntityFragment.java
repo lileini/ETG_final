@@ -16,6 +16,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.lxl.travel.ETGApplication;
 import com.lxl.travel.adapter.CulinaryAdapter;
 import com.lxl.travel.biz.NearbyBiz;
@@ -23,15 +28,14 @@ import com.lxl.travel.entity.CulinaryEntity;
 import com.lxl.travel.utils.Const;
 import com.lxl.travel.utils.LogUtil;
 import com.lxl.trivel.R;
-import medusa.theone.waterdroplistview.view.WaterDropListView;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass.
+ * A simple {@link Fragment} subclass.
  * 
  */
 public class NearbyCulinaryEntityFragment extends Fragment {
 
-	private WaterDropListView listView;
+	private PullToRefreshListView listView;
 	private List<CulinaryEntity> data = new ArrayList<CulinaryEntity>();
 	private static int currentPage = 1;
 	CulinaryAdapter adapter;
@@ -45,7 +49,7 @@ public class NearbyCulinaryEntityFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_nearby_culinary_entity,
 				container, false);
-		listView = (WaterDropListView) v
+		listView = (PullToRefreshListView) v
 				.findViewById(R.id.lv_fragment_culinary);
 
 		setListener();
@@ -54,18 +58,7 @@ public class NearbyCulinaryEntityFragment extends Fragment {
 
 	private void setListener() {
 
-		listView.setPullLoadEnable(true);
-		listView.setWaterDropListViewListener(new WaterDropListView.IWaterDropListViewListener() {
-			@Override
-			public void onRefresh() {
-
-			}
-
-			@Override
-			public void onLoadMore() {
-
-			}
-		});
+		listView.setMode(Mode.BOTH);
 		listView.setOnRefreshListener(new OnRefreshListener<ListView>() {
 			@Override
 			public void onRefresh(PullToRefreshBase<ListView> refreshView) {

@@ -22,7 +22,6 @@ public class HomePageFragment extends Fragment {
 
 	private Button travel_btn;
 	private Button ticket_Tv;
-	private Button cruise_Tv;
 	private Button trip_btn;
 	private Button train_btn;
 	private Button plane_btn;
@@ -69,14 +68,6 @@ public class HomePageFragment extends Fragment {
 				getActivity().startActivity(intent);
 				changeAnim();
 				//Toast.makeText(getActivity(), "跳转到门票查询", 1).show();
-			}
-		});
-
-		cruise_Tv.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(getActivity(), "开发中,敬请期待", 1).show();
 			}
 		});
 
@@ -188,7 +179,6 @@ public class HomePageFragment extends Fragment {
 	private void setViews(View view) {
 		travel_btn = (Button) view.findViewById(R.id.travel_Ib);
 		ticket_Tv = (Button) view.findViewById(R.id.ticket_Tv);
-		cruise_Tv = (Button) view.findViewById(R.id.cruise_Tv);
 		trip_btn = (Button) view.findViewById(R.id.trip_Iv);
 		train_btn = (Button) view.findViewById(R.id.train_Tv);
 		plane_btn = (Button) view.findViewById(R.id.plane_Tv);

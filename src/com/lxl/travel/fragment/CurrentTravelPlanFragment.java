@@ -14,22 +14,13 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-//import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -77,7 +68,7 @@ public class CurrentTravelPlanFragment extends Fragment {
 	private int currentPos ;
 	/**
 	 * 初始化listview
-	 * 
+	 *
 	 * @param view
 	 */
 	private void setListView(View view) {

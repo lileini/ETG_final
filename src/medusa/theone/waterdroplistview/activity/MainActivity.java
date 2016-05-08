@@ -1,3 +1,4 @@
+/*
 package medusa.theone.waterdroplistview.activity;
 
 import android.os.Handler;
@@ -109,3 +110,4 @@ public class MainActivity extends ActionBarActivity implements WaterDropListView
         });
     }
 }
+*/

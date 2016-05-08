@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.apache.http.Header;
-import org.apache.http.HeaderElement;
-import org.apache.http.ParseException;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +29,7 @@ public class RequestPlanListBiz {
 	private ExecutorService threadPool;
 
 	public RequestPlanListBiz(){
-		//ÐèÒªÔÚ¹¹Ôì·½·¨ÖÐ½øÐÐÓÐÃ»ÓÐÍøÂçµÄÅÐ¶Ï
+		//ï¿½ï¿½Òªï¿½Ú¹ï¿½ï¿½ì·½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 		//??????????????
 		threadPool = Executors.newSingleThreadExecutor();
 	}
@@ -42,9 +39,9 @@ public class RequestPlanListBiz {
 
 			@Override
 			public void run() {
-				// 6Ãë³¬Ê±
+				// 6ï¿½ë³¬Ê±
 				HttpUtils httpUtils = new HttpUtils(6000);
-				//ÉÏ´Î¸üÐÂÄÚÈÝÖ»»º´æ500ºÁÃë(Ä¬ÈÏ60s) »º´æÊ±¼ä¹ý³¤µÄ»°,Èç¹ûÁ¬ÐøÏÂÀ­Ë¢ÐÂ,ÊÇ²»»á·¢ËÍÇëÇóµÄ
+				//ï¿½Ï´Î¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½500ï¿½ï¿½ï¿½ï¿½(Ä¬ï¿½ï¿½60s) ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½,ï¿½Ç²ï¿½ï¿½á·¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				httpUtils.configCurrentHttpCacheExpiry(500);
 				String url = Const.GLOB_URL + "findAll" + "?username=" + username;
 				RequestParams params = new RequestParams();
@@ -56,7 +53,7 @@ public class RequestPlanListBiz {
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
 						
-						// ÇëÇó³É¹¦
+						// ï¿½ï¿½ï¿½ï¿½É¹ï¿½
 						if (responseInfo.statusCode == 200) {
 							String info = responseInfo.result;
 							Log.i("info", "info: "+info);
@@ -64,28 +61,28 @@ public class RequestPlanListBiz {
 								JSONObject object = new JSONObject(info);
 								String result = object.getString("result");
 								if ("ok".equals(result)) {
-									// ²éÑ¯³É¹¦ »ñÈ¡jsonÊý¾Ý
+									// ï¿½ï¿½Ñ¯ï¿½É¹ï¿½ ï¿½ï¿½È¡jsonï¿½ï¿½ï¿½ï¿½
 									String json = object.getString("data");
-									// ½âÎöjson
-									// status = ³É¹¦×´Ì¬
+									// ï¿½ï¿½ï¿½ï¿½json
+									// status = ï¿½É¹ï¿½×´Ì¬
 									ArrayList<PlanEntity> list = parseJSONArray(json);
 									Log.i("info", list+"");
-									//¹ã²¥·¢ËÍ½âÎöjsonµÃµ½µÄpalnentity¼¯ºÏ
+									//ï¿½ã²¥ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½jsonï¿½Ãµï¿½ï¿½ï¿½palnentityï¿½ï¿½ï¿½ï¿½
 									Intent intent = new Intent(Const.ACTION_RESPONE_PLAN);
-									//¸ø×´Ì¬¸³Öµ,½ÓÊÕÊý¾Ý³É¹¦
+									//ï¿½ï¿½×´Ì¬ï¿½ï¿½Öµ,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý³É¹ï¿½
 									status = Const.STATUS_RECEIVE_OK;
 									intent.putExtra("status", status);
 									intent.putExtra("data", list);
 									context.sendBroadcast(intent);									
 								} else if ("err".equals(result)) {
-									//·¢ËÍ¹ã²¥,status = Ã»ÓÐ»ñÈ¡µ½Êý¾Ý(ÔÝÎÞ¼Æ»®)
+									//ï¿½ï¿½ï¿½Í¹ã²¥,status = Ã»ï¿½Ð»ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Þ¼Æ»ï¿½)
 									Intent intent = new Intent(Const.ACTION_RESPONE_PLAN);
 									status = Const.STATUS_RECEIVE_FAILED;
 									intent.putExtra("status", status);
 									context.sendBroadcast(intent);
 								}
 							} catch (JSONException e) {
-								//·¢ËÍ¹ã²¥,½âÎöjson´íÎó
+								//ï¿½ï¿½ï¿½Í¹ã²¥,ï¿½ï¿½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½
 								Intent intent = new Intent(Const.ACTION_RESPONE_PLAN);
 								status = Const.STATUS_RECEIVED_DATA_PARSE_FAILED;
 								intent.putExtra("status", status);
@@ -98,8 +95,8 @@ public class RequestPlanListBiz {
 
 					@Override
 					public void onFailure(HttpException error, String msg) {
-						// status = Á¬½ÓÊ§°Ü
-						// ·¢¹ã²¥
+						// status = ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+						// ï¿½ï¿½ï¿½ã²¥
 						Intent intent = new Intent(Const.ACTION_RESPONE_PLAN);
 						status = Const.STATUS_SERVER_CONNECT_FAILED;
 						intent.putExtra("status", status);
@@ -131,9 +128,7 @@ public class RequestPlanListBiz {
 		return list;
 	}
 
-	/**Ïò·þÎñÆ÷·¢ËÍÇëÇóÌí¼Ó¼Æ»®
-	 * @param planEntity 
-	 * @param addPlanActivity */
+
 	public void addPlan(final RequestParams params, Context context) {
 		threadPool.execute(new Runnable() {
 
@@ -163,7 +158,7 @@ public class RequestPlanListBiz {
 
 	}
 	
-	/**·¢ËÍ¹ã²¥*/
+	/**ï¿½ï¿½ï¿½Í¹ã²¥*/
 	private void sendBroadcat(String result) {
 		Intent intent = new Intent(Const.RECEIVE_ADD_PLAN_RESPONSE);
 		intent.putExtra("result", result);
@@ -171,7 +166,7 @@ public class RequestPlanListBiz {
 	}
 
 	/**
-	 * Ïò·þÎñÆ÷·¢ËÍÉ¾³ý¼Æ»®µÄÇëÇó
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½Æ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param id
 	 * @param username
 	 */
