@@ -255,6 +255,8 @@ public class TripPageActivity extends BaseActivity {
 	}
 
 	private void loadCitys() {
+		//http://apis.juhe.cn/train/s?name=g4&key=8997dd12acef99fc8d94a49f917831c6
+		//http://apis.juhe.cn/train/s?name=g4&key=您申请的APPKEY
 		JuheData.executeWithAPI(this, 20, "http://apis.juhe.cn/plan/city",
 				JuheData.GET, null, new DataCallBack() {
 					@Override
