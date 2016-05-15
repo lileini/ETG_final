@@ -22,47 +22,30 @@ import com.thinkland.sdk.android.DataCallBack;
 import com.thinkland.sdk.android.JuheData;
 import com.thinkland.sdk.android.Parameters;
 
-/**Í¨¹ı´ËÀà»ñÈ¡ÌìÆøÊı¾İ,½âÎöÌìÆøÊı¾İ½øĞĞ·â×°*/
 public class RequestWeatherDataBiz {
 	public static Context context;
 
-	/**·¢ËÍÇëÇó»ñÈ¡ÌìÆøÊı¾İ*/
 	public static void getWeatherData(Context mContext, int port, String url,Parameters params){
 		context = mContext;
-		/**
-		 * Çë²»ÒªÌí¼Ókey²ÎÊı.
-		 *//*
+		/*
 		Parameters params = new Parameters();
 		params.add("ip", "www.juhe.cn");
 		params.add("dtype", "xml");*/
-		/**
-		 * ÇëÇóµÄ·½·¨ ²ÎÊı: µÚÒ»¸ö²ÎÊı µ±Ç°ÇëÇóµÄcontext µÚ¶ş¸ö²ÎÊı ½Ó¿Úid µÚÈı¶ş¸ö²ÎÊı ½Ó¿ÚÇëÇóµÄurl µÚËÄ¸ö²ÎÊı ½Ó¿ÚÇëÇóµÄ·½Ê½
-		 * µÚÎå¸ö²ÎÊı ½Ó¿ÚÇëÇóµÄ²ÎÊı,¼üÖµ¶Ôcom.thinkland.sdk.android.ParametersÀàĞÍ; µÚÁù¸ö²ÎÊı
-		 * ÇëÇóµÄ»Øµ÷·½·¨,com.thinkland.sdk.android.DataCallBack;
-		 * 
-		 */
+
 		JuheData.executeWithAPI(mContext, port,url,JuheData.GET, params, new DataCallBack() {
-			/**
-			 * ÇëÇó³É¹¦Ê±µ÷ÓÃµÄ·½·¨ statusCodeÎªhttp×´Ì¬Âë,responseString    *ÎªÇëÇó·µ»ØÊı¾İ.
-			 */
+
 			@Override
 			public void onSuccess(int statusCode, String responseString) {
-				//½«½á¹ûÒÔ¹ã²¥ĞÎÊ½·¢ËÍ
+
 				sendBroadcast(statusCode,responseString,null);
 			}
 
-			/**
-			 * ÇëÇóÍê³ÉÊ±µ÷ÓÃµÄ·½·¨,ÎŞÂÛ³É¹¦»òÕßÊ§°Ü¶¼»áµ÷ÓÃ.
-			 */
+
 			@Override
 			public void onFinish() {
 				//sendBroadcast(Const.WEATHER_DATA_REQUEST_FINISH,null,null);
 			}
-			/**
-			 * ÇëÇóÊ§°ÜÊ±µ÷ÓÃµÄ·½·¨,statusCodeÎªhttp×´Ì¬Âë,throwableÎª²¶»ñµ½µÄÒì³£
-			 * statusCode:30002 Ã»ÓĞ¼ì²âµ½µ±Ç°ÍøÂç. 30003 Ã»ÓĞ½øĞĞ³õÊ¼»¯. 0
-			 * Î´Ã÷Òì³£,¾ßÌå²é¿´ThrowableĞÅÏ¢. ÆäËûÒì³£Çë²ÎÕÕhttp×´Ì¬Âë.
-			 */
+
 			@Override
 			public void onFailure(int statusCode,String responseString, Throwable throwable) {
 				sendBroadcast(statusCode,responseString,throwable);
@@ -70,7 +53,7 @@ public class RequestWeatherDataBiz {
 		});
 	}
 
-	/**½èÖú´Ë·½·¨½øĞĞ¹ã²¥·¢ËÍ*/
+
 	protected static void sendBroadcast(int statusCode, 
 			String responseString,Throwable throwable) {
 		LogUtil.i("weather", ""+statusCode + "," + responseString);
@@ -81,23 +64,23 @@ public class RequestWeatherDataBiz {
 		if(throwable != null){			
 			intent.putExtra(Const.WEATHER_DATA_THROWABLE, throwable);
 		}
-		//·¢ËÍ¹ã²¥
+		//ï¿½ï¿½ï¿½Í¹ã²¥
 		context.sendBroadcast(intent);
 	}
 
-	/**½èÖú´Ë·½·¨,½øĞĞÊı¾İµÄ½âÎö
+	/**ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İµÄ½ï¿½ï¿½ï¿½
 	 * @throws JSONException */
 	public static WeatherEntity parseWeatherData(String respString) throws JSONException {
 		WeatherEntity weatherEntity = new WeatherEntity();
-		//·µ»Ø°üº¬"resultcode","reason","result"µÄJSONObject
+		//ï¿½ï¿½ï¿½Ø°ï¿½ï¿½ï¿½"resultcode","reason","result"ï¿½ï¿½JSONObject
 		JSONObject jsonObject = new JSONObject(respString);
-		//·µ»Ø°üº¬"sk","today","future"×Ö¶ÎµÄJSONObject
+		//ï¿½ï¿½ï¿½Ø°ï¿½ï¿½ï¿½"sk","today","future"ï¿½Ö¶Îµï¿½JSONObject
 		JSONObject jsonObject2 = jsonObject.getJSONObject("result");
-		//»ñÈ¡µ±Ç°²éÑ¯µÄ³ÇÊĞ½øĞĞ·â×°
+		//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½Ñ¯ï¿½Ä³ï¿½ï¿½Ğ½ï¿½ï¿½Ğ·ï¿½×°
 		weatherEntity.setCity(jsonObject2.getJSONObject( "today").getString("city"));
-		//·µ»Ø"sk"JSONObject
+		//ï¿½ï¿½ï¿½ï¿½"sk"JSONObject
 		JSONObject jsonObject3 = jsonObject2.getJSONObject("sk");		
-		//·â×°µ±ÌìÌìÆø
+		//ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		CurrentWeather currentWeather = new CurrentWeather();
 		currentWeather.setHumidity(jsonObject3.getString("humidity"));
 		currentWeather.setTemp(jsonObject3.getString("temp"));
@@ -105,11 +88,11 @@ public class RequestWeatherDataBiz {
 		currentWeather.setWindDirection(jsonObject3.getString("wind_direction"));
 		currentWeather.setWindStrength(jsonObject3.getString("wind_strength"));
 		weatherEntity.setCurrentWeather(currentWeather);
-		//·â×°Î´À´ÌìÆø,jsonObject4ÊÇÒ»¸ö°üº¬Î´À´¼¸ÌìÌìÆøµÄjsonObject
+		//ï¿½ï¿½×°Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,jsonObject4ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jsonObject
 		JSONObject jsonObject4 = jsonObject2.getJSONObject("future");
-		//»ñÈ¡Ã÷ÌìµÄÈÕÆÚ,Æ´½ÓÎªfutureµÄ²éÑ¯×Ö¶Î
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Æ´ï¿½ï¿½Îªfutureï¿½Ä²ï¿½Ñ¯ï¿½Ö¶ï¿½
 		String dayOfTomorrow = "day_"+getDateOfTomorrow(1L);
-		//·â×°Ã÷ÌìµÄÌìÆø×´¿öĞÅÏ¢
+		//ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½Ï¢
 		FurtherWeather tomorrowWeather = new FurtherWeather();
 		tomorrowWeather.setDate(jsonObject4.getJSONObject(dayOfTomorrow).getString("date"));
 		tomorrowWeather.setTemp(jsonObject4.getJSONObject(dayOfTomorrow).getString("temperature"));
@@ -117,7 +100,7 @@ public class RequestWeatherDataBiz {
 		tomorrowWeather.setWeek(jsonObject4.getJSONObject(dayOfTomorrow).getString("week"));
 		tomorrowWeather.setWind(jsonObject4.getJSONObject(dayOfTomorrow).getString("wind"));
 		weatherEntity.setTomorrowWeather(tomorrowWeather);
-		//»ñÈ¡ºóÌìµÄÈÕÆÚ,Æ´½ÓÎªfutureµÄ²éÑ¯×Ö¶Î
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Æ´ï¿½ï¿½Îªfutureï¿½Ä²ï¿½Ñ¯ï¿½Ö¶ï¿½
 		String dayOfAfterTomorrow = "day_"+getDateOfTomorrow(2L);
 		FurtherWeather dayAftertomorrowWeather = new FurtherWeather();
 		dayAftertomorrowWeather.setDate(jsonObject4.getJSONObject(dayOfAfterTomorrow).getString("date"));
@@ -130,12 +113,12 @@ public class RequestWeatherDataBiz {
 
 	}
 
-	/**¸ù¾İµ±Ç°ÏµÍ³ÈÕÆÚ,»ñÈ¡Ã÷ÌìµÄÊ±¼äÈÕÆÚ*/
+	/**ï¿½ï¿½ï¿½İµï¿½Ç°ÏµÍ³ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	private static String getDateOfTomorrow(long dayCount) {
-		//Ö¸¶¨ÈÕÆÚ¸ñÊ½
+		//Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
-		//µ±Ç°ÏµÍ³Ê±¼ä(ºÁÃë)¼ÓÉÏÒ»ÌìµÄÊ±¼ä(ºÁÃëÖµ86400000),ÔÙ½øĞĞ¸ñÊ½×ª»¯
-		//±ÜÃâ³¬³öÖ±½Ó+1ÌìÊ±,»á·¢ÉúµÄÔÂÌìÊı³¬³öÕı³£·¶Î§
+		//ï¿½ï¿½Ç°ÏµÍ³Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Öµ86400000),ï¿½Ù½ï¿½ï¿½Ğ¸ï¿½Ê½×ªï¿½ï¿½
+		//ï¿½ï¿½ï¿½â³¬ï¿½ï¿½Ö±ï¿½ï¿½+1ï¿½ï¿½Ê±,ï¿½á·¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
 		String date = sdf.format(new Date(System.currentTimeMillis()+86400000*dayCount));
 		return date;
 	}

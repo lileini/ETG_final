@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import com.lxl.travel.base.BaseActivity;
+import com.lxl.travel.entity.Net;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,7 +97,6 @@ public class TravelAltradionsActivity extends BaseActivity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Const.RECEIVE_WEATHER_DATA);     //接收返回的天气信息
 		registerReceiver(receiver, filter);
-
 	}
 	public void onClick(View view){
 		switch (view.getId()) {
@@ -126,7 +126,7 @@ public class TravelAltradionsActivity extends BaseActivity {
 		cm.GetTravelData();	
 		//获取天气信息
 		Parameters params = setParams();
-		RequestWeatherDataBiz.getWeatherData(TravelAltradionsActivity.this, 39, "http://v.juhe.cn/weather/index", params);
+		RequestWeatherDataBiz.getWeatherData(TravelAltradionsActivity.this, 39, Net.URL_WEATHER, params);
 	}
 	private Parameters setParams() {  //设置聚合需要的参数
 		/*

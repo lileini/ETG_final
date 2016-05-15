@@ -22,7 +22,7 @@ public class ETGApplication extends Application{
 		super.onCreate();
 		instance = this;
 		JuheSDKInitializer.initialize(getApplicationContext());
-		ApiStoreSDK.init(this,"bcbc8f3a40f6ebe5986bc6f1fd2670e1");
+		ApiStoreSDK.init(this,"JHebf1fbc223b7574a98ad9574aaf47baa");
 
 	}
 
