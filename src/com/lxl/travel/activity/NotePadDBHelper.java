@@ -8,37 +8,37 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.lxl.travel.utils.LogUtil;
-/**½èÖú´ËÀàµÄ·½·¨²Ù×÷Êı¾İ¿â*/
+/**å€ŸåŠ©æ­¤ç±»çš„æ–¹æ³•æ“ä½œæ•°æ®åº“*/
 public class NotePadDBHelper 
        extends SQLiteOpenHelper{
 
 	public static NotePadDBHelper newInstance(Context context){
-		return new NotePadDBHelper(context,//´ËÊ±²¢²»»á´´½¨Êı¾İ¿â
+		return new NotePadDBHelper(context,//æ­¤æ—¶å¹¶ä¸ä¼šåˆ›å»ºæ•°æ®åº“
 	    "ETG.db", null,1);
 	}
 	private NotePadDBHelper(Context context, String name, CursorFactory factory,
 			int version) {
 		super(context, name, factory, version);
 	}
-	/**´Ë·½·¨ÓÃÓÚ²éÑ¯*/
-    public Cursor query(String sql,String[]selectionArgs){
-    	//»ñµÃ²Ù×÷Êı¾İ¿âµÄSQLiteDatabase¶ÔÏó
-    	SQLiteDatabase db=
-    	getReadableDatabase();//Êı¾İ¿â²»´æÔÚÔò´´½¨£¬´æÔÚÔò´ò¿ª
-    	//½èÖúSQLiteDatabase¶ÔÏóÖ´ĞĞ²éÑ¯
-    	return db.rawQuery(sql,
-    	selectionArgs);
-    }
-    
-    /**½èÖú´Ë·½·¨½«Êı¾İĞ´µ½Êı¾İ¿â*/
-    public long insert(String table,ContentValues values){
-        SQLiteDatabase db=
-        getWritableDatabase();
-        long id=db.insert(table,null,values);
-        db.close();
-    	return id;
-    }
-    /**½èÖú´Ë·½·¨¸ù¾İidÉ¾³ıÊı¾İ¿âÖĞµÄÊı¾İ*/
+	/**æ­¤æ–¹æ³•ç”¨äºæŸ¥è¯¢*/
+	public Cursor query(String sql,String[]selectionArgs){
+		//è·å¾—æ“ä½œæ•°æ®åº“çš„SQLiteDatabaseå¯¹è±¡
+		SQLiteDatabase db=
+				getReadableDatabase();//æ•°æ®åº“ä¸å­˜åœ¨åˆ™åˆ›å»ºï¼Œå­˜åœ¨åˆ™æ‰“å¼€
+		//å€ŸåŠ©SQLiteDatabaseå¯¹è±¡æ‰§è¡ŒæŸ¥è¯¢
+		return db.rawQuery(sql,
+				selectionArgs);
+	}
+
+	/**å€ŸåŠ©æ­¤æ–¹æ³•å°†æ•°æ®å†™åˆ°æ•°æ®åº“*/
+	public long insert(String table,ContentValues values){
+		SQLiteDatabase db=
+				getWritableDatabase();
+		long id=db.insert(table,null,values);
+		db.close();
+		return id;
+	}
+	/**å€ŸåŠ©æ­¤æ–¹æ³•æ ¹æ®idåˆ é™¤æ•°æ®åº“ä¸­çš„æ•°æ®*/
     public int delete(String table,String whereClause,String[]whereArgs){
     	SQLiteDatabase db=
     	getWritableDatabase();
@@ -48,7 +48,7 @@ public class NotePadDBHelper
     	db.close();
     	return n;
     }
-    /**¸üĞÂÊı¾İ*/
+	/**æ›´æ–°æ•°æ®*/
     public int update(String table,ContentValues values,String whereClause,String[]whereArgs){
     	SQLiteDatabase db=
     			getWritableDatabase();
@@ -56,22 +56,22 @@ public class NotePadDBHelper
     	db.close();
     	return n;
     }
-    
-    
-	/**´Ë·½·¨ÔÚ´´½¨Êı¾İ¿âÊ±×Ô¶¯Ö´ĞĞ£¬¼ÙÈç
-	 * Êı¾İÒÑ´æÔÚ£¬Ôò²»ÔÚÖ´ĞĞ¡£
-	 * ¾ßÌåÔÚ´Ë·½·¨ÖĞ×öÊ²Ã´ÓÉÒµÎñ¶ø¶¨¡£
+
+
+	/**æ­¤æ–¹æ³•åœ¨åˆ›å»ºæ•°æ®åº“æ—¶è‡ªåŠ¨æ‰§è¡Œï¼Œå‡å¦‚
+	 * æ•°æ®å·²å­˜åœ¨ï¼Œåˆ™ä¸åœ¨æ‰§è¡Œã€‚
+	 * å…·ä½“åœ¨æ­¤æ–¹æ³•ä¸­åšä»€ä¹ˆç”±ä¸šåŠ¡è€Œå®šã€‚
 	 * */
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		LogUtil.i("TAG", "helper.onCreate");
-		//¿ÉÒÔÔÚ´Ë·½·¨ÖĞ´´½¨±í
+		//å¯ä»¥åœ¨æ­¤æ–¹æ³•ä¸­åˆ›å»ºè¡¨
 		String sqla="create table ETGTravelLog(" +
 		"_id integer primary key autoincrement," +
 		"_username text not null,"+
 		"_content text not null," +
-		"_created text not null)"; 
-		//µÚ¶şÕÅ±í
+		"_created text not null)";
+		//ç¬¬äºŒå¼ è¡¨
 		String sqlb = "create table ETGgeneralInfo(" +
 		"_id integer primary key autoincrement," +
 		"_username text not null,"+
@@ -81,8 +81,8 @@ public class NotePadDBHelper
 		db.execSQL(sqlb);
 		LogUtil.i("TAG", "table create ok!");
 	}
-	/**ÔÚÊı¾İ¿â°æ±¾Éı¼¶Ê±´Ë·½·¨»á×Ô¶¯Ö´ĞĞ£¬
-	 * ¾ßÌåÉı¼¶Ê±×öÊ²Ã´£¬ÓÉappÒµÎñ¶ø¶¨¡£*/
+	/**åœ¨æ•°æ®åº“ç‰ˆæœ¬å‡çº§æ—¶æ­¤æ–¹æ³•ä¼šè‡ªåŠ¨æ‰§è¡Œï¼Œ
+	 * å…·ä½“å‡çº§æ—¶åšä»€ä¹ˆï¼Œç”±appä¸šåŠ¡è€Œå®šã€‚*/
 	@Override
 	public void onUpgrade(SQLiteDatabase db,
 	int oldVersion, int newVersion) {

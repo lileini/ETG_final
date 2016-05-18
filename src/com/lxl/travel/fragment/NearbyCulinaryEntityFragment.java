@@ -113,6 +113,7 @@ public class NearbyCulinaryEntityFragment extends BaseFragment {
 		filter.addAction(Const.ACTION_RESULT_NEARBY_CULINARY);
 		filter.addAction(Const.ACTION_LOCATION_CHANGED);
 		getActivity().registerReceiver(receiver, filter);
+		//定位获取经纬度
 		if (ETGApplication.location != null) {
 			new NearbyBiz(getActivity()).nearbyCulinary(
 					ETGApplication.location.getLongitude(),

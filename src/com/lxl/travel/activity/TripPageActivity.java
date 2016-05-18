@@ -66,7 +66,7 @@ import com.thinkland.sdk.android.DataCallBack;
 import com.thinkland.sdk.android.JuheData;
 
 public class TripPageActivity extends BaseActivity {
-	public int mode = 0;//��ʶ���з�ʽ��1 �ɻ���2 �𳵣�3 �ͳ�
+	public int mode = 0;//出行方式，0飞机，1火车，2客车
 	public TextView textView;
 	public ImageView tripManner;
 	public Button search;
@@ -90,7 +90,7 @@ public class TripPageActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_trip);
-		setView();
+		/*setView();
 		// ��û��������б�
 		loadCitys();
 
@@ -117,7 +117,7 @@ public class TripPageActivity extends BaseActivity {
 					}
 				}
 			}, 2000);
-		}
+		}*/
 	}
 
 	private void setManner() {
@@ -196,15 +196,15 @@ public class TripPageActivity extends BaseActivity {
 			break;
 		case R.id.searchBtn:
 			if ((fromCity.getText().toString()).equals("")) {
-				Toast.makeText(this, "�ף�����д������", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "请输入出发城市", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (toCity.getText().toString().equals("")){
-				Toast.makeText(this, "�ף�����дĿ�ĵ�", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "请输入目标地址", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			if (mode == 0){
-				Toast.makeText(this, "�ף���ѡ����з�ʽ", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "请选择出行方式", Toast.LENGTH_SHORT).show();
 			}
 			search();
 			break;
@@ -228,7 +228,7 @@ public class TripPageActivity extends BaseActivity {
 	private void selectTripManner(final ImageView tripManner2) {
 		final String manner[] = {Const.AIRPLANE,Const.TRAIN,Const.BUS};
 		final int manners[] = {R.drawable.planeticket,R.drawable.trainticket,R.drawable.busticket};
-		new AlertDialog.Builder(this).setIcon(android.R.drawable.btn_star).setTitle("��ѡ��")
+		new AlertDialog.Builder(this).setIcon(android.R.drawable.btn_star).setTitle("出行方式")
 		.setSingleChoiceItems(manner, -1, new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -347,23 +347,23 @@ public class TripPageActivity extends BaseActivity {
 		// searchCity_Bt.setText(weatherEntity.getCity());
 		// ���ý���������Ϣ
 		CurrentWeather currentWeather = weatherEntity.getCurrentWeather();
-		String infoToday = "�¶� : " + currentWeather.getTemp() + "��\n" + "ʪ�� : "
+		String infoToday = "温度 : " + currentWeather.getTemp() + "℃\n" + "湿度 : "
 				+ currentWeather.getHumidity();
 		weatherToday.setText(infoToday);
 		bitmapUtils.display(weatherImage1, currentWeather.getWindStrength());
 		// ���ø���ʱ��
-		updateTimeTv.setText(currentWeather.getUpdateTime() + "����");
+		updateTimeTv.setText(currentWeather.getUpdateTime() + "更新");
 		// ��������������Ϣ
 		FurtherWeather tomorrowWeather = weatherEntity.getTomorrowWeather();
-		String infoTomorrowWeather = "�¶� : " + tomorrowWeather.getTemp()
-				+ "��\n" + tomorrowWeather.getWeather();
+		String infoTomorrowWeather = "温度 : " + tomorrowWeather.getTemp()
+				+ "℃\n" + tomorrowWeather.getWeather();
 		weatherTomorrow.setText(infoTomorrowWeather);
 		bitmapUtils.display(weatherImage2, tomorrowWeather.getWind());
 		// ���ú���������Ϣ
 		FurtherWeather dayAfterTomorrow = weatherEntity
 				.getDayAftertomorrowWeather();
-		String infoDayAfterTomorrow = "�¶� : " + dayAfterTomorrow.getTemp()
-				+ "��\n" + dayAfterTomorrow.getWeather();
+		String infoDayAfterTomorrow = "温度 : " + dayAfterTomorrow.getTemp()
+				+ "℃\n" + dayAfterTomorrow.getWeather();
 		weatherDayAfterTomorrow.setText(infoDayAfterTomorrow);
 		bitmapUtils.display(weatherImage3, dayAfterTomorrow.getWind());
 
@@ -379,7 +379,7 @@ public class TripPageActivity extends BaseActivity {
 					.parse(dayAfterTomorrow.getDate()));
 			dayAfterTomorrow_Tv.setText(AfterTdate);
 		} catch (ParseException e) {
-			Toast.makeText(this, "��������ʧ��", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "网络数据异常", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		}
 

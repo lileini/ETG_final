@@ -2,19 +2,21 @@ package com.lxl.travel.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.lxl.travel.ETGApplication;
 import com.lxl.travel.activity.NearbyPageActivity;
 import com.lxl.travel.activity.TravelAltradionsActivity;
 import com.lxl.travel.activity.TripPageActivity;
 import com.lxl.travel.activityanim.ActivityChangeAnim;
+import com.lxl.travel.adapter.HomeBannerAdapter;
 import com.lxl.travel.base.BaseFragment;
 import com.lxl.travel.utils.Const;
 import com.lxl.trivel.R;
@@ -31,15 +33,65 @@ public class HomePageFragment extends BaseFragment {
 	private Button food_btn;
 	private Button wifi_btn;
 	private Button park_btn;
+	private ViewPager bPager;
+	private int prePos = 0;
+	private boolean isScroller = true;
+	/**
+	 * 广告图片
+	 */
+	private int[] bImages = {R.drawable.banner_1, R.drawable.banner_2, R.drawable.banner_3};
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_toppage, null);
 		setViews(view);
+		//初始化广告条
+		setBannerPager();
 		addListener();
 		return view;
 	}
+
+	private void setBannerPager() {
+		/*
+        设置页面
+         */
+		bPager.setAdapter(new HomeBannerAdapter(this, bImages));
+
+		/*bPager.addOnPageChangeListener(new BasePagerListener() {
+			@Override
+			public void onPageSelected(int position) {
+				indicatorLayout.getChildAt(prePos % bImages.length).setEnabled(true);
+				indicatorLayout.getChildAt(position % bImages.length).setEnabled(false);
+				prePos = position;
+			}
+		});
+*/
+        /*
+        设置2秒切换页面
+         */
+		final Handler h = new Handler();
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				if (isScroller) {
+					bPager.setCurrentItem(bPager.getCurrentItem() + 1);
+					h.postDelayed(this, 3000);
+				}
+			}
+		};
+		h.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				if (isScroller) {
+					bPager.setCurrentItem(bPager.getCurrentItem() + 1);
+					h.postDelayed(this, 3000);
+				}
+			}
+		}, 3000);
+	}
+
 	/**设置切换动画*/
 	public void changeAnim(){
 		ActivityChangeAnim.changeAnim(getActivity(), ActivityChangeAnim.MOVE_FROM_BOTTOM_TO_TOP, ActivityChangeAnim.NO_MOVE);
@@ -188,6 +240,8 @@ public class HomePageFragment extends BaseFragment {
 		food_btn = (Button) view.findViewById(R.id.food_Tv);
 		wifi_btn = (Button) view.findViewById(R.id.wifi_Tv);
 		park_btn = (Button) view.findViewById(R.id.park_Tv);
+		bPager = (ViewPager)view.findViewById(R.id.ad_banner_Vp);
+
 	}
 
 }

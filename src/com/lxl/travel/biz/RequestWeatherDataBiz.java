@@ -21,10 +21,11 @@ import com.lxl.travel.utils.LogUtil;
 import com.thinkland.sdk.android.DataCallBack;
 import com.thinkland.sdk.android.JuheData;
 import com.thinkland.sdk.android.Parameters;
-
+/**通过此类获取天气数据,解析天气数据进行封装*/
 public class RequestWeatherDataBiz {
 	public static Context context;
 
+	/**发送请求获取天气数据*/
 	public static void getWeatherData(Context mContext, int port, String url,Parameters params){
 		context = mContext;
 		/*
@@ -68,11 +69,11 @@ public class RequestWeatherDataBiz {
 		context.sendBroadcast(intent);
 	}
 
-	/**�����˷���,�������ݵĽ���
+	/**借助此方法,进行数据的解析
 	 * @throws JSONException */
 	public static WeatherEntity parseWeatherData(String respString) throws JSONException {
 		WeatherEntity weatherEntity = new WeatherEntity();
-		//���ذ���"resultcode","reason","result"��JSONObject
+		//返回包含"resultcode","reason","result"的JSONObject
 		JSONObject jsonObject = new JSONObject(respString);
 		//���ذ���"sk","today","future"�ֶε�JSONObject
 		JSONObject jsonObject2 = jsonObject.getJSONObject("result");

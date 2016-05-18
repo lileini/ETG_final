@@ -201,8 +201,8 @@ public class FlightEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "[º½¿Õ¹«Ë¾=" + Airline + ", º½°àºÅ" + FlightNum
-				+ ", ×¼È·ÂÊ=" + OnTimeRate + ", FlightDate=" + FlightDate
+		return "[èˆªç©ºå…¬å¸=" + Airline + ", èˆªç­å·" + FlightNum
+				+ ", å‡†ç¡®ç‡=" + OnTimeRate + ", FlightDate=" + FlightDate
 				+ ", DepTime=" + DepTime + ", ArrTime=" + ArrTime
 				+ ", DepTerminal=" + DepTerminal + ", ArrTerminal="
 				+ ArrTerminal + "]";

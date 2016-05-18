@@ -84,44 +84,14 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/personal_general_rlayput"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/personal_userinfo_llayout"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/trip_background_color_selector" >
-
-        <ImageView
-            android:id="@+id/personal_general_img"
+    <TextView
+            android:id="@+id/personal_addgeneralinfo_Tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/personal_generalinfo_Tv"
-            android:padding="10dp"
-            android:src="@drawable/ic_launcher"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/personal_generalinfo_Tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="常用信息"
+            android:hint="点击添加常用地址信息"
             android:textSize="18sp"
-            android:textColor="#ffffff" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/personal_addgeneralinfo_Tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:hint="点击添加常用地址信息"
-        android:layout_below="@+id/personal_general_rlayput"
-        android:textSize="18sp" 
-        android:padding="10dp"/>
+            android:padding="10dp" android:layout_below="@+id/personal_userinfo_llayout"/>
 
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/generalinfo_Lv"

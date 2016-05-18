@@ -29,7 +29,7 @@ public class RequestPlanListBiz {
 	private ExecutorService threadPool;
 
 	public RequestPlanListBiz(){
-		//��Ҫ�ڹ��췽���н�����û��������ж�
+		//需要在构造方法中进行有没有网络的判断
 		//??????????????
 		threadPool = Executors.newSingleThreadExecutor();
 	}
@@ -39,9 +39,9 @@ public class RequestPlanListBiz {
 
 			@Override
 			public void run() {
-				// 6�볬ʱ
+				// 6秒超时
 				HttpUtils httpUtils = new HttpUtils(6000);
-				//�ϴθ�������ֻ����500����(Ĭ��60s) ����ʱ������Ļ�,�����������ˢ��,�ǲ��ᷢ�������
+				//上次更新内容只缓存500毫秒(默认60s) 缓存时间过长的话,如果连续下拉刷新,是不会发送请求的
 				httpUtils.configCurrentHttpCacheExpiry(500);
 				String url = Const.GLOB_URL + "findAll" + "?username=" + username;
 				RequestParams params = new RequestParams();

@@ -59,10 +59,11 @@ public class WifiAdapter extends BaseAdapter{
 			convertView.setTag(holder);
 		}
 		holder = (ViewHolder) convertView.getTag();
-		holder.address.setText("Î»ÖÃ:" + entity.getAddress());
-		holder.distance.setText("¾àÎÒ:" + entity.getDistance() + "m");
-		holder.intro.setText("ÃèÊö:" + entity.getIntro());
-		holder.name.setText("Ãû³Æ:" + entity.getName());
+		holder.address.setText("ä½ç½®:" + entity.getAddress());
+		holder.distance.setText("è·æˆ‘:" + entity.getDistance() + "m");
+		holder.intro.setText("æè¿°:" + entity.getIntro());
+		holder.name.setText("åç§°:" + entity.getName());
+
 		return convertView;
 	}
 	class ViewHolder{

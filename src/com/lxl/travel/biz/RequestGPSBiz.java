@@ -32,9 +32,9 @@ import com.lxl.travel.utils.LogUtil;
 public class RequestGPSBiz {
 
 	Activity activity;
-	/** µÚÒ»´ÎÇëÇógps */
+	/** ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gps */
 	private static boolean isFirstRequest = true,firstRequest = true;
-	/** ÊÇ·ñÊÇÊ¹ÓÃÍøÂç/GPSÇëÇó */
+	/** ï¿½Ç·ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/GPSï¿½ï¿½ï¿½ï¿½ */
 	private static boolean getByNetWork=false,getByGPS = false;
 	private Location oldLocation;
 
@@ -42,7 +42,7 @@ public class RequestGPSBiz {
 		this.activity = activity;
 	}
 
-	/** ÅÐ¶ÏGPSÊÇ·ñ¿ÉÓÃ */
+	/** ï¿½Ð¶ï¿½GPSï¿½Ç·ï¿½ï¿½ï¿½ï¿½ */
 	private boolean gpsIsEnabled() {
 		LocationManager alm = (LocationManager) activity
 				.getSystemService(Context.LOCATION_SERVICE);
@@ -54,7 +54,7 @@ public class RequestGPSBiz {
 		return false;
 	}
 
-	/** ÅÐ¶ÏÍøÂç¶¨Î»ÊÇ·ñ¿ÉÓÃ */
+	/** ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ç¶¨Î»ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ */
 	private boolean netWorkIsEnabled() {
 		LocationManager alm = (LocationManager) activity
 				.getSystemService(Context.LOCATION_SERVICE);
@@ -88,13 +88,13 @@ public class RequestGPSBiz {
 
 					@Override
 					public void run() {
-						// Toast.makeText(activity, "GPSÎ´¿ªÆô,Çë¿ªÆôGPS",
+						// Toast.makeText(activity, "GPSÎ´ï¿½ï¿½ï¿½ï¿½,ï¿½ë¿ªï¿½ï¿½GPS",
 						// Toast.LENGTH_SHORT).show();
 						AlertDialog.Builder builder = new AlertDialog.Builder(
 								activity);
-						builder.setMessage("GPSÒÑ¹Ø±Õ,·ñÒª¿ªÆô£¿");
-						builder.setTitle("ÌáÊ¾");
-						builder.setPositiveButton("È·¶¨", new OnClickListener() {
+						builder.setMessage("GPSæœªå¼€å¯,è¯·å¼€å¯GPS");
+						builder.setTitle("æç¤º");
+						builder.setPositiveButton("ç¡®å®š", new OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,
@@ -107,12 +107,12 @@ public class RequestGPSBiz {
 								isFirstRequest = false;
 							}
 						});
-						builder.setNegativeButton("È¡Ïû", new OnClickListener() {
+						builder.setNegativeButton("å–æ¶ˆ", new OnClickListener() {
 
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								Toast.makeText(activity, "Í¨¹ýÍøÂç»ñÈ¡Î»ÖÃ",
+								Toast.makeText(activity, "é€šè¿‡ç½‘ç»œèŽ·å–ä½ç½®",
 										Toast.LENGTH_SHORT).show();
 								getByNetWork = true;
 								isFirstRequest = false;
@@ -124,10 +124,10 @@ public class RequestGPSBiz {
 				});
 				return null;
 			}
-			LogUtil.i("requestGPS", "getLocation: not's first!¡£¡£¡£");
+			LogUtil.i("requestGPS", "getLocation: not's first!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 			getByNetWork = true;
 		}
-		//ÅÐ¶ÏÍøÂçÎ»ÖÃÊÇ·ñ
+		//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½Ç·ï¿½
 		if (!netWorkIsEnabled()) {
 			getByNetWork = false;
 			LogUtil.i("requestGPS", "netWorkIsEnabled: false");
@@ -137,31 +137,31 @@ public class RequestGPSBiz {
 				
 				@Override
 				public void run() {
-					Toast.makeText(activity, "ÎÞ·¨»ñµÃÄúµ±Ç°µÄÎ»ÖÃÐÅÏ¢\nÇë¿ªÆôGPS»òÕßÍøÂçÎ»ÖÃÐÅÏ¢", Toast.LENGTH_LONG).show();
+					Toast.makeText(activity, "æ— æ³•èŽ·å¾—æ‚¨å½“å‰çš„ä½ç½®ä¿¡æ¯\\nè¯·å¼€å¯GPSæˆ–è€…ç½‘ç»œä½ç½®ä¿¡æ¯", Toast.LENGTH_LONG).show();
 				}
 			});
 			return null;
 		}
 		
-		// »ñÈ¡Î»ÖÃ¹ÜÀí·þÎñ
+		// ï¿½ï¿½È¡Î»ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		final LocationManager locationManager;
 		String serviceName = Context.LOCATION_SERVICE;
 		locationManager = (LocationManager) activity
 				.getSystemService(serviceName);
-		// ²éÕÒµ½·þÎñÐÅÏ¢
-		// ÉèÖÃ¼àÌýÆ÷£¬×Ô¶¯¸üÐÂµÄ×îÐ¡Ê±¼äÎª¼ä¸ôNÃë(1ÃëÎª1*1000£¬ÕâÑùÐ´Ö÷ÒªÎªÁË·½±ã)»ò×îÐ¡Î»ÒÆ±ä»¯³¬¹ýNÃ×
+		// ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+		// ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½Ð¡Ê±ï¿½ï¿½Îªï¿½ï¿½ï¿½Nï¿½ï¿½(1ï¿½ï¿½Îª1*1000ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ÒªÎªï¿½Ë·ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½Ð¡Î»ï¿½Æ±ä»¯ï¿½ï¿½ï¿½ï¿½Nï¿½ï¿½
 		
 		Criteria criteria = new Criteria();
-		criteria.setAccuracy(Criteria.ACCURACY_FINE); // ¸ß¾«¶È
+		criteria.setAccuracy(Criteria.ACCURACY_FINE); // ï¿½ß¾ï¿½ï¿½ï¿½
 		criteria.setAltitudeRequired(false);
 		criteria.setBearingRequired(false);
 		criteria.setCostAllowed(true);
-		criteria.setPowerRequirement(Criteria.POWER_LOW); // µÍ¹¦ºÄ
+		criteria.setPowerRequirement(Criteria.POWER_LOW); // ï¿½Í¹ï¿½ï¿½ï¿½
 
-		String provider = locationManager.getBestProvider(criteria, true); // »ñÈ¡GPSÐÅÏ¢
-		Location location = locationManager.getLastKnownLocation(provider); // Í¨¹ýGPS»ñÈ¡Î»ÖÃ
+		String provider = locationManager.getBestProvider(criteria, true); // ï¿½ï¿½È¡GPSï¿½ï¿½Ï¢
+		Location location = locationManager.getLastKnownLocation(provider); // Í¨ï¿½ï¿½GPSï¿½ï¿½È¡Î»ï¿½ï¿½
 
-		//ÍøÂçÎ»ÖÃ¿ªÆô£¬ÇÒgps¹Ø±Õ
+		//ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gpsï¿½Ø±ï¿½
 		if (getByNetWork && !getByGPS) {
 			locationManager.requestLocationUpdates(
 					LocationManager.NETWORK_PROVIDER, 1800000, 2000,
@@ -175,7 +175,7 @@ public class RequestGPSBiz {
 				ETGApplication.instance.sendBroadcast(intent);
 			}
 			return location;
-			//gps ¿ªÆô
+			//gps ï¿½ï¿½ï¿½ï¿½
 		} else if (gpsIsEnabled()) {
 
 			locationManager.requestLocationUpdates(
@@ -230,7 +230,7 @@ public class RequestGPSBiz {
 
 			@Override
 			public void onLocationChanged(Location location) {
-				//ÏÈ±£´æµ½ETGApplication
+				//ï¿½È±ï¿½ï¿½æµ½ETGApplication
 				ETGApplication.location = location;
 				LogUtil.i("requestGPS", "onLocationChanged: location="
 						+ location);
@@ -241,7 +241,7 @@ public class RequestGPSBiz {
 					Intent intent = new Intent(Const.ACTION_LOCATION_CHANGED);
 					ETGApplication.instance.sendBroadcast(intent);
 				} else {
-					// ¾­Î³¶È±ä»¯³¬¹ý0.02²Å·¢¹ã²¥¸üÐÂ
+					// ï¿½ï¿½Î³ï¿½È±ä»¯ï¿½ï¿½ï¿½ï¿½0.02ï¿½Å·ï¿½ï¿½ã²¥ï¿½ï¿½ï¿½ï¿½
 					if ((location.getLatitude() - oldLocation.getLatitude()) > 0.02
 							|| (location.getLatitude() - oldLocation
 									.getLatitude()) < -0.02

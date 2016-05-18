@@ -63,39 +63,41 @@ public class ParkingAdapter extends BaseAdapter{
 			convertView.setTag(holder);
 		}
 		holder = (ViewHolder) convertView.getTag();
-		holder.BTTCJG.setText("¼Û¸ñ:" + entity.getBTTCJG());
-		holder.CCDZ.setText("Î»ÖÃ:" + entity.getCCDZ());
-		holder.CCMC.setText("Ãû³Æ:" + entity.getCCMC());
-		holder.KCW.setText("Ê£Óà³µÎ»:" + entity.getKCW());
-		switch (Integer.parseInt(entity.getSFKF())) {
-		case 1:
-			holder.SFKF.setText("ÊÇ·ñ¿ª·Å£º¿ª·Å");
-			break;
 
-		case 0:
-			holder.SFKF.setText("ÊÇ·ñ¿ª·Å£º²»¿ª·Å");
-			break;
+		holder.BTTCJG.setText("ä»·æ ¼:" + entity.getBTTCJG());
+		holder.CCDZ.setText("ä½ç½®:" + entity.getCCDZ());
+		holder.CCMC.setText("åç§°:" + entity.getCCMC());
+		holder.KCW.setText("å‰©ä½™è½¦ä½:" + entity.getKCW());
+		switch (Integer.parseInt(entity.getSFKF())) {
+			case 1:
+				holder.SFKF.setText("æ˜¯å¦å¼€æ”¾ï¼šå¼€æ”¾");
+				break;
+
+			case 0:
+				holder.SFKF.setText("æ˜¯å¦å¼€æ”¾ï¼šä¸å¼€æ”¾");
+				break;
 		}
 		if (entity.getCCTP() != null){
 			bitmapUtils.display(holder.CCTP, entity.getCCTP());
 		}else {
 			holder.CCTP.setImageResource(R.drawable.ic_launcher);
 		}
+
 		return convertView;
 	}
 
 	class ViewHolder{
-		/** °×ÌìÍ£³µ¼Û¸ñ*/
+		/** ç™½å¤©åœè½¦ä»·æ ¼*/
 		private TextView BTTCJG;
-		/**µØÖ·*/
+		/**åœ°å€*/
 		private TextView CCDZ;
-		/** ¿Õ³µÎ»*/
+		/** ç©ºè½¦ä½*/
 		private TextView KCW;
-		/** Ãû³Æ*/
+		/** åç§°*/
 		private TextView CCMC;
-		/** ÊÇ·ñ¿ª·Å(0£º²»¿ª·Å£»1£º¿ª·Å£»)*/
+		/** æ˜¯å¦å¼€æ”¾(0ï¼šä¸å¼€æ”¾ï¼›1ï¼šå¼€æ”¾ï¼›)*/
 		private TextView SFKF;
-		/**Í£³µ³¡Í¼Æ¬*/
+		/**åœè½¦åœºå›¾ç‰‡*/
 		private ImageView CCTP;
 	}
 }

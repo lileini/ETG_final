@@ -57,7 +57,7 @@ public class NearbyWIFIFragment extends BaseFragment {
 			new NearbyBiz(getActivity()).nearbyWIFI(ETGApplication.location.getLongitude()
 					,ETGApplication.location.getLatitude());
 		}else{
-			Toast.makeText(getActivity(), "��λ�У����Ժ�", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "定位中，请稍后", Toast.LENGTH_SHORT).show();
 		}
 		receiver = new WifiBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();

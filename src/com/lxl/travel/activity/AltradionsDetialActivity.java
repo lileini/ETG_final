@@ -40,9 +40,8 @@ import com.lxl.travel.entity.PlanEntity;
 import com.lxl.travel.entity.TravelDetailEntity;
 import com.lxl.travel.utils.JsonParser;
 import com.lxl.trivel.R;
-/** 	���ActivityΪ���ν�����item����ת�Ľ��棬��ʾ���ξ������ϸ��Ϣ��1.������Ϸ���ͼƬ������ʾͼ��TOAST��ʾ
- * 2.�������ƻ�����ʵ�ּƻ��ļ��롣 */ 
-public class AltradionsDetialActivity extends BaseActivity {
+/** 	这个Activity为旅游界面点击item后跳转的界面，显示旅游景点的详细信息。1.点击最上方的图片可以显示图像TOAST提示
+ * 2.点击加入计划可以实现计划的加入。 */ public class AltradionsDetialActivity extends BaseActivity {
 	
 	public TextView tv01;		//textviewΪ�������ݣ�imageviewΪ���ص�ͼƬ
 	public TextView tv02;
@@ -79,7 +78,7 @@ public class AltradionsDetialActivity extends BaseActivity {
 		tv01.setText(altradionsEntity.getTravelAddress());
 		tv03.setText(altradionsEntity.getProductManagerRecommand());
 		btutils.display(iv01, altradionsEntity.getImage());
-		//2.2����֮ǰ��Ҫ ��ʵ����ĵڶ�������ת��Ϊ ��������֪��ͼ�����ݣ�String�����뼯�ϣ����ӣ�src=\"http*****.jpg.\"  ��ȡ��ַURL��	
+		//2.2����֮ǰ��Ҫ ��ʵ����ĵڶ�������ת��Ϊ ��������֪��ͼ�����ݣ�String�����뼯�ϣ����ӣ�src=\"http*****.jpg.\"  ��ȡ��ַURL��
 		String pull = entity.getIntroduction();
 		//Log.i("PULL = ", pull);
 		String titel = "src=\"";
@@ -128,7 +127,7 @@ public class AltradionsDetialActivity extends BaseActivity {
 	//����ƻ������ļ���
 	public void jiaruPLAN(View v){
 		if(ETGApplication.userEntity == null){
-			Toast.makeText(this, "��û�е�¼~��", 0).show();
+			Toast.makeText(this, "并没有登录~亲", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(AltradionsDetialActivity.this, LoginActivity.class);
 			startActivity(intent);
 		}else{

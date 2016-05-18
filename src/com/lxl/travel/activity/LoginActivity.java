@@ -50,19 +50,19 @@ import com.lxl.travel.utils.Tools;
 import com.lxl.travel.utils.ImageCompress.CompressOptions;
 import com.lxl.trivel.R;
 
-/**��½ҳ��*/
+/**登陆页面*/
 public class LoginActivity extends BaseActivity {
-	/**�û���������*/
+	/**用户名、密码*/
 	EditText et_login_username, et_login_password;
-	/**����LoginBiz���͵Ĺ㲥������*/
+	/**接收LoginBiz发送的广播接收器*/
 	LoginBroadcastReceiver loginReceiver;
-	/**���û�ע�᣿*/
+	/**新用户注册？*/
 	private TextView tv_login_newUser;
-	/**��������?*/
+	/**忘记密码?*/
 	private TextView tv_login_forgetPassword;
 	private ImageView iv_login_logo;
 	private Button btn_login_submit;
-	/**ʹ��SharedPreferencesUtilʱ��Ҫ�������ݵ�keyֵ*/
+	/**使用SharedPreferencesUtil时需要储存数据的key值*/
 	private static String[] keys = new String[] { "username", "md5password",
 			"nickname", "gender", "lastLoginTime", "regTime" };
 
@@ -72,13 +72,13 @@ public class LoginActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		//ȥ��actionBar
+		//去掉actionBar
 		getActionBar().hide();
 		setView();
-		//��ȡSharedPreferencesƫ������
+		//获取SharedPreferences偏好设置
 		setData();
 		setListener();
-		//ע��㲥������
+		//注册广播接收器
 		loginReceiver = new LoginBroadcastReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(Const.ACTION_LOGIN);
@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		//ע���㲥������
+		//注销广播接收器
 		unregisterReceiver(loginReceiver);
 		super.onDestroy();
 	}
@@ -101,16 +101,16 @@ public class LoginActivity extends BaseActivity {
 		tv_login_newUser = (TextView) findViewById(R.id.tv_login_newUser);
 		tv_login_forgetPassword = (TextView) findViewById(R.id.tv_login_forget_password);
 	}
-	/**��ȡƫ�������е�����*/
+	/**获取偏好设置中的数据*/
 	private void setData() {
 		/*
 		 * private String username,md5password,nickname,gender; private Date
 		 * lastLoginTime, regTime;
 		 */
-		//userInfoΪ�����û���¼��Ϣ  ���ļ���
+		//userInfo为储存用户登录信息  的文件名
 		Map<String, String> data = SharedPreferencesUtil.getPerferences(this,
 				"userInfo", keys);
-		//ͨ����Ӧ��key��ȡ��Ӧ��ֵ��keys[0]Ϊ�û�����Ϣkeyֵ��data.get(keys[1])Ϊ������Ϣkeyֵ
+		//通过对应的key获取对应的值，keys[0]为用户名信息key值，data.get(keys[1])为密码信息key值
 		et_login_username.setText(data.get(keys[0]));
 		et_login_password.setText(data.get(keys[1]));
 		File file = CameraForImageUtil.getOutputMediaFile(data.get(keys[0]));
@@ -129,12 +129,12 @@ public class LoginActivity extends BaseActivity {
 	}
 
 	private void setListener() {
-		//TextView ֻ������Touch�¼�
+		//TextView 只能设置Touch事件
 		tv_login_newUser.setOnTouchListener(new OnTouchListener() {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				//���¼�Ϊ̧��ʱ����ת��ע��ҳ��
+				//当事件为抬起时，跳转到注册页面
 				if (event.getAction() == MotionEvent.ACTION_UP) {
 					Intent intent = new Intent(LoginActivity.this,
 							RegisterAcitvity.class);
@@ -148,7 +148,7 @@ public class LoginActivity extends BaseActivity {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_UP) {
-					Toast.makeText(LoginActivity.this, "�������룬������ע��",
+					Toast.makeText(LoginActivity.this, "忘记密码，请重新注册",
 							Toast.LENGTH_SHORT).show();
 				}
 				return true;
@@ -158,16 +158,16 @@ public class LoginActivity extends BaseActivity {
 
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_login_submit://��¼��ť
-			// �����½
-			if (checkLoginInfo()) {//����¼��Ҫ����Ϣ�Ƿ���д��ȷ
-				//����ProgressDialog
-				Tools.showProgressDialog(this, "����Ŭ����½��...");
+		case R.id.btn_login_submit://登录按钮
+			// 点击登陆
+			if (checkLoginInfo()) {//检查登录需要的信息是否填写正确
+				//弹出ProgressDialog
+				Tools.showProgressDialog(this, "正在努力登陆中...");
 				btn_login_submit.setEnabled(false);
-				//���������̣߳�ִ�е�¼ҵ��
+				//启动工作线程，执行登录业务
 				new Thread() {
 					public void run() {
-						//�½���¼ҵ��
+						//新建登录业务
 						new LoginBiz(LoginActivity.this).login(
 								et_login_username.getText().toString().trim(),//�û���
 								et_login_password.getText().toString().trim());//����
@@ -177,21 +177,21 @@ public class LoginActivity extends BaseActivity {
 			break;
 		}
 	}
-	/**����¼��Ϣ������¼��Ϣȫ����ȷ�򷵻�true�����򷵻�false*/
+	/**检查登录信息，若登录信息全都正确则返回true，否则返回false*/
 	private boolean checkLoginInfo() {
-		//�ж��û����Ƿ�Ϊ��
+		//判断用户名是否为空
 		if ("".equals(et_login_username.getText().toString().trim())) {
-			Toast.makeText(this, "�˺Ų���Ϊ��", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "账号不能为空", Toast.LENGTH_SHORT).show();
 			return false;
 		}
-		//�ж������Ƿ�Ϊ��
+		//判断密码是否为空
 		if ("".equals(et_login_password.getText().toString().trim())) {
-			Toast.makeText(this, "���벻��Ϊ��", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		return true;
 	}
-	/**����LoginBiz���͵Ĺ㲥�������࣬�����յ���¼ҵ�񷵻صĹ㲥ʱ���жϵ�¼�Ƿ�ɹ�*/
+	/**接收LoginBiz发送的广播接收器类，当接收到登录业务返回的广播是，判断登录是否成功*/
 	class LoginBroadcastReceiver extends BroadcastReceiver {
 
 		@Override
@@ -202,27 +202,27 @@ public class LoginActivity extends BaseActivity {
 			Tools.closeProgressDialog();
 			btn_login_submit.setEnabled(true);
 			switch (status) {
-			case Const.CONNECTION_OUT_TIME://���ӳ�ʱ
-				Toast.makeText(LoginActivity.this, "����ʱ", Toast.LENGTH_SHORT)
+			case Const.CONNECTION_OUT_TIME://请求超时
+				Toast.makeText(LoginActivity.this, "请求超时", Toast.LENGTH_SHORT)
 				.show();
 				break;
-			case Const.STATUS_LOGIN_SUCCESS://״̬��Ϊ��¼�ɹ�
-				Toast.makeText(LoginActivity.this, "��½�ɹ�", Toast.LENGTH_SHORT)
+			case Const.STATUS_LOGIN_SUCCESS://状态码为登录成功
+				Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT)
 						.show();
-				//ȡ�õ�¼biz���ص�user��Ϣ
+				//取得登录biz传回的user信息
 				UserEntity entity = (UserEntity) intent
 						.getSerializableExtra("entity");
-				// ����ϢΪ�գ���ִ�У�ֱ�ӷ���
+				// 若信息为空，则不执行，直接返回
 				if (entity == null) {
 					return;
 				}
-				//���û���Ϣ���浽Application
+				//把用户信息保存到Application
 				ETGApplication.userEntity = entity;
 				LogUtil.i("userEntity", ":" + entity);
-				//���û���Ϣ���浽ƫ������
+				//把用户信息保存到偏好设置
 				List<String> data = new ArrayList<String>();
-				// ���浽�ļ�
-				// list��һ��Ҫ����˳�򴢴棬��keys����һ��
+				// 保存到文件
+				// list中一定要按此顺序储存，与keys保持一致
 				// "username","md5password","nickname","gender","lastLoginTime",
 				// "regTime"
 				data.add(entity.getUsername());
@@ -244,9 +244,9 @@ public class LoginActivity extends BaseActivity {
 				Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_LONG)
 						.show();
 				break;
-			case -1://Ĭ��Ϊ-1��
-				Toast.makeText(LoginActivity.this, "ϵͳ����,������",
-						Toast.LENGTH_LONG).show();
+				case -1://默认为-1；
+					Toast.makeText(LoginActivity.this, "系统错误,请重试",
+							Toast.LENGTH_LONG).show();
 				break;
 			}
 		}

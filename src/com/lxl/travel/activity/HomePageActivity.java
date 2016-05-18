@@ -143,6 +143,7 @@ public class HomePageActivity extends BaseActivity {
 
 	}
 
+
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -429,8 +430,7 @@ public class HomePageActivity extends BaseActivity {
 
 	/**
 	 * 设置向服务器端获取天气信息的请求参数
-	 * 
-	 * @param location
+	 *
 	 */
 	private RequestParams setParams(double lon, double lat) {
 		/**

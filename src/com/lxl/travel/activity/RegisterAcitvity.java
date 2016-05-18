@@ -46,12 +46,12 @@ import com.lxl.travel.utils.Tools;
 import com.lxl.trivel.R;
 import com.thinkland.sdk.android.loopj.f;
 
-/** ע��ҳ��activity */
+/** 注册页面activity */
 public class RegisterAcitvity extends BaseActivity {
 
 	EditText etUsername, etPassword, etConfirmPassword, etName;
 	Button btnSubmit;
-	/** ����ע��ҵ�񷵻صĹ㲥������ */
+	/** 接收注册业务返回的广播接收器 */
 	RegisterBroadcastReceiver myRegister;
 	private ImageView iv_register_selectIcon;
 	private RadioButton rb_reginster_man;
@@ -64,7 +64,7 @@ public class RegisterAcitvity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		try {
 			setContentView(R.layout.reginster_activity);
-			// ȥ��actionBar
+			// 去掉actionBar
 			getActionBar().hide();
 			setupView();
 			addListener();
@@ -104,7 +104,7 @@ public class RegisterAcitvity extends BaseActivity {
 		unregisterReceiver(myRegister);
 	}
 
-	/** ����¼������� */
+	/** 点击事件监听器 */
 	class MyOnClickListener implements OnClickListener {
 
 		@Override
@@ -115,50 +115,50 @@ public class RegisterAcitvity extends BaseActivity {
 				String confirmPassword = etConfirmPassword.getText().toString();
 				String name = etName.getText().toString();
 
-				// ��֤�û�������������
+				// 验证用户名、密码输入
 				StringBuilder builder = new StringBuilder();
 				if (TextUtils.isEmpty(username)) {
-					builder.append("�û���Ϊ��\n");
+					builder.append("用户名为空\n");
 				}
 				if (TextUtils.isEmpty(password)) {
-					builder.append("����Ϊ��\n");
+					builder.append("密码为空\n");
 				}
-				// ��builderΪ�գ���˵���û�����������Ϣ��ȷ
+				// 若builder为空，则说明用户名、密码信息正确
 				if (TextUtils.isEmpty(builder.toString())) {
-					// �ж��������������Ƿ�һ��
+					// 判断两次输入密码是否一致
 					if (!etPassword
 							.getText()
 							.toString()
 							.trim()
 							.equals(etConfirmPassword.getText().toString()
 									.trim())) {
-						Toast.makeText(RegisterAcitvity.this, "�������벻һ�£�����������",
+						Toast.makeText(RegisterAcitvity.this, "两次密码不一致，请重新输入",
 								Toast.LENGTH_SHORT).show();
 						return;
 					}
-					// ��֤�ɹ�,�ύ��ť��Ϊ�����ã���ֹ�ظ��ύ
+					// 验证成功,提交按钮置为不可用，防止重复提交
 					btnSubmit.setEnabled(false);
-					// ��ʾProgressDialog
+					// 显示ProgressDialog
 					Tools.showProgressDialog(RegisterAcitvity.this,
-							"�ף�ע���У����Ժ�...");
-					// ����ע��ҵ���service
+							"亲，注册中，请稍后...");
+					// 启动注册业务的service
 					Intent intent = new Intent(RegisterAcitvity.this,
 							RegisterIntentService.class);
-					// ����ʵ��
+					// 设置实体
 					UserEntity userEntity = new UserEntity();
 					userEntity.setUsername(username);
 					userEntity.setMd5password(password);
 					userEntity.setNickname(name);
 					if (rb_reginster_man.isChecked()) {
-						userEntity.setGender("m");// ��
+						userEntity.setGender("m");// 男
 					} else {
-						userEntity.setGender("w");// Ů
+						userEntity.setGender("w");// 女
 					}
-					userEntity.setRegTime(DateUtil.getCurrentDate());// ���ע��ʱ�䣬Ϊ��ǰϵͳʱ��
-					userEntity.setLastLoginTime(DateUtil.getCurrentDate());// �������һ�ε�¼ʱ��
+					userEntity.setRegTime(DateUtil.getCurrentDate());// 获得注册时间，为当前系统时间
+					userEntity.setLastLoginTime(DateUtil.getCurrentDate());// 设置最后一次登录时间
 					intent.putExtra(Const.KEY_DATA, userEntity);
 					RegisterAcitvity.this.startService(intent);
-				} else {// builder��Ϊ�գ�˵���û�����������Ϣ����ȷ
+				} else {// builder不为空，说明用户名、密码信息不正确
 					Toast.makeText(RegisterAcitvity.this, builder.toString(),
 							Toast.LENGTH_LONG).show();
 				}
@@ -170,7 +170,7 @@ public class RegisterAcitvity extends BaseActivity {
 				finish();
 			}
 			if (v.getId() == R.id.iv_register_header) {// �û�ͷ��ť
-				String[] items = new String[] { "���", "���" };
+				String[] items = new String[] { "相机", "相册" };
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						RegisterAcitvity.this);
 				builder.setSingleChoiceItems(items, -1,
@@ -180,7 +180,7 @@ public class RegisterAcitvity extends BaseActivity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								switch (which) {
-								case 0:// �������
+								case 0:// 启动相机
 									Intent intent = new Intent(
 											MediaStore.ACTION_IMAGE_CAPTURE);
 									// create a file to save the image
@@ -197,9 +197,9 @@ public class RegisterAcitvity extends BaseActivity {
 									break;
 								case 1:
 
-									// ����ͼ��
+									// 调用图库
 
-									// ȥͼ����ѡ��ͼƬ
+									// 去图库选择图片
 									Intent intent1 = new Intent(
 											Intent.ACTION_GET_CONTENT);
 									intent1.setType("image/*"); // Or 'image/
@@ -286,36 +286,36 @@ public class RegisterAcitvity extends BaseActivity {
 		startActivityForResult(intent, Const.CROP_A_PICTURE);
 	}
 
-	/** ע��ҵ�񷵻صĹ㲥������,���ݷ���״̬���ж�ע���Ƿ�ɹ� */
+	/** 注册业务返回的广播接收器,根据返回状态码判断注册是否成功 */
 	class RegisterBroadcastReceiver extends BroadcastReceiver {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			int status = intent.getIntExtra(Const.KEY_DATA, -1);
-			// ProgressDialog����
+			// ProgressDialog结束
 			Tools.closeProgressDialog();
 			// �ύ��ť����
 			btnSubmit.setEnabled(true);
 			switch (status) {
 			case -1:// Ĭ��ֵ
-				Toast.makeText(RegisterAcitvity.this, "ϵͳ����,������",
+				Toast.makeText(RegisterAcitvity.this, "系统错误,请重试",
 						Toast.LENGTH_LONG).show();
 				break;
-			case Const.STATUS_REGISTER_SUCCESS:// ״̬��Ϊ�ɹ�
+			case Const.STATUS_REGISTER_SUCCESS:// 状态码为成功
 				File file = CameraForImageUtil.getOutputMediaFile("username_header");
 				file.renameTo(CameraForImageUtil.getOutputMediaFile(etUsername.getText().toString()));
-				Toast.makeText(RegisterAcitvity.this, "ע��ɹ�", Toast.LENGTH_LONG)
+				Toast.makeText(RegisterAcitvity.this, "注册成功", Toast.LENGTH_LONG)
 						.show();
 				Intent i = new Intent(RegisterAcitvity.this,
 						LoginActivity.class);
 				startActivity(i);
 				finish();
 				break;
-			case Const.CONNECTION_OUT_TIME:// ���ӳ�ʱ
-				Toast.makeText(RegisterAcitvity.this, "���ӳ�ʱ,������",
+			case Const.CONNECTION_OUT_TIME://连接超时
+				Toast.makeText(RegisterAcitvity.this, "连接超时,请重试",
 						Toast.LENGTH_LONG).show();
 				break;
-			case Const.STATUS_REGISTER_FAIL:// ״̬Ϊʧ��
+			case Const.STATUS_REGISTER_FAIL:// 状态为失败
 				String msg = intent.getStringExtra("msg");
 				Toast.makeText(RegisterAcitvity.this, msg, Toast.LENGTH_LONG)
 						.show();

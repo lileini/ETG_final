@@ -57,7 +57,7 @@ public class RequestDataBiz {
 	public JSONArray ary;
 	public void loadData(){
 		/**
-		 * Çë²»ÒªÌí¼Ókey²ÎÊı.
+		 * è¯·ä¸è¦æ·»åŠ keyå‚æ•°.
 		 */
 		Parameters params = new Parameters();
 		params.add("start", startTv.getText().toString());
@@ -65,14 +65,14 @@ public class RequestDataBiz {
 		params.add("date", textView.getText().toString());
 		params.add("dtype", "json");
 		/**
-		 * ÇëÇóµÄ·½·¨ ²ÎÊı: µÚÒ»¸ö²ÎÊı µ±Ç°ÇëÇóµÄcontext µÚ¶ş¸ö²ÎÊı ½Ó¿Úid µÚÈı¶ş¸ö²ÎÊı ½Ó¿ÚÇëÇóµÄurl µÚËÄ¸ö²ÎÊı ½Ó¿ÚÇëÇóµÄ·½Ê½
-		 * µÚÎå¸ö²ÎÊı ½Ó¿ÚÇëÇóµÄ²ÎÊı,¼üÖµ¶Ôcom.thinkland.sdk.android.ParametersÀàĞÍ; µÚÁù¸ö²ÎÊı
-		 * ÇëÇóµÄ»Øµ÷·½·¨,com.thinkland.sdk.android.DataCallBack;
+		 * è¯·æ±‚çš„æ–¹æ³• å‚æ•°: ç¬¬ä¸€ä¸ªå‚æ•° å½“å‰è¯·æ±‚çš„context ç¬¬äºŒä¸ªå‚æ•° æ¥å£id ç¬¬ä¸‰äºŒä¸ªå‚æ•° æ¥å£è¯·æ±‚çš„url ç¬¬å››ä¸ªå‚æ•° æ¥å£è¯·æ±‚çš„æ–¹å¼
+		 * ç¬¬äº”ä¸ªå‚æ•° æ¥å£è¯·æ±‚çš„å‚æ•°,é”®å€¼å¯¹com.thinkland.sdk.android.Parametersç±»å‹; ç¬¬å…­ä¸ªå‚æ•°
+		 * è¯·æ±‚çš„å›è°ƒæ–¹æ³•,com.thinkland.sdk.android.DataCallBack;
 		 * 
 		 */
 		JuheData.executeWithAPI(context, 20,"http://apis.juhe.cn/plan/bc",JuheData.GET, params, new DataCallBack() {
 		/**
-		 * ÇëÇó³É¹¦Ê±µ÷ÓÃµÄ·½·¨ statusCodeÎªhttp×´Ì¬Âë,responseStringÇëÇó·µ»ØÊı¾İ.
+		 * è¯·æ±‚æˆåŠŸæ—¶è°ƒç”¨çš„æ–¹æ³• statusCodeä¸ºhttpçŠ¶æ€ç ,responseStringè¯·æ±‚è¿”å›æ•°æ®.
 		 */
 		@Override
 		public void onSuccess(int statusCode, String responseString) {
@@ -88,15 +88,15 @@ public class RequestDataBiz {
 		}
 
 		/**
-		 * ÇëÇóÍê³ÉÊ±µ÷ÓÃµÄ·½·¨,ÎŞÂÛ³É¹¦»òÕßÊ§°Ü¶¼»áµ÷ÓÃ.
+		 * è¯·æ±‚å®Œæˆæ—¶è°ƒç”¨çš„æ–¹æ³•,æ— è®ºæˆåŠŸæˆ–è€…å¤±è´¥éƒ½ä¼šè°ƒç”¨.
 		 */
 		@Override
 		public void onFinish() {
 		}
 		/**
-		 * ÇëÇóÊ§°ÜÊ±µ÷ÓÃµÄ·½·¨,statusCodeÎªhttp×´Ì¬Âë,throwableÎª²¶»ñµ½µÄÒì³£
-		* statusCode:30002 Ã»ÓĞ¼ì²âµ½µ±Ç°ÍøÂç. 30003 Ã»ÓĞ½øĞĞ³õÊ¼»¯. 0
-		* Î´Ã÷Òì³£,¾ßÌå²é¿´ThrowableĞÅÏ¢. ÆäËûÒì³£Çë²ÎÕÕhttp×´Ì¬Âë.
+		 * è¯·æ±‚å¤±è´¥æ—¶è°ƒç”¨çš„æ–¹æ³•,statusCodeä¸ºhttpçŠ¶æ€ç ,throwableä¸ºæ•è·åˆ°çš„å¼‚å¸¸
+		 * statusCode:30002 æ²¡æœ‰æ£€æµ‹åˆ°å½“å‰ç½‘ç»œ. 30003 æ²¡æœ‰è¿›è¡Œåˆå§‹åŒ–. 0
+		 * æœªæ˜å¼‚å¸¸,å…·ä½“æŸ¥çœ‹Throwableä¿¡æ¯. å…¶ä»–å¼‚å¸¸è¯·å‚ç…§httpçŠ¶æ€ç .
 		*/
 		@Override
 		public void onFailure(int statusCode,String responseString, Throwable throwable) {
@@ -107,7 +107,7 @@ public class RequestDataBiz {
 	}
 	public void loadTrainData(){
 		/**
-		 * Çë²»ÒªÌí¼Ókey²ÎÊı.¸ÃÊı¾İµÄ»ñµÃ²¢²»ĞèÒªÊ±¼ä
+		 * è¯·ä¸è¦æ·»åŠ keyå‚æ•°.è¯¥æ•°æ®çš„è·å¾—å¹¶ä¸éœ€è¦æ—¶é—´
 		 */
 		Parameters params = new Parameters();
 		params.add("start", startTv.getText().toString());
@@ -129,17 +129,17 @@ public class RequestDataBiz {
 				}
 				listView.setAdapter(new TrainAdapter(context, trains));
 			}
-			
+
 			/**
-			 * ÇëÇóÍê³ÉÊ±µ÷ÓÃµÄ·½·¨,ÎŞÂÛ³É¹¦»òÕßÊ§°Ü¶¼»áµ÷ÓÃ.
+			 * è¯·æ±‚å®Œæˆæ—¶è°ƒç”¨çš„æ–¹æ³•,æ— è®ºæˆåŠŸæˆ–è€…å¤±è´¥éƒ½ä¼šè°ƒç”¨.
 			 */
 			@Override
 			public void onFinish() {
 			}
 			/**
-			 * ÇëÇóÊ§°ÜÊ±µ÷ÓÃµÄ·½·¨,statusCodeÎªhttp×´Ì¬Âë,throwableÎª²¶»ñµ½µÄÒì³£
-			 * statusCode:30002 Ã»ÓĞ¼ì²âµ½µ±Ç°ÍøÂç. 30003 Ã»ÓĞ½øĞĞ³õÊ¼»¯. 0
-			 * Î´Ã÷Òì³£,¾ßÌå²é¿´ThrowableĞÅÏ¢. ÆäËûÒì³£Çë²ÎÕÕhttp×´Ì¬Âë.
+			 * è¯·æ±‚å¤±è´¥æ—¶è°ƒç”¨çš„æ–¹æ³•,statusCodeä¸ºhttpçŠ¶æ€ç ,throwableä¸ºæ•è·åˆ°çš„å¼‚å¸¸
+			 * statusCode:30002 æ²¡æœ‰æ£€æµ‹åˆ°å½“å‰ç½‘ç»œ. 30003 æ²¡æœ‰è¿›è¡Œåˆå§‹åŒ–. 0
+			 * æœªæ˜å¼‚å¸¸,å…·ä½“æŸ¥çœ‹Throwableä¿¡æ¯. å…¶ä»–å¼‚å¸¸è¯·å‚ç…§httpçŠ¶æ€ç .
 			 */
 			@Override
 			public void onFailure(int statusCode,String responseString, Throwable throwable) {
@@ -151,7 +151,7 @@ public class RequestDataBiz {
 	public void loadCity(){
 		JuheData.executeWithAPI(context, 20,"http://apis.juhe.cn/plan/city",JuheData.GET, null, new DataCallBack() {
 			/**
-			 * ÇëÇó³É¹¦Ê±µ÷ÓÃµÄ·½·¨ statusCodeÎªhttp×´Ì¬Âë,responseStringÇëÇó·µ»ØÊı¾İ.
+			 * è¯·æ±‚æˆåŠŸæ—¶è°ƒç”¨çš„æ–¹æ³• statusCodeä¸ºhttpçŠ¶æ€ç ,responseStringè¯·æ±‚è¿”å›æ•°æ®.
 			 */
 			@Override
 			public void onSuccess(int statusCode, String responseString) {
@@ -170,16 +170,16 @@ public class RequestDataBiz {
 				}
 			}
 			/**
-			 * ÇëÇóÍê³ÉÊ±µ÷ÓÃµÄ·½·¨,ÎŞÂÛ³É¹¦»òÕßÊ§°Ü¶¼»áµ÷ÓÃ.
+			 * è¯·æ±‚å®Œæˆæ—¶è°ƒç”¨çš„æ–¹æ³•,æ— è®ºæˆåŠŸæˆ–è€…å¤±è´¥éƒ½ä¼šè°ƒç”¨.
 			 */
 			@Override
 			public void onFinish() {
 			}
 			/**
-			 * ÇëÇóÊ§°ÜÊ±µ÷ÓÃµÄ·½·¨,statusCodeÎªhttp×´Ì¬Âë,throwableÎª²¶»ñµ½µÄÒì³£
-			* statusCode:30002 Ã»ÓĞ¼ì²âµ½µ±Ç°ÍøÂç. 30003 Ã»ÓĞ½øĞĞ³õÊ¼»¯. 0
-			* Î´Ã÷Òì³£,¾ßÌå²é¿´ThrowableĞÅÏ¢. ÆäËûÒì³£Çë²ÎÕÕhttp×´Ì¬Âë.
-			*/
+			 * è¯·æ±‚å¤±è´¥æ—¶è°ƒç”¨çš„æ–¹æ³•,statusCodeä¸ºhttpçŠ¶æ€ç ,throwableä¸ºæ•è·åˆ°çš„å¼‚å¸¸
+			 * statusCode:30002 æ²¡æœ‰æ£€æµ‹åˆ°å½“å‰ç½‘ç»œ. 30003 æ²¡æœ‰è¿›è¡Œåˆå§‹åŒ–. 0
+			 * æœªæ˜å¼‚å¸¸,å…·ä½“æŸ¥çœ‹Throwableä¿¡æ¯. å…¶ä»–å¼‚å¸¸è¯·å‚ç…§httpçŠ¶æ€ç .
+			 */
 			@Override
 			public void onFailure(int statusCode,String responseString, Throwable throwable) {
 				Log.i("info", "string:"+responseString);
@@ -208,18 +208,18 @@ public class RequestDataBiz {
 				}
 				listView.setAdapter(new BusAdapter(context, buses));
 			}
-			
+
 			/**
-			 * ÇëÇóÍê³ÉÊ±µ÷ÓÃµÄ·½·¨,ÎŞÂÛ³É¹¦»òÕßÊ§°Ü¶¼»áµ÷ÓÃ.
+			 * è¯·æ±‚å®Œæˆæ—¶è°ƒç”¨çš„æ–¹æ³•,æ— è®ºæˆåŠŸæˆ–è€…å¤±è´¥éƒ½ä¼šè°ƒç”¨.
 			 */
 			@Override
 			public void onFinish() {
 				
 			}
 			/**
-			 * ÇëÇóÊ§°ÜÊ±µ÷ÓÃµÄ·½·¨,statusCodeÎªhttp×´Ì¬Âë,throwableÎª²¶»ñµ½µÄÒì³£
-			 * statusCode:30002 Ã»ÓĞ¼ì²âµ½µ±Ç°ÍøÂç. 30003 Ã»ÓĞ½øĞĞ³õÊ¼»¯. 0
-			 * Î´Ã÷Òì³£,¾ßÌå²é¿´ThrowableĞÅÏ¢. ÆäËûÒì³£Çë²ÎÕÕhttp×´Ì¬Âë.
+			 * è¯·æ±‚å¤±è´¥æ—¶è°ƒç”¨çš„æ–¹æ³•,statusCodeä¸ºhttpçŠ¶æ€ç ,throwableä¸ºæ•è·åˆ°çš„å¼‚å¸¸
+			 * statusCode:30002 æ²¡æœ‰æ£€æµ‹åˆ°å½“å‰ç½‘ç»œ. 30003 æ²¡æœ‰è¿›è¡Œåˆå§‹åŒ–. 0
+			 * æœªæ˜å¼‚å¸¸,å…·ä½“æŸ¥çœ‹Throwableä¿¡æ¯. å…¶ä»–å¼‚å¸¸è¯·å‚ç…§httpçŠ¶æ€ç .
 			 */
 			@Override
 			public void onFailure(int statusCode,String responseString, Throwable throwable) {

@@ -72,13 +72,14 @@ public class CulinaryAdapter extends BaseAdapter {
 			convertView.setTag(holder);
 		}
 		holder = (ViewHolder) convertView.getTag();
-		holder.address.setText("µØÖ·£º" + entity.getAddress());
+
+		holder.address.setText("åœ°å€ï¼š" + entity.getAddress());
 		holder.name.setText(entity.getName());
-		holder.all_remarks.setText("×ÜÆÀ£º" + entity.getAll_remarks() + "ÈË");
-		holder.good_remarks.setText("ºÃÆÀ£º"
+		holder.all_remarks.setText("æ€»è¯„ï¼š" + entity.getAll_remarks() + "äºº");
+		holder.good_remarks.setText("å¥½è¯„ï¼š"
 				+ (entity.getGood_remarks() + entity.getVery_good_remarks())
-				+ "ÈË");
-		holder.avg_price.setText("ÈË¾ù£º" + entity.getAvg_price());
+				+ "äºº");
+		holder.avg_price.setText("äººå‡ï¼š" + entity.getAvg_price());
 		LogUtil.i("entity.getPhotos()", entity.getPhotos());
 		if (entity.getPhotos() == null){
 			holder.photos.setImageResource(R.drawable.ic_launcher);
@@ -86,6 +87,7 @@ public class CulinaryAdapter extends BaseAdapter {
 //			String url = ImageURLFormatUtil.format(entity.getPhotos());
 			bitmapUtils.display(holder.photos, entity.getPhotos());
 		}
+
 		return convertView;
 	}
 

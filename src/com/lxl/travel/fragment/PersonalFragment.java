@@ -62,7 +62,7 @@ import com.lxl.trivel.R;
 import com.tarena.utils.ImageCircleView;
 
 /**
- * �����е����ݿ���ز���Ӧ���첽����
+ * 本类中的数据库相关操作应该异步进行
  * */
 @SuppressLint("SimpleDateFormat")
 public class PersonalFragment extends BaseFragment {
@@ -81,7 +81,7 @@ public class PersonalFragment extends BaseFragment {
 	private TextView gender_Tv;
 	private TextView username_Tv;
 	private TextView nickName_Tv;
-	private TextView personal_generalinfo_Tv;
+//	private TextView personal_generalinfo_Tv;
 	private NotePadDBHelper dbHelper;
 	private DisplayMetrics displayMetrics;
 	private ImageCircleView userImg_Iv;
@@ -99,10 +99,10 @@ public class PersonalFragment extends BaseFragment {
 				getResources().getDisplayMetrics());
 	}
 
-	private void initDisplayMetrics(){		
-		//��ȡ��Ļ������
+	private void initDisplayMetrics(){
+		//获取屏幕管理器
 		WindowManager manager = getActivity().getWindowManager();
-		//���õ����Ŀ��
+		//设置弹窗的宽度
 		displayMetrics = new DisplayMetrics();
 		manager.getDefaultDisplay().getMetrics(displayMetrics);
 	}
@@ -118,17 +118,17 @@ public class PersonalFragment extends BaseFragment {
 		return view;
 	}
 
-	/**��ʼ���ؼ�*/
+	/**初始化控件*/
 	private void setViews() {
 		userImg_Iv = (ImageCircleView)view.findViewById(R.id.userImg_Iv_c);
 		login_Tv = (TextView) view.findViewById(R.id.login_Tv);
 		baseInfo_Tv = (TextView) view.findViewById(R.id.personal_info_Tv);
 		addGeneralInfo_Tv = (TextView) view.findViewById(R.id.personal_addgeneralinfo_Tv);
 		general_lv = (SwipeMenuListView) view.findViewById(R.id.generalinfo_Lv);
-		personal_generalinfo_Tv = (TextView) view.findViewById(R.id.personal_generalinfo_Tv);
+//		personal_generalinfo_Tv = (TextView) view.findViewById(R.id.personal_generalinfo_Tv);
 	}
 
-	/**���ò໬listview����ʾ*/
+	/**设置侧滑listview的显示*/
 	/*private void setListView() {
 		// step 1. create a MenuCreator
 		SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -176,20 +176,20 @@ public class PersonalFragment extends BaseFragment {
 	}*/
 
 
-	/**����item�໬�������*/
+	/**设置item侧滑点击监听*/
 	/*private void serSlideItemListener() {
 		general_lv.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 			@Override
 			public void onMenuItemClick(int position, SwipeMenu menu, int index) {
 				switch(index){
-				case 0://�༭����
+				case 0://编辑监听
 					int selectedId = Integer.valueOf(generalInfos.get(position).get(idKey));
 					setPopupWindow(UPDATE_TO_DB,selectedId);
 					name_Et.setText(generalInfos.get(position).get(nameKey));
 					address_Et.setText(generalInfos.get(position).get(addressKey));
 					break;
-				case 1://ɾ������
+				case 1://删除监听
 					String whereClause = "_id="+generalInfos.get(position).get(idKey);
 					deleteinfo(whereClause);
 					generalInfos.remove(position);
@@ -204,9 +204,9 @@ public class PersonalFragment extends BaseFragment {
 	public void onResume() {
 		if(ETGApplication.userEntity != null){
 			login_Tv.setText(ETGApplication.userEntity.getNickname());
-			//��ȡ���ش洢�ĳ�����Ϣ
+			//获取本地存储的常用信息
 			selectDataFromDB();
-			//��ͷ��
+			//设头像
 			File file = CameraForImageUtil
 					.getOutputMediaFile(ETGApplication.userEntity.getUsername());
 			if (file.exists()) {
@@ -231,18 +231,18 @@ public class PersonalFragment extends BaseFragment {
 		super.onResume();
 	}
 
-	/**�����ݿ��ѯ����*/
+	/**从数据库查询数据*/
 	private void selectDataFromDB() {
 		if(generalInfos == null){
 			generalInfos = new ArrayList<Map<String,String>>();
 		}else {
-			//����ϴε�����
+			//清空上次的数据
 			generalInfos.removeAll(generalInfos);
 		}
-		//��ѯ���
+		//查询语句
 		String sql = "select * from ETGgeneralInfo where _username="+ETGApplication.userEntity.getUsername();		
 		Cursor c = dbHelper.query(sql, null);
-		//����ѯ�������ݷ�װ����,��listview����ʾ
+		//将查询到的数据封装起来,在listview中显示
 		while(c.moveToNext()){
 			Map<String, String> map = new HashMap<String, String>();
 			map.put(nameKey, c.getString(c.getColumnIndex("_name")));
@@ -254,10 +254,10 @@ public class PersonalFragment extends BaseFragment {
 		showListView();
 	}
 
-	/**���ü�����*/
+	/**设置监听器*/
 	private void setListener() {
 
-		//���õ����¼����
+		//设置点击登录监听
 		login_Tv.setOnClickListener(new android.view.View.OnClickListener() {
 
 			@Override
@@ -272,25 +272,25 @@ public class PersonalFragment extends BaseFragment {
 			}
 		});
 
-		//���������Ϣ����
+		//点击基本信息监听
 		baseInfo_Tv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity == null){
-					Toast.makeText(PersonalFragment.this.getActivity(), "��¼֮��鿴������Ϣ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(PersonalFragment.this.getActivity(), "登录之后查看更多信息", Toast.LENGTH_SHORT).show();
 				}else {
 					displayBaseInfo();	
 				}	
 			}
 		});
-		//ͷ��
+		//头像
 		userImg_Iv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity != null){
-					Toast.makeText(getActivity(), "���һ����������������˺�", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "请右滑进入设置栏更换账号", Toast.LENGTH_SHORT).show();
 					return;
 				}else{					
 					Intent intent = new Intent(getActivity(),LoginActivity.class);
@@ -298,26 +298,41 @@ public class PersonalFragment extends BaseFragment {
 				}
 			}
 		} );
+//		personal_generalinfo_Tv
 
-		//�����ӳ�����Ϣ
+		//点击查看常用信息
+		/*personal_generalinfo_Tv.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if(ETGApplication.userEntity == null){
+					Toast.makeText(PersonalFragment.this.getActivity(),
+							"登录之后查看常用信息", Toast.LENGTH_SHORT).show();
+				}else {
+					setPopupWindow(INSERT_TO_DB, -1);	
+				}
+			}
+		});*/
+		//点击添加常用信息
 		addGeneralInfo_Tv.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(ETGApplication.userEntity == null){
-					Toast.makeText(PersonalFragment.this.getActivity(), "��¼֮����Ӹ�����Ϣ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(PersonalFragment.this.getActivity(),
+							"登录之后添加更多信息", Toast.LENGTH_SHORT).show();
 				}else {
-					setPopupWindow(INSERT_TO_DB, -1);	
+					setPopupWindow(INSERT_TO_DB, -1);
 				}
 			}
 		});
 
-		//listview��item�������
+		//listview的item点击监听
 		setItemOnClickListener();
 	}
 
-	String[] items = new String[] { "�༭", "ɾ��" };
-	/**����listview��item�������*/
+	String[] items = new String[] {"编辑", "删除"};
+	/**设置listview的item点击监听*/
 	private void setItemOnClickListener() {
 		general_lv.setOnItemClickListener(new OnItemClickListener() {
 
@@ -334,8 +349,8 @@ public class PersonalFragment extends BaseFragment {
 						selectedPos = position;
 					}
 				});
-				builder.setPositiveButton("ȷ��", positiveButtonListener);
-				builder.setNegativeButton("ȡ��", negativeButtonListener);
+				builder.setPositiveButton("确定", positiveButtonListener);
+				builder.setNegativeButton("取消", negativeButtonListener);
 				builder.setCancelable(true);
 				builder.show();
 			}
@@ -343,11 +358,11 @@ public class PersonalFragment extends BaseFragment {
 
 	}
 
-	/**ѡ����Ǳ༭����ɾ��*/
+	/**选择的是编辑还是删除*/
 	private int selectedItem;
-	/**�����item*/
+	/**点击的item*/
 	private int selectedPos;
-	/**ȷ�� ����*/
+	/**确定 监听*/
 	private android.content.DialogInterface.OnClickListener positiveButtonListener = new android.content.DialogInterface.OnClickListener() {
 
 		@Override
@@ -370,33 +385,33 @@ public class PersonalFragment extends BaseFragment {
 		}
 	};
 
-	/**ȡ������*/
+	/**取消监听*/
 	private android.content.DialogInterface.OnClickListener negativeButtonListener = new android.content.DialogInterface.OnClickListener() {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
-			Toast.makeText(PersonalFragment.this.getActivity(), "ȡ��"+which, 1).show();
+			Toast.makeText(PersonalFragment.this.getActivity(), "取消"+which, Toast.LENGTH_LONG).show();
 		}
 	};
 
 
-	/**������ʾ������Ϣ*/
+	/**弹窗显示基本信息*/
 	@SuppressWarnings("deprecation")
 	private void displayBaseInfo() {
-		//����,�����Ϣ
+		//弹窗,添加信息
 		View baseInfoContentView = View.inflate(PersonalFragment.this.getActivity(), R.layout.item_personal_baseinfo_popupwindow, null);
-		//���õ������ڵĴ�С��λ��
+		//设置弹窗窗口的大小和位置
 		PopupWindow baseInfoWindow = new PopupWindow(baseInfoContentView, displayMetrics.widthPixels/4*3, displayMetrics.heightPixels/5);
-		// ���ñ����������Ϊ�˵��������Back��Ҳ��ʹ����ʧ�����Ҳ�����Ӱ����ı���
+		// 设置背景，这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
 		baseInfoWindow.setBackgroundDrawable(new BitmapDrawable());
-		// ʹ��ۼ� ��Ҫ������˵���ؼ����¼��ͱ���Ҫ���ô˷���
+		// 使其聚集 ，要想监听菜单里控件的事件就必须要调用此方法
 		baseInfoWindow.setFocusable(true);
 		baseInfoWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 		initBaseInfoViews(baseInfoContentView);
 		setBaseInfo(baseInfoContentView);
 	}
 
-	/**��ʼ��������Ϣ����ʾ�ؼ�
+	/**初始化基本信息的显示控件
 	 * @param baseInfoContentView */
 	private void initBaseInfoViews(View baseInfoContentView) {
 		username_Tv = (TextView) baseInfoContentView.findViewById(R.id.baseinfo_username_Tv);
@@ -406,18 +421,18 @@ public class PersonalFragment extends BaseFragment {
 		registTime_Tv = (TextView) baseInfoContentView.findViewById(R.id.baseinfo_registTime_Tv);
 	}
 
-	/**���û�����Ϣ����ʾ
+	/**设置基本信息的显示
 	 * @param baseInfoContentView */
 	private void setBaseInfo(View baseInfoContentView) {
 		if(ETGApplication.userEntity!=null){
 			username_Tv.setText(ETGApplication.userEntity.getUsername());
 			nickName_Tv.setText(ETGApplication.userEntity.getNickname());
 			if("m".equals(ETGApplication.userEntity.getGender())){				
-				gender_Tv.setText("��");
+				gender_Tv.setText("男");
 			}else if("f".equals(ETGApplication.userEntity.getGender())){				
-				gender_Tv.setText("Ů");
+				gender_Tv.setText("女");
 			}
-			//ת��ʱ��
+			//转换时间
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			String lastLoginTime = format.format(ETGApplication.userEntity.getLastLoginTime());
 			lastLoginTime_Tv.setText(lastLoginTime);
@@ -430,31 +445,31 @@ public class PersonalFragment extends BaseFragment {
 	private View contentView;
 	private static final int INSERT_TO_DB = -1;
 	private static final int UPDATE_TO_DB = -2;
-	/**���ó�����Ϣ����*/
+	/**设置常用信息弹窗*/
 	@SuppressWarnings("deprecation")
 	private void setPopupWindow(int submitType, int selectedId) {
-		//����,�����Ϣ
+		//弹窗,添加信息
 		contentView = View.inflate(PersonalFragment.this.getActivity(), R.layout.item_personal_addinfo_popupwindow, null);
-		//��ȡ��Ļ������
+		//获取屏幕管理器
 		WindowManager manager = getActivity().getWindowManager();
-		//���õ����Ŀ��
+		//设置弹窗的宽度
 		DisplayMetrics displayMetrics = new DisplayMetrics();
 		manager.getDefaultDisplay().getMetrics(displayMetrics);
-		//���õ������ڵĴ�С��λ��
+		//设置弹窗窗口的大小和位置
 		window = new PopupWindow(contentView, displayMetrics.widthPixels/4*3, displayMetrics.heightPixels/4);
-		// ʹ��ۼ� ��Ҫ������˵���ؼ����¼��ͱ���Ҫ���ô˷���
+		// 使其聚集 ，要想监听菜单里控件的事件就必须要调用此方法
 		window.setFocusable(true);
-		// ���ñ����������Ϊ�˵��������Back��Ҳ��ʹ����ʧ�����Ҳ�����Ӱ����ı���
+		// 设置背景，这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
 		window.setBackgroundDrawable(new BitmapDrawable());
-		//����̲��ᵲ��popupwindow
+		//软键盘不会挡着popupwindow
 		window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-		window.showAtLocation(personal_generalinfo_Tv, Gravity.CENTER, 0, displayMetrics.heightPixels/7);
+//		window.showAtLocation(personal_generalinfo_Tv, Gravity.CENTER, 0, displayMetrics.heightPixels/7);
 		//window.showAsDropDown(personal_generalinfo_Tv);
 		initView();
 		setWindowListener(submitType,selectedId);
 	}
 
-	/**��ʼ��������Ϣ�����еĿؼ�*/
+	/**初始化常用信息弹窗中的控件*/
 	private void initView() {
 		name_Et = (EditText)contentView.findViewById(R.id.name_Et);
 		address_Et = (EditText)contentView.findViewById(R.id.address_ET);
@@ -462,19 +477,18 @@ public class PersonalFragment extends BaseFragment {
 		cancel_btn = (Button) contentView.findViewById(R.id.cancel_Btn);
 	}
 
-	/**���ó�����Ϣ�����ĵ������
-	 * @param selectedPos */
+	/**设置常用信息弹窗的点击监听*/
 	private void setWindowListener(final int submitType, final int selectedId) {
-		//����ύ����
+		//添加数据到本地数据库SQLite
 		submit_btn.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				if(TextUtils.isEmpty(name_Et.getText().toString()) 
 						|| TextUtils.isEmpty(address_Et.getText().toString())){
-					Toast.makeText(PersonalFragment.this.getActivity(), "��Ϣû������Ŷ", Toast.LENGTH_SHORT).show();
+					Toast.makeText(PersonalFragment.this.getActivity(), "信息没有填完哦", Toast.LENGTH_SHORT).show();
 				}else{
-					//������ݵ��������ݿ�SQLite
+					//添加数据到本地数据库SQLite
 					saveInfo(submitType, selectedId);
 					window.dismiss();
 				}
@@ -482,7 +496,7 @@ public class PersonalFragment extends BaseFragment {
 			}
 		});
 
-		//���ȡ������
+		//点击取消监听
 		cancel_btn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -497,14 +511,13 @@ public class PersonalFragment extends BaseFragment {
 	private String nameKey = "_name";
 	private String addressKey = "_address";
 	private String idKey = "_id";
-	/**������Ϣ������
-	 * @param submitType 
-	 * @param selectedPos */
+	/**保存信息到本地
+	 * @param submitType*/
 	private void saveInfo(int submitType, int selectedId) {
 		String nameInfo = name_Et.getText().toString();
 		String addressInfo = address_Et.getText().toString();
 		Map<String, String> map = new HashMap<String, String>();
-		//�����Ϣ������
+		//添加信息到集合
 		map.put(nameKey, nameInfo);
 		map.put(addressKey, addressInfo);
 		generalInfos.add(map);
@@ -520,13 +533,13 @@ public class PersonalFragment extends BaseFragment {
 		selectDataFromDB();
 	}
 
-	/**�������ݿ����Ϣ*/
+	/**更新数据库的信息*/
 	private void updateInfo( ContentValues values, String whereClause, String[] whereArgs) {
 		dbHelper.update("ETGgeneralInfo", values, whereClause, whereArgs);
 	}
 
 
-	/**�����ݿ��������*/
+	/**向数据库插入数据*/
 	private void insertDataToDB() {
 		ContentValues values = new ContentValues();
 		values.put("_username", ETGApplication.userEntity.getUsername());
@@ -536,7 +549,7 @@ public class PersonalFragment extends BaseFragment {
 	}
 
 	private GeneralInfoAdapter adapter;
-	/**���ó�����Ϣ��listview�ϵ���ʾ*/
+	/**设置常用信息在listview上的显示*/
 	private void showListView() {
 		if(adapter == null){
 			adapter = new GeneralInfoAdapter(this.getActivity());
@@ -548,14 +561,14 @@ public class PersonalFragment extends BaseFragment {
 	}
 
 
-	/**����ؼ���״̬*/
+	/**保存控件的状态*/
 	@Override
 	public void onDestroyView() {
 		adapter = null;
 		super.onDestroyView();
 	}
 
-	/**�����ݿ�ɾ����Ϣ*/
+	/**从数据库删除信息*/
 	private void deleteinfo(String whereClause) {
 		dbHelper.delete("ETGgeneralInfo", whereClause, null);
 	}
